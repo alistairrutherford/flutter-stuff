@@ -1,8 +1,12 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider5/model.dart';
+import 'package:flutter/cupertino.dart';
 
-void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+void main() => runApp(NewsApp());
+
+class NewsApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -11,33 +15,55 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'News List'),
+      home: MultiProvider(
+        providers: [
+          FutureProvider(create: (context) => NewsModel().updateHeadlines()),
+        ],
+        child: HeadlinesPage(title: 'News List'),
+      )
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class HeadlinesPage extends StatefulWidget {
+  HeadlinesPage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HeadlinesPageState createState() => _HeadlinesPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-
+class _HeadlinesPageState extends State<HeadlinesPage> {
   @override
   Widget build(BuildContext context) {
 
+    NewsModel _newsModel = Provider.of<NewsModel>(context);
+
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Center(
-
-        child: Text(
-          'put a widget here.',
+        child: Column(
+          children: <Widget>[
+            Expanded(
+                child: _newsModel.headlines == null ? Container(child: CupertinoActivityIndicator(radius: 50.0)) :
+                ListView.builder(
+                    itemCount: _newsModel.headlines.articles.length,
+                    itemBuilder: (context, index){
+                      return Container(
+                          height: 50,
+                          color: Colors.grey[(index*200) % 400],
+                          child: Center(
+                              child: Text(
+                                  '${ _newsModel.headlines.articles[index].title}'
+                              )
+                          )
+                      );
+                    }
+                )
+            )
+          ],
         ),
       ),
     );
