@@ -1,0 +1,19 @@
+[
+  '{{repeat(10, 10)}}',
+  {
+	id: '{{integer(100, 999)}}',
+
+	index: '{{integer(100, 999)}}',
+	dataSourceId: '{{guid()}}',
+	orderId: '{{guid()}}',
+	size:'{{floating(0, 90)}}',
+	baseBuyPrice:'{{floating(0, 900)}}',
+	baseSellPrice:'{{floating(0, 900)}}',
+	buyPrice:'{{floating(0, 900)}}',
+	sellPrice:'{{floating(0, 900)}}',
+	productId: 'BTC',
+
+    buyTime: '{{date(new Date(2020, 0, 1), new Date(), "YYYY-MM-dd hh:mm:ss")}}',    
+	sellTime: '{{date(new Date(2020, 0, 1), new Date(), "YYYY-MM-dd hh:mm:ss")}}'
+	}
+]
