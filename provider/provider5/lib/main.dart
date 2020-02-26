@@ -2,6 +2,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider5/model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider5/news.dart';
 
 
 void main() => runApp(NewsApp());
@@ -37,7 +38,7 @@ class _HeadlinesPageState extends State<HeadlinesPage> {
   @override
   Widget build(BuildContext context) {
 
-    NewsModel _newsModel = Provider.of<NewsModel>(context);
+    News _news = Provider.of<News>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -47,16 +48,16 @@ class _HeadlinesPageState extends State<HeadlinesPage> {
         child: Column(
           children: <Widget>[
             Expanded(
-                child: _newsModel.headlines == null ? Container(child: CupertinoActivityIndicator(radius: 50.0)) :
+                child: _news == null ? Container(child: CupertinoActivityIndicator(radius: 50.0)) :
                 ListView.builder(
-                    itemCount: _newsModel.headlines.articles.length,
+                    itemCount: _news.articles.length,
                     itemBuilder: (context, index){
                       return Container(
                           height: 50,
                           color: Colors.grey[(index*200) % 400],
                           child: Center(
                               child: Text(
-                                  '${ _newsModel.headlines.articles[index].title}'
+                                  '${ _news.articles[index].title}'
                               )
                           )
                       );

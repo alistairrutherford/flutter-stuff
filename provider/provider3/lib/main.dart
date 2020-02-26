@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// Asynv load of model
+// Async load of model
 Future<LimitOrderModel> loadAsyncModel() async {
   LimitOrderModel model = LimitOrderModel();
   model.fetchOrders();
