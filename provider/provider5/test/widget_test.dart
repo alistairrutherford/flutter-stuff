@@ -17,7 +17,7 @@ void main() {
   testWidgets('Test load', (WidgetTester tester) async {
     NewsModel newsModel = NewsModel();
 
-    News news  = newsModel.loadNews(escape(USERS));
+    News news  = newsModel.decodeNews(escape(USERS));
 
     // Verify data has been read.
     expect(news, isNotNull);

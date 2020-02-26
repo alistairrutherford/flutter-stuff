@@ -11,16 +11,16 @@ class NewsModel extends ChangeNotifier {
   News  get headlines => _news;
   set(News news) => _news = news;
 
-  Future updateHeadlines() async {
+  Future<News> updateHeadlines() async {
     // Fetch json
     var dataString = await loadAsset(HEADLINES_DATA);
 
-    _news = loadNews(dataString);
+    _news = decodeNews(dataString);
 
-    notifyListeners();
+   return _news;
   }
 
-  News loadNews(String dataString) {
+  News decodeNews(String dataString) {
     Map<String, dynamic> jsonUserData = jsonDecode(dataString);
     News headlines = News.fromMap(jsonUserData);
     return headlines;
