@@ -63,7 +63,7 @@ class News {
 
 class Article {
   final Source source;
-  final Author author;
+  final String author;
   final String title;
   final String description;
   final String url;
@@ -83,7 +83,7 @@ class Article {
 
   Article copyWith({
     Source source,
-    Author author,
+    String author,
     String title,
     String description,
     String url,
@@ -220,7 +220,4 @@ class Source {
 
   @override
   int get hashCode => id.hashCode ^ name.hashCode;
-}
-
-class Author {
 }
