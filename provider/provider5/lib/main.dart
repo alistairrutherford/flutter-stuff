@@ -52,14 +52,13 @@ class _HeadlinesPageState extends State<HeadlinesPage> {
                 ListView.builder(
                     itemCount: _news.articles.length,
                     itemBuilder: (context, index){
-                      return Container(
-                          height: 50,
-                          color: Colors.grey[(index*200) % 400],
-                          child: Center(
-                              child: Text(
-                                  '${ _news.articles[index].title}'
-                              )
-                          )
+                      return Card(
+                        child: ListTile(
+                          leading: FlutterLogo(size: 56.0),
+                          title: Text('${ _news.articles[index].title}'),
+                          subtitle: Text('${ _news.articles[index].description}'),
+                          trailing: Icon(Icons.more_vert),
+                        ),
                       );
                     }
                 )
