@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:provider5/news.dart';
 
-class NewsModel extends ChangeNotifier {
+class NewsModel {
   static const String HEADLINES_DATA = "assets/data/headlines.json";
 
   News _news;
