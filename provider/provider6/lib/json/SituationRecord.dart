@@ -1,4 +1,5 @@
-package json
+import 'package:provider6/json/GroupOfLocations.dart';
+import 'package:provider6/json/Validity.dart';
 
 class SituationRecord {
     GroupOfLocations groupOfLocations;

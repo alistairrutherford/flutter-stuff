@@ -1,5 +1,3 @@
-package json
-
 class SupplierIdentification {
     String country;
     String nationalIdentifier;

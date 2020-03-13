@@ -1,5 +1,3 @@
-package json
-
 class ValidityTimeSpecification {
     String overallStartTime;
 

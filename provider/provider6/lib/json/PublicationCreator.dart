@@ -1,5 +1,3 @@
-package json
-
 class PublicationCreator {
     String country;
     String nationalIdentifier;

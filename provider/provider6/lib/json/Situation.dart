@@ -1,4 +1,5 @@
-package json
+import 'package:provider6/json/HeaderInformation.dart';
+import 'package:provider6/json/SituationRecord.dart';
 
 class Situation {
     HeaderInformation headerInformation;

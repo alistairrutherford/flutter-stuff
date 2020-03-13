@@ -1,4 +1,5 @@
-package json
+import 'package:provider6/json/Exchange.dart';
+import 'package:provider6/json/PayloadPublication.dart';
 
 class D2LogicalModel {
     Exchange exchange;

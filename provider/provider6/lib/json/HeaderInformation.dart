@@ -1,4 +1,3 @@
-package json
 
 class HeaderInformation {
     String confidentiality;

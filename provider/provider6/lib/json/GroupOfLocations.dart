@@ -1,4 +1,4 @@
-package json
+import 'package:provider6/json/LocationContainedInGroup.dart';
 
 class GroupOfLocations {
     LocationContainedInGroup locationContainedInGroup;

@@ -1,5 +1,3 @@
-package json
-
 class LocationContainedInGroup {
     String predefinedLocationReference;
     String xsitype;
