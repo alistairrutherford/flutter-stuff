@@ -1,14 +1,14 @@
-package json
+import 'package:provider6/json/D2LogicalModel.dart';
 
-class vms {
+class Vms {
     D2LogicalModel d2LogicalModel;
     String encoding;
     String version;
 
-    vms({this.d2LogicalModel, this.encoding, this.version});
+    Vms({this.d2LogicalModel, this.encoding, this.version});
 
-    factory vms.fromJson(Map<String, dynamic> json) {
-        return vms(
+    factory Vms.fromJson(Map<String, dynamic> json) {
+        return Vms(
             d2LogicalModel: json['d2LogicalModel'] != null ? D2LogicalModel.fromJson(json['d2LogicalModel']) : null, 
             encoding: json['encoding'], 
             version: json['version'], 

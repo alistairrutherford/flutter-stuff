@@ -1,4 +1,4 @@
-package json
+import 'package:provider6/json/ValidityTimeSpecification.dart';
 
 class Validity {
     String validityStatus;

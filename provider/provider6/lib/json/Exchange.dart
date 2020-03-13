@@ -1,4 +1,4 @@
-package json
+import 'package:provider6/json/SupplierIdentification.dart';
 
 class Exchange {
     SupplierIdentification supplierIdentification;

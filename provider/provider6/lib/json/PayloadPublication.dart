@@ -1,4 +1,5 @@
-package json
+import 'package:provider6/json/PublicationCreator.dart';
+import 'package:provider6/json/Situation.dart';
 
 class PayloadPublication {
     String lang;
