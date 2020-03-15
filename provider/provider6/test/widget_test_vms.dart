@@ -1,0 +1,30 @@
+// This is a basic Flutter widget test.
+//
+// To perform an interaction with a widget in your test, use the WidgetTester
+// utility that Flutter provides. For example, you can send tap and scroll
+// gestures. You can also use WidgetTester to find child widgets in the widget
+// tree, read text, and verify that the values of widget properties are correct.
+
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:provider6/json/events.dart';
+import 'package:provider6/json/vms.dart';
+
+//@formatter:off
+const String VMS_JSON = '{ "version":"1.0", "encoding":"UTF-8", "d2LogicalModel":{ "xmlns":"http://datex2.eu/schema/1_0/1_0", "xmlnsxsi":"http://www.w3.org/2001/XMLSchema-instance", "xmlnsxalan":"http://xml.apache.org/xslt", "modelBaseVersion":"1.0", "xsischemaLocation":"http://datex2.eu/schema/1_0/1_0 http://datex2.eu/schema/1_0/1_0/DATEXIISchema_1_0_1_0.xsd", "exchange":{ "supplierIdentification":{ "country":"gb", "nationalIdentifier":"TIH Toolkit" } }, "payloadPublication":{ "lang":"en", "xsitype":"SituationPublication", "publicationTime":"2020-03-12T10:20:26", "publicationCreator":{ "country":"gb", "nationalIdentifier":"TIH Toolkit" }, "situation":[ { "id":"VMS_Situation_SI005V", "headerInformation":{ "confidentiality":"noRestriction", "informationStatus":"real" }, "situationRecord":{ "xsitype":"VariableMessageSignSetting", "id":"VMS_Situation_Record_SI005V", "situationRecordCreationTime":"2020-03-12T10:20:26", "situationRecordVersion":"1", "situationRecordVersionTime":"2020-03-12T10:20:26", "situationRecordFirstSupplierVersionTime":"2020-03-12T10:20:26", "probabilityOfOccurrence":"certain", "validity":{ "validityStatus":"active", "validityTimeSpecification":{ "overallStartTime":"2020-03-12T10:20:26" } }, "groupOfLocations":{ "xsitype":"GroupOfLocationsByReference", "locationContainedInGroup":{ "xsitype":"LocationByReference", "predefinedLocationReference":"VMS_SI005V" }, "predefinedLocationSetReference":"VMSLocations_1" }, "timeLastSet":"2020-03-12T10:18:58", "vmsIdentifier":"SI005V", "vmsLegend":[ "FOOTBALL", "IBROX STADIUM", "20:00 TONIGHT", "EXPECT DELAYS" ] } }, { "id":"VMS_Situation_SI004V", "headerInformation":{ "confidentiality":"noRestriction", "informationStatus":"real" }, "situationRecord":{ "xsitype":"VariableMessageSignSetting", "id":"VMS_Situation_Record_SI004V", "situationRecordCreationTime":"2020-03-12T10:20:26", "situationRecordVersion":"1", "situationRecordVersionTime":"2020-03-12T10:20:26", "situationRecordFirstSupplierVersionTime":"2020-03-12T10:20:26", "probabilityOfOccurrence":"certain", "validity":{ "validityStatus":"active", "validityTimeSpecification":{ "overallStartTime":"2020-03-12T10:20:26" } }, "groupOfLocations":{ "xsitype":"GroupOfLocationsByReference", "locationContainedInGroup":{ "xsitype":"LocationByReference", "predefinedLocationReference":"VMS_SI004V" }, "predefinedLocationSetReference":"VMSLocations_1" }, "timeLastSet":"2020-03-12T10:11:01", "vmsIdentifier":"SI004V", "vmsLegend":[ "FOOTBALL", "IBROX STADIUM", "20:00 TONIGHT", "EXPECT DELAYS" ] } }, { "id":"VMS_Situation_SI003V", "headerInformation":{ "confidentiality":"noRestriction", "informationStatus":"real" }, "situationRecord":{ "xsitype":"VariableMessageSignSetting", "id":"VMS_Situation_Record_SI003V", "situationRecordCreationTime":"2020-03-12T10:20:26", "situationRecordVersion":"1", "situationRecordVersionTime":"2020-03-12T10:20:26", "situationRecordFirstSupplierVersionTime":"2020-03-12T10:20:26", "probabilityOfOccurrence":"certain", "validity":{ "validityStatus":"active", "validityTimeSpecification":{ "overallStartTime":"2020-03-12T10:20:26" } }, "groupOfLocations":{ "xsitype":"GroupOfLocationsByReference", "locationContainedInGroup":{ "xsitype":"LocationByReference", "predefinedLocationReference":"VMS_SI003V" }, "predefinedLocationSetReference":"VMSLocations_1" }, "timeLastSet":"2020-03-12T10:18:58", "vmsIdentifier":"SI003V", "vmsLegend":[ "FOOTBALL", "IBROX STADIUM", "20:00 TONIGHT", "EXPECT DELAYS" ] } }, { "id":"VMS_Situation_SI002V", "headerInformation":{ "confidentiality":"noRestriction", "informationStatus":"real" }, "situationRecord":{ "xsitype":"VariableMessageSignSetting", "id":"VMS_Situation_Record_SI002V", "situationRecordCreationTime":"2020-03-12T10:20:26", "situationRecordVersion":"1", "situationRecordVersionTime":"2020-03-12T10:20:26", "situationRecordFirstSupplierVersionTime":"2020-03-12T10:20:26", "probabilityOfOccurrence":"certain", "validity":{ "validityStatus":"active", "validityTimeSpecification":{ "overallStartTime":"2020-03-12T10:20:26" } }, "groupOfLocations":{ "xsitype":"GroupOfLocationsByReference", "locationContainedInGroup":{ "xsitype":"LocationByReference", "predefinedLocationReference":"VMS_SI002V" }, "predefinedLocationSetReference":"VMSLocations_1" }, "timeLastSet":"2020-03-12T07:16:56", "vmsIdentifier":"SI002V", "vmsLegend":[ "FOOTBALL", "IBROX STADIUM", "20:00 TONIGHT", "EXPECT DELAYS" ] } }, { "id":"VMS_Situation_SI001V", "headerInformation":{ "confidentiality":"noRestriction", "informationStatus":"real" }, "situationRecord":{ "xsitype":"VariableMessageSignSetting", "id":"VMS_Situation_Record_SI001V", "situationRecordCreationTime":"2020-03-12T10:20:26", "situationRecordVersion":"1", "situationRecordVersionTime":"2020-03-12T10:20:26", "situationRecordFirstSupplierVersionTime":"2020-03-12T10:20:26", "probabilityOfOccurrence":"certain", "validity":{ "validityStatus":"active", "validityTimeSpecification":{ "overallStartTime":"2020-03-12T10:20:26" } }, "groupOfLocations":{ "xsitype":"GroupOfLocationsByReference", "locationContainedInGroup":{ "xsitype":"LocationByReference", "predefinedLocationReference":"VMS_SI001V" }, "predefinedLocationSetReference":"VMSLocations_1" }, "timeLastSet":"2020-03-12T07:22:57", "vmsIdentifier":"SI001V", "vmsLegend":[ "FOOTBALL", "IBROX STADIUM", "20:00 TONIGHT", "EXPECT DELAYS" ] } } ] } } }';
+//@formatter:on
+
+void main() {
+
+  testWidgets('Test load', (WidgetTester tester) async {
+    final json = jsonDecode(VMS_JSON);
+
+    Vms vms = Vms.fromJson(json);
+
+    // Verify data has been read.
+    expect(vms, isNotNull);
+  });
+
+}
