@@ -20,7 +20,7 @@ class DateTime {
   });
 
   factory DateTime.fromJson(Map<String, dynamic> json) {
-    DateTime dateTime = null;
+    DateTime dateTime;
     if (json != null) {
       dateTime = DateTime(
         day: json["day"] == null ? null : json["day"],
@@ -37,7 +37,7 @@ class DateTime {
     }
     return dateTime;
   }
-
+  
   Map<String, dynamic> toJson() => {
     "day": day == null ? null : day,
     "fractionalSecond": fractionalSecond == null ? null : fractionalSecond,
