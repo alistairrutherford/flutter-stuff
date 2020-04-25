@@ -8,6 +8,7 @@
 
 import 'dart:convert';
 import 'package:provider6/datex/datetime.dart' as DatextDateTime;
+import 'package:provider6/datex/datexhelper.dart';
 
 Coordinate coordinateFromJson(String str) => Coordinate.fromJson(json.decode(str));
 
@@ -23,7 +24,7 @@ class Coordinate {
   });
 
   factory Coordinate.fromJson(Map<String, dynamic> json) {
-    Coordinate coordinate = null;
+    Coordinate coordinate;
     if (json !=null) {
       coordinate = Coordinate(
         name: json["name"] == null ? null : Name.fromJson(json["name"]),
@@ -52,7 +53,7 @@ class Name {
   });
 
   factory Name.fromJson(Map<String, dynamic> json) {
-    Name name = null;
+    Name name;
     if (json != null) {
       name = Name(
         localPart: localPartEnumValues.map[json["localPart"]],
@@ -98,9 +99,9 @@ class D2LogicalModel {
   });
 
   factory D2LogicalModel.fromJson(Map<String, dynamic> json) {
-    D2LogicalModel d2logicalModel = null;
+    D2LogicalModel d2logicalModel;
     if (json != null) {
-      D2LogicalModel(
+      d2logicalModel = D2LogicalModel(
         d2LogicalModelExtension: json["d2LogicalModelExtension"] == null
             ? null
             : D2LogicalModelExtension.fromJson(json["d2LogicalModelExtension"]),
@@ -132,7 +133,7 @@ class D2LogicalModelExtension {
   });
 
   factory D2LogicalModelExtension.fromJson(Map<String, dynamic> json) {
-    D2LogicalModelExtension d2logicalModelExtension = null;
+    D2LogicalModelExtension d2logicalModelExtension;
     if (json != null) {
       d2logicalModelExtension = D2LogicalModelExtension(
         any: json["any"] == null ? null : List<dynamic>.from(
@@ -185,7 +186,7 @@ class Exchange {
   });
 
   factory Exchange.fromJson(Map<String, dynamic> json) {
-    Exchange exchange = null;
+    Exchange exchange;
 
     if (json != null) {
       exchange = Exchange(
@@ -210,10 +211,8 @@ class Exchange {
             json["filterReference"].map((x) => FilterReference.fromJson(x))),
         historicalStartDate: json["historicalStartDate"] == null
             ? null
-            : DatextDateTime.DateTime
-            .fromJson(json["historicalStartDate"]),
-        historicalStopDate: json["historicalStopDate"] == null ? null : DatextDateTime.DateTime
-            .fromJson(json["historicalStopDate"]),
+            : DatexHelper.fromUTC(json["historicalStartDate"]),
+        historicalStopDate: json["historicalStopDate"] == null ? null : DatexHelper.fromUTC(json["historicalStopDate"]),
         keepAlive: json["keepAlive"] == null ? null : json["keepAlive"],
         requestType: json["requestType"] == null ? null : requestTypeValues
             .map[json["requestType"]],
@@ -263,7 +262,7 @@ class CatalogueReference {
   });
 
   factory CatalogueReference.fromJson(Map<String, dynamic> json) {
-    CatalogueReference catalogueReference = null;
+    CatalogueReference catalogueReference;
     if (json != null) {
       CatalogueReference(
         catalogueReferenceExtension: json["catalogueReferenceExtension"] == null
@@ -315,7 +314,7 @@ class FilterReference {
   });
 
   factory FilterReference.fromJson(Map<String, dynamic> json) {
-    FilterReference filterReference = null;
+    FilterReference filterReference;
     if (json != null) {
       filterReference = FilterReference(
         deleteFilter: json["deleteFilter"] == null
@@ -392,7 +391,7 @@ class Subscription {
   });
 
   factory Subscription.fromJson(Map<String, dynamic> json) {
-    Subscription subscription = null;
+    Subscription subscription;
     if (json != null) {
       subscription = Subscription(
         catalogueReference: json["catalogueReference"] == null
@@ -412,14 +411,14 @@ class Subscription {
         subscriptionExtension: json["subscriptionExtension"] == null
             ? null
             : D2LogicalModelExtension.fromJson(json["subscriptionExtension"]),
-        subscriptionStartTime: json["subscriptionStartTime"] == null
+        subscriptionStartTime: DatexHelper.fromUTC(json["subscriptionStartTime"]) == null
             ? null
-            : DatextDateTime.DateTime.fromJson(json["subscriptionStartTime"]),
+            : DatexHelper.fromUTC(json["subscriptionStartTime"]),
         subscriptionState: subscriptionStateValues
             .map[json["subscriptionState"]],
         subscriptionStopTime: json["subscriptionStopTime"] == null
             ? null
-            : DatextDateTime.DateTime.fromJson(json["subscriptionStopTime"]),
+            : DatexHelper.fromUTC(json["subscriptionStopTime"]),
         target: List<Target>.from(
             json["target"].map((x) => Target.fromJson(x))),
         updateMethod: updateMethodValues.map[json["updateMethod"]],
@@ -471,7 +470,7 @@ class Target {
   });
 
   factory Target.fromJson(Map<String, dynamic> json) {
-    Target target = null;
+    Target target;
     if (json != null) {
       target = Target(
         address: json["address"] == null ? null : json["address"],
@@ -511,7 +510,7 @@ class SupplierIdentification {
   });
 
   factory SupplierIdentification.fromJson(Map<String, dynamic> json) {
-    SupplierIdentification supplierIdentification = null;
+    SupplierIdentification supplierIdentification;
 
     if (json != null) {
       supplierIdentification = SupplierIdentification(
@@ -603,10 +602,7 @@ class PayloadPublication {
 
   factory PayloadPublication.fromJson(Map<String, dynamic> json) {
 
-    String strDate = json["publicationTime"];
-    DateTime dateTime = DateTime.parse(json["publicationTime"]);
-
-    PayloadPublication payloadPublication = null;
+    PayloadPublication payloadPublication;
     if (json != null) {
       payloadPublication = PayloadPublication(
         feedDescription: json["feedDescription"] == null
@@ -619,7 +615,7 @@ class PayloadPublication {
             ? null
             : D2LogicalModelExtension.fromJson(json["payloadPublicationExtension"]),
         publicationCreator: SupplierIdentification.fromJson(json["publicationCreator"]),
-        publicationTime: json["publicationTime"] == null ? null : DatextDateTime.DateTime.fromJson(json["publicationTime"]),
+        publicationTime: json["publicationTime"] == null ? null : DatexHelper.fromUTC(json["publicationTime"]),
       );
     }
     return payloadPublication;
@@ -677,7 +673,7 @@ class MultilingualStringValue {
   });
 
   factory MultilingualStringValue.fromJson(Map<String, dynamic> json) {
-    MultilingualStringValue multilingualStringValue = null;
+    MultilingualStringValue multilingualStringValue;
     if (json != null) {
       multilingualStringValue = MultilingualStringValue(
         lang: json["lang"] == null ? null : json["lang"],
