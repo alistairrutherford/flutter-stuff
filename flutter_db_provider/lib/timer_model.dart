@@ -6,12 +6,16 @@ import 'package:flutter/cupertino.dart';
 class TimerModel extends ChangeNotifier {
   RestartableTimer? _periodicTimer;
   int seconds = 0;
+  bool running = false;
 
   TimerModel() {
     _periodicTimer = RestartableTimer(
       const Duration(seconds: 1),
       () {
         seconds++;
+        if (running) {
+          _periodicTimer!.reset();
+        }
         notifyListeners();
       },
     );
@@ -20,10 +24,13 @@ class TimerModel extends ChangeNotifier {
   }
 
   void start() {
+    running = true;
     _periodicTimer!.reset();
   }
 
   void stop() {
+    running = false;
     _periodicTimer!.cancel();
+    seconds = 0;
   }
 }
