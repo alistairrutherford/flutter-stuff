@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_db_provider/timer_model.dart';
 import 'package:provider/provider.dart';
 import 'main_page.dart';
 import 'journey_model.dart';
@@ -21,6 +22,8 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: JourneyPointModel(),
         ),
+        ChangeNotifierProvider.value(
+            value: TimerModel())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -33,4 +36,3 @@ class MainApp extends StatelessWidget {
     );
   }
 }
-

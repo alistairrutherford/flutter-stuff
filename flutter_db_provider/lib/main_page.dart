@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_db_provider/stopwatch_page.dart';
 import 'journey_page.dart';
 
 class MainAppView extends StatelessWidget {
@@ -41,12 +42,12 @@ class _TabMainViewState extends State<TabMainView> {
           ),
           NavigationDestination(
             icon: Icon(Icons.business),
-            label: 'Business',
+            label: 'Record',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.school),
             icon: Icon(Icons.school_outlined),
-            label: 'School',
+            label: 'About',
           ),
         ],
       ),
@@ -57,7 +58,7 @@ class _TabMainViewState extends State<TabMainView> {
         ),
         Container(
           alignment: Alignment.center,
-          child: const Text('Page 2'),
+          child: StopwatchDisplay(),
         ),
         Container(
           alignment: Alignment.center,
