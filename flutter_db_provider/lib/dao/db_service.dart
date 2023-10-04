@@ -106,12 +106,12 @@ class DBService {
 
     try {
       // Remove the Dog from the database.
-      await db.delete("journey");
-      await db.delete('journey_points');
+      await db?.delete("journey");
+      await db?.delete('journey_point');
     }
-    catch(Exception e)
+    on Exception
     {
-
+      print('Error');
     }
 
   }
