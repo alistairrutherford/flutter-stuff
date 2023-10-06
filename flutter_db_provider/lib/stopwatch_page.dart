@@ -32,7 +32,7 @@ class StopwatchDisplay extends StatelessWidget {
           child: Center(
             child: Text(
               '${formattedTime(timeInSecond: seconds)}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 80.0, // Adjust the font size as needed
                 fontWeight: FontWeight.bold,
               ),
@@ -49,12 +49,15 @@ class StopwatchDisplay extends StatelessWidget {
               child: Text('Start'),
             ),
             SizedBox(width: 10),
-            ElevatedButton(
-              onPressed: () {
-                model.stop();
-              },
-              child: const Text('Stop'),
-            ),
+            Visibility(
+              visible: model.running,
+              child: ElevatedButton(
+                onPressed: () {
+                  model.stop();
+                },
+                child: const Text('Stop'),
+              ),
+            )
           ],
         )
       ],
