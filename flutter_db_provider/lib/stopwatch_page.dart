@@ -3,8 +3,6 @@ import 'package:flutter_db_provider/timer_model.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'journey_point_model.dart';
-
 //ignore: must_be_immutable
 class StopwatchDisplay extends StatelessWidget {
   String time = "00:00:00";
@@ -42,20 +40,33 @@ class StopwatchDisplay extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                model.start();
-              },
-              child: Text('Start'),
+            Visibility(
+              visible: !model.running,
+              child: ElevatedButton(
+                onPressed: () {
+                  model.start();
+                },
+                child: Text('Start'),
+              ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Visibility(
               visible: model.running,
               child: ElevatedButton(
                 onPressed: () {
                   model.stop();
                 },
-                child: const Text('Stop'),
+                child: const Text('Resume'),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Visibility(
+              visible: model.dirty && !model.running,
+              child: ElevatedButton(
+                onPressed: () {
+                  model.stop();
+                },
+                child: const Text('Finish'),
               ),
             )
           ],

@@ -1,11 +1,10 @@
-import 'dart:async';
-
 import 'package:async/async.dart';
 import 'package:flutter/cupertino.dart';
 
 class TimerModel extends ChangeNotifier {
   RestartableTimer? _periodicTimer;
   int seconds = 0;
+  bool dirty = false;
   bool running = false;
 
   TimerModel() {
@@ -25,6 +24,7 @@ class TimerModel extends ChangeNotifier {
 
   void start() {
     running = true;
+    dirty = true;
     _periodicTimer!.reset();
   }
 
