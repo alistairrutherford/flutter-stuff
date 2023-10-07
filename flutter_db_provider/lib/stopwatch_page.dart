@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 //ignore: must_be_immutable
 class StopwatchDisplay extends StatelessWidget {
   String time = "00:00:00";
-  NumberFormat formatter = new NumberFormat("00");
+  NumberFormat formatter = NumberFormat("00");
 
   StopwatchDisplay({super.key});
 
