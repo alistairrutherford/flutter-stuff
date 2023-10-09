@@ -41,6 +41,7 @@ class TimerModel extends ChangeNotifier {
     _periodicTimer.reset();
     notifyListeners();
   }
+
   void finish() {
     _periodicTimer.cancel();
     running = false;

@@ -7,7 +7,6 @@ import 'journey_model.dart';
 import 'journey_point_model.dart';
 
 void main() {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   // Ensure portrait orientation only.
@@ -28,8 +27,7 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: JourneyPointModel(),
         ),
-        ChangeNotifierProvider.value(
-            value: TimerModel())
+        ChangeNotifierProvider.value(value: TimerModel())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

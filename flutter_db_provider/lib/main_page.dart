@@ -24,7 +24,8 @@ class _TabMainViewState extends State<TabMainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Journey Recorder'),
+      appBar: AppBar(
+        title: Text('Journey Recorder'),
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
