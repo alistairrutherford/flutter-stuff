@@ -13,11 +13,13 @@ class Journey {
       this.endTime});
 
   Map<String, dynamic> toMap() {
+    int? endTimeMillisecondsSinceEpoch = (endTime != null ?? endTime!.millisecondsSinceEpoch) as int?;
+
     return {
       'id': id,
-      'journeyType': journeyType,
-      'startTime': startTime,
-      'endTime': endTime
+      'journeyType': journeyType.index,
+      'startTime': startTime.millisecondsSinceEpoch,
+      'endTime': endTimeMillisecondsSinceEpoch
     };
   }
 }

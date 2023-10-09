@@ -47,5 +47,12 @@ class JourneyModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void refresh() {
+    _database.getJourneys().then((c) {
+      _journeys = c;
+      notifyListeners();
+    });
+  }
+
   List<Journey> journeys() { return _journeys; }
 }

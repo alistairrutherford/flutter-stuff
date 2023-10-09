@@ -45,7 +45,15 @@ class JourneyListView extends StatelessWidget {
                   },
                   child: const Text('Clear'),
                 ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    model.refresh();
+                  },
+                  child: const Text('Refresh'),
+                ),
               ],
+
             )
           ],
         ));
