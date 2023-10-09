@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/stopwatch_page.dart';
-import 'journey_page.dart';
+import 'package:flutter_db_provider/journey_rec_page.dart';
+import 'journey_list_page.dart';
 
 class MainAppView extends StatelessWidget {
   const MainAppView({super.key});
@@ -58,7 +58,7 @@ class _TabMainViewState extends State<TabMainView> {
         ),
         Container(
           alignment: Alignment.center,
-          child: StopwatchDisplay(),
+          child: JourneyRecordView(),
         ),
         Container(
           alignment: Alignment.center,

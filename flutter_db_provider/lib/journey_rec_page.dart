@@ -7,12 +7,12 @@ import 'package:provider/provider.dart';
 import 'dao/journey.dart';
 
 //ignore: must_be_immutable
-class StopwatchDisplay extends StatelessWidget {
+class JourneyRecordView extends StatelessWidget {
   String time = "00:00:00";
   NumberFormat formatter = NumberFormat("00");
   Journey? _journey = null;
 
-  StopwatchDisplay({super.key});
+  JourneyRecordView({super.key});
 
   formattedTime({required int timeInSecond}) {
     int sec = timeInSecond % 60;
@@ -36,6 +36,9 @@ class StopwatchDisplay extends StatelessWidget {
 
   void finish(TimerModel timerModel, JourneyModel journeyModel) {
     timerModel.finish();
+    if (_journey != null) {
+
+    }
   }
 
   @override
