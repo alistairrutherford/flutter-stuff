@@ -44,6 +44,7 @@ class JourneyModel extends ChangeNotifier {
 
   void removeAll() {
     _journeys.clear();
+    _database.deleteAll();
     notifyListeners();
   }
 

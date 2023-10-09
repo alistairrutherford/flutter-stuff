@@ -85,11 +85,16 @@ class DBService {
     final List<Map<String, dynamic>> maps = await db!
         .query('journey', where: whereString, whereArgs: whereArguments);
 
+    DateTime? endTime;
+    int? endTimeValue = maps[0]['end_time'];
+    if (endTimeValue != null) {
+      endTime = DateTime.fromMillisecondsSinceEpoch(endTimeValue);
+    }
     return Journey(
       id: maps[0]['id'],
-      journeyType: maps[0]['journeyType'],
-      startTime: maps[0]['startTime'],
-      endTime: maps[0]['endTime'],
+      journeyType: JourneyType.values[maps[0]['journey_type']],
+      startTime: DateTime.fromMillisecondsSinceEpoch(maps[0]['start_time']),
+      endTime: endTime,
     );
   }
 
@@ -100,11 +105,17 @@ class DBService {
 
     // Convert the List<Map<String, dynamic> into a List<Location>.
     return List.generate(maps.length, (i) {
+      DateTime? endTime;
+      int? endTimeValue = maps[0]['end_time'];
+      if (endTimeValue != null) {
+        endTime = DateTime.fromMillisecondsSinceEpoch(endTimeValue);
+      }
+
       return Journey(
         id: maps[i]['id'],
-        journeyType: maps[i]['journeyType'],
-        startTime: maps[i]['startTime'],
-        endTime: maps[i]['endTime'],
+        journeyType: JourneyType.values[maps[i]['journey_type']],
+        startTime: DateTime.fromMillisecondsSinceEpoch(maps[i]['start_time']),
+        endTime: endTime,
       );
     });
   }
@@ -137,7 +148,7 @@ class DBService {
     final db = await _database;
 
     try {
-      // Remove the Dog from the database.
+      // Remove the data from the database.
       await db?.delete("journey");
       await db?.delete('journey_point');
     } on Exception {
