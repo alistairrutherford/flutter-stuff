@@ -8,6 +8,7 @@ class TimerModel extends ChangeNotifier {
   bool running = false;
 
   TimerModel() {
+    // One-shot restartable timer.
     _periodicTimer = RestartableTimer(
       const Duration(seconds: 1),
       () {
@@ -26,18 +27,25 @@ class TimerModel extends ChangeNotifier {
     running = true;
     dirty = true;
     _periodicTimer.reset();
+    notifyListeners();
   }
 
   void pause() {
-    running = false;
     _periodicTimer.cancel();
-    seconds = 0;
+    running = false;
+    notifyListeners();
   }
 
+  void resume() {
+    running = true;
+    _periodicTimer.reset();
+    notifyListeners();
+  }
   void finish() {
+    _periodicTimer.cancel();
     running = false;
     dirty = false;
-    _periodicTimer.cancel();
     seconds = 0;
+    notifyListeners();
   }
 }

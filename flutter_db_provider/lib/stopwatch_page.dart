@@ -31,7 +31,7 @@ class StopwatchDisplay extends StatelessWidget {
             child: Text(
               '${formattedTime(timeInSecond: seconds)}',
               style: const TextStyle(
-                fontSize: 80.0, // Adjust the font size as needed
+                fontSize: 60.0, // Adjust the font size as needed
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -41,7 +41,7 @@ class StopwatchDisplay extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Visibility(
-              visible: !model.running,
+              visible: !model.running && !model.dirty,
               child: ElevatedButton(
                 onPressed: () {
                   model.start();
@@ -49,7 +49,6 @@ class StopwatchDisplay extends StatelessWidget {
                 child: const Text('Start'),
               ),
             ),
-            const SizedBox(width: 10),
             Visibility(
               visible: model.running,
               child: ElevatedButton(
@@ -59,26 +58,25 @@ class StopwatchDisplay extends StatelessWidget {
                 child: const Text('Pause'),
               ),
             ),
-            const SizedBox(width: 10),
             Visibility(
-              visible: model.dirty && !model.running,
+              visible: !model.running && model.dirty,
               child: ElevatedButton(
                 onPressed: () {
-                  model.pause();
+                  model.resume();
                 },
                 child: const Text('Resume'),
               ),
             ),
             const SizedBox(width: 10),
             Visibility(
-              visible: model.dirty && !model.running,
+              visible:!model.running && model.dirty,
               child: ElevatedButton(
                 onPressed: () {
-                  model.pause();
+                  model.finish();
                 },
                 child: const Text('Finish'),
               ),
-            )
+            ),
           ],
         )
       ],
