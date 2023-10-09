@@ -10,7 +10,7 @@ import 'dao/journey.dart';
 class JourneyRecordView extends StatelessWidget {
   String time = "00:00:00";
   NumberFormat formatter = NumberFormat("00");
-  Journey? _journey = null;
+  Journey? _journey;
 
   JourneyRecordView({super.key});
 
@@ -37,7 +37,8 @@ class JourneyRecordView extends StatelessWidget {
   void finish(TimerModel timerModel, JourneyModel journeyModel) {
     timerModel.finish();
     if (_journey != null) {
-
+      _journey!.endTime = DateTime.now();
+      journeyModel.updateJourney(_journey!);
     }
   }
 

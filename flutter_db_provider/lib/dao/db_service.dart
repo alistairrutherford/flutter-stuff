@@ -37,18 +37,6 @@ class DBService {
     return _database;
   }
 
-  Future<void> insertJourneyPoint(JourneyPoint journeyPoint) async {
-    // Get a reference to the database.
-    final db = await _database!;
-
-    // Insert the Data into the correct table.
-    await db.insert(
-      'journey_point',
-      journeyPoint.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
   Future<int> insertJourney(Journey journey) async {
     // Get a reference to the database.
     final db = await _database!;
@@ -63,27 +51,30 @@ class DBService {
     return id;
   }
 
-  Future<List<JourneyPoint>> getJourneyPoints(int journey) async {
-    final db = await _database;
+  Future<int> updateJourney(Journey journey) async {
+    // Get a reference to the database.
+    final db = await _database!;
 
-    // Fetch journey points for stated journey id.
-    String whereString = 'journey = ?';
-    List<dynamic> whereArguments = [journey];
-    final List<Map<String, dynamic>> maps = await db!
-        .query('journey_point', where: whereString, whereArgs: whereArguments);
+    // Insert the Data into the correct table.
+    int id = await db.update(
+      'journey',
+      journey.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
 
-    // Convert the List<Map<String, dynamic> into a List<Location>.
-    return List.generate(maps.length, (i) {
-      String posStr = maps[i]['position'];
-      Map<dynamic, dynamic> posMap = json.decode(posStr);
-      Position position = Position.fromMap(posMap);
+    return id;
+  }
 
-      return JourneyPoint(
-        id: maps[i]['id'],
-        journey: maps[i]['journey'],
-        position: position,
-      );
-    });
+  Future<void> insertJourneyPoint(JourneyPoint journeyPoint) async {
+    // Get a reference to the database.
+    final db = await _database!;
+
+    // Insert the Data into the correct table.
+    await db.insert(
+      'journey_point',
+      journeyPoint.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<Journey> getJourney(int id) async {
@@ -118,6 +109,29 @@ class DBService {
     });
   }
 
+  Future<List<JourneyPoint>> getJourneyPoints(int journey) async {
+    final db = await _database;
+
+    // Fetch journey points for stated journey id.
+    String whereString = 'journey = ?';
+    List<dynamic> whereArguments = [journey];
+    final List<Map<String, dynamic>> maps = await db!
+        .query('journey_point', where: whereString, whereArgs: whereArguments);
+
+    // Convert the List<Map<String, dynamic> into a List<Location>.
+    return List.generate(maps.length, (i) {
+      String posStr = maps[i]['position'];
+      Map<dynamic, dynamic> posMap = json.decode(posStr);
+      Position position = Position.fromMap(posMap);
+
+      return JourneyPoint(
+        id: maps[i]['id'],
+        journey: maps[i]['journey'],
+        position: position,
+      );
+    });
+  }
+
   Future<void> deleteAll() async {
     // Get a reference to the database.
     final db = await _database;
@@ -126,11 +140,8 @@ class DBService {
       // Remove the Dog from the database.
       await db?.delete("journey");
       await db?.delete('journey_point');
-    }
-    on Exception
-    {
+    } on Exception {
       print('Error');
     }
-
   }
 }
