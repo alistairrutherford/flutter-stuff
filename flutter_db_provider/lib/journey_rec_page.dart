@@ -21,9 +21,9 @@ class JourneyRecordView extends StatelessWidget {
     return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
   }
 
-  void start(TimerModel timerModel, JourneyModel journeyModel) {
+  void start(TimerModel timerModel, JourneyModel journeyModel) async {
     timerModel.start();
-    _journey = journeyModel.addJourney();
+    _journey = await journeyModel.addJourney();
   }
 
   void pause(TimerModel timerModel, JourneyModel journeyModel) {

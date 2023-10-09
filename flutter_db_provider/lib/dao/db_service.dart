@@ -49,16 +49,18 @@ class DBService {
     );
   }
 
-  Future<void> insertJourney(Journey journey) async {
+  Future<int> insertJourney(Journey journey) async {
     // Get a reference to the database.
     final db = await _database!;
 
     // Insert the Data into the correct table.
-    await db.insert(
+    int id = await db.insert(
       'journey',
       journey.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+
+    return id;
   }
 
   Future<List<JourneyPoint>> getJourneyPoints(int journey) async {
@@ -82,6 +84,22 @@ class DBService {
         position: position,
       );
     });
+  }
+
+  Future<Journey> getJourney(int id) async {
+    final db = await _database;
+
+    String whereString = 'id = ?';
+    List<dynamic> whereArguments = [id];
+    final List<Map<String, dynamic>> maps = await db!
+        .query('journey', where: whereString, whereArgs: whereArguments);
+
+    return Journey(
+      id: maps[0]['id'],
+      journeyType: maps[0]['journeyType'],
+      startTime: maps[0]['startTime'],
+      endTime: maps[0]['endTime'],
+    );
   }
 
   Future<List<Journey>> getJourneys() async {
