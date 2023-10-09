@@ -7,42 +7,44 @@ import 'package:geolocator/geolocator.dart';
 class JourneyPointModel extends ChangeNotifier {
   final _database = DBService();
 
-  List<JourneyPoint> _journeys = [];
+  List<JourneyPoint> _journeyPoints = [];
 
   JourneyPointModel() {
     // Test Database.
     _database.initialise();
   }
 
-  void addPoint() {
-    Position position = Position(
-        longitude: 0.0,
-        latitude: 0.0,
-        timestamp: DateTime.now(),
-        accuracy: 0.0,
-        altitude: 0.0,
-        altitudeAccuracy: 0.0,
-        heading: 0.0,
-        headingAccuracy: 0.0,
-        speed: 60,
-        speedAccuracy: 0.0);
+  /**
+   *  Position position = Position(
+      longitude: 0.0,
+      latitude: 0.0,
+      timestamp: DateTime.now(),
+      accuracy: 0.0,
+      altitude: 0.0,
+      altitudeAccuracy: 0.0,
+      heading: 0.0,
+      headingAccuracy: 0.0,
+      speed: 60,
+      speedAccuracy: 0.0);
+   */
+  void addPoint(Position position) {
     JourneyPoint location = JourneyPoint(journey: 0, position: position);
 
     _database.insertJourneyPoint(location);
 
     _database.getJourneyPoints(0).then((c) {
-      _journeys = c;
+      _journeyPoints = c;
       notifyListeners();
     });
   }
 
   void removeAll() {
     _database.deleteAll();
-    _journeys.clear();
+    _journeyPoints.clear();
     notifyListeners();
   }
 
   List<JourneyPoint> locations() {
-    return _journeys;
+    return _journeyPoints;
   }
 }

@@ -15,7 +15,7 @@ class JourneyModel extends ChangeNotifier {
   }
 
   /// Add dummy journey - note ID increments
-  void addJourney()  {
+  Journey addJourney()  {
     Journey journey = Journey(id:_nextId++,  journeyType: JourneyType.commute, startTime: DateTime.now());
 
     _database.insertJourney(journey);
@@ -24,6 +24,8 @@ class JourneyModel extends ChangeNotifier {
       _journeys = c;
       notifyListeners();
     });
+
+    return journey;
   }
 
   void removeAll() {
