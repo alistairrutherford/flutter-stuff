@@ -46,7 +46,7 @@ class StopwatchDisplay extends StatelessWidget {
                 onPressed: () {
                   model.start();
                 },
-                child: Text('Start'),
+                child: const Text('Start'),
               ),
             ),
             const SizedBox(width: 10),
@@ -54,7 +54,17 @@ class StopwatchDisplay extends StatelessWidget {
               visible: model.running,
               child: ElevatedButton(
                 onPressed: () {
-                  model.stop();
+                  model.pause();
+                },
+                child: const Text('Pause'),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Visibility(
+              visible: model.dirty && !model.running,
+              child: ElevatedButton(
+                onPressed: () {
+                  model.pause();
                 },
                 child: const Text('Resume'),
               ),
@@ -64,7 +74,7 @@ class StopwatchDisplay extends StatelessWidget {
               visible: model.dirty && !model.running,
               child: ElevatedButton(
                 onPressed: () {
-                  model.stop();
+                  model.pause();
                 },
                 child: const Text('Finish'),
               ),

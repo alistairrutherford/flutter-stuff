@@ -28,8 +28,15 @@ class TimerModel extends ChangeNotifier {
     _periodicTimer.reset();
   }
 
-  void stop() {
+  void pause() {
     running = false;
+    _periodicTimer.cancel();
+    seconds = 0;
+  }
+
+  void finish() {
+    running = false;
+    dirty = false;
     _periodicTimer.cancel();
     seconds = 0;
   }
