@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/journey_model.dart';
 import 'package:provider/provider.dart';
 
+import 'dao/journey.dart';
+
 class JourneyListView extends StatelessWidget {
   const JourneyListView({super.key});
+
+  Icon iconType(Journey journey) {
+    return Icon(Icons.access_alarm);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +33,10 @@ class JourneyListView extends StatelessWidget {
                     child: ListTile(
                       contentPadding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, top: 10, bottom: 10),
-                      leading: const Icon(Icons.favorite),
+                      leading: const Icon(Icons.directions_bike_outlined),
                       title: Text('Route: ${journeys[index].toString()}'),
                       tileColor: Colors.blue,
-                      trailing: const Icon(Icons.access_alarm),
+                      trailing: iconType(journeys[index]),
                     ),
                   );
                 },
