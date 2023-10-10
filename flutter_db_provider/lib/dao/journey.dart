@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 enum JourneyType { work, commute, leisure, other }
 
 class Journey {
@@ -15,7 +13,7 @@ class Journey {
       this.endTime});
 
   Map<String, dynamic> toMap() {
-    int? endTimeMillisecondsSinceEpoch = null;
+    int? endTimeMillisecondsSinceEpoch;
     if (endTime != null) {
       endTimeMillisecondsSinceEpoch = endTime!.microsecondsSinceEpoch;
     }
@@ -26,5 +24,10 @@ class Journey {
       'start_time': startTime.millisecondsSinceEpoch,
       'end_time': endTimeMillisecondsSinceEpoch
     };
+  }
+
+  @override
+  String toString() {
+    return 'Journey{id: $id, journeyType: $startTime, startTime: $startTime, endTime: $endTime';
   }
 }

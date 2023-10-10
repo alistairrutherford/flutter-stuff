@@ -42,12 +42,13 @@ class _TabMainViewState extends State<TabMainView> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.business),
+            selectedIcon: Icon(Icons.directions_bike),
+            icon: Icon(Icons.directions_bike_outlined),
             label: 'Record',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.school),
-            icon: Icon(Icons.school_outlined),
+            selectedIcon: Icon(Icons.info),
+            icon: Icon(Icons.info_outline),
             label: 'About',
           ),
         ],
