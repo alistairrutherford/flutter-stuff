@@ -22,8 +22,8 @@ class JourneyRecordView extends StatelessWidget {
   }
 
   void start(TimerModel timerModel, JourneyModel journeyModel) async {
-    timerModel.start();
     _journey = await journeyModel.addJourney();
+    timerModel.start();
   }
 
   void pause(TimerModel timerModel, JourneyModel journeyModel) {
@@ -39,6 +39,7 @@ class JourneyRecordView extends StatelessWidget {
     if (_journey != null) {
       _journey!.endTime = DateTime.now();
       journeyModel.updateJourney(_journey!);
+      _journey = null;
     }
   }
 
