@@ -19,7 +19,7 @@ class JourneyModel extends ChangeNotifier {
     int id = await _database.insertJourney(journey);
 
     // Fetch newly inserted journey.
-    // TODO: Test   journey = await _database.getJourney(id);
+    journey = await _database.getJourney(id);
 
     // Update local list from db.
     _database.getJourneys().then((c) {
