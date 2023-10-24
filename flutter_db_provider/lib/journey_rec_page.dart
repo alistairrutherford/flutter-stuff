@@ -38,7 +38,7 @@ class JourneyRecordView extends StatelessWidget {
     timerModel.finish();
     if (_journey != null) {
       _journey!.endTime = DateTime.now();
-      //journeyModel.updateJourney(_journey!);
+      journeyModel.updateJourney(_journey!);
     }
   }
 

@@ -45,7 +45,6 @@ class DBService {
     int id = await db.insert(
       'journey',
       journey.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
     return id;
@@ -59,7 +58,6 @@ class DBService {
     int id = await db.update(
       'journey',
       journey.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
     return id;
@@ -73,7 +71,6 @@ class DBService {
     await db.insert(
       'journey_point',
       journeyPoint.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 

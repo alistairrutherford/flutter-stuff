@@ -8,7 +8,7 @@ class JourneyListView extends StatelessWidget {
   const JourneyListView({super.key});
 
   Icon iconType(Journey journey) {
-    return Icon(Icons.access_alarm);
+    return const Icon(Icons.access_alarm);
   }
 
   @override
