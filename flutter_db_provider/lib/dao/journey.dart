@@ -15,7 +15,7 @@ class Journey {
   Map<String, dynamic> toMap() {
     int? endTimeMillisecondsSinceEpoch;
     if (endTime != null) {
-      endTimeMillisecondsSinceEpoch = endTime!.microsecondsSinceEpoch;
+      endTimeMillisecondsSinceEpoch = endTime!.millisecondsSinceEpoch;
     }
 
     return {
@@ -28,6 +28,6 @@ class Journey {
 
   @override
   String toString() {
-    return 'Journey{id: $id, journeyType: $startTime, startTime: $startTime, endTime: $endTime';
+    return 'Journey{id: $id, journeyType: $journeyType, startTime: $startTime, endTime: $endTime';
   }
 }

@@ -54,13 +54,14 @@ class DBService {
     // Get a reference to the database.
     final db = await _database!;
 
-    // Insert the Data into the correct table.
-    int id = await db.update(
-      'journey',
-      journey.toMap(),
-    );
+    // Update the Data into the correct table.
+    int updateCount = await db.update(
+        'journey',
+        journey.toMap(),
+        where: "id = ?",
+        whereArgs: [journey.id]);
 
-    return id;
+    return updateCount;
   }
 
   Future<void> insertJourneyPoint(JourneyPoint journeyPoint) async {
