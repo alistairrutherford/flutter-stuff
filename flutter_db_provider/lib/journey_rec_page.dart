@@ -38,8 +38,9 @@ class JourneyRecordView extends StatelessWidget {
     timerModel.finish();
     if (_journey != null) {
       _journey!.endTime = DateTime.now();
-      int changes = await journeyModel.updateJourney(_journey!);
-      print("Updated journey, $changes items changed.");
+      await journeyModel.updateJourney(_journey!);
+
+      // Reset local copy of journey.
       _journey = null;
     }
   }

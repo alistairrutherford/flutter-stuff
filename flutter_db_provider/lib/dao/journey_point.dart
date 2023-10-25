@@ -21,6 +21,6 @@ class JourneyPoint {
 
   @override
   String toString() {
-    return 'RoutePoint{id: $id, route: $journey, position: ${position.toString()}';
+    return 'JourneyPoint{id: $id, route: $journey, position: ${position.toString()}';
   }
 }
