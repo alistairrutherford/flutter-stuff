@@ -56,6 +56,15 @@ class JourneyRecordView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        AnimatedContainer(
+          height: timerModel.running ? 300.0 : 0.0,
+          color: timerModel.running ? Colors.red : Colors.blue,
+          alignment:
+          timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
+          duration: const Duration(seconds: 2),
+          curve: Curves.fastOutSlowIn,
+          child: const FlutterLogo(size: 75),
+        ),
         Expanded(
           child: Center(
             child: Text(
