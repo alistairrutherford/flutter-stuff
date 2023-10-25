@@ -1,3 +1,3 @@
 # flutter_db_provider
 
-A new Flutter project.
+Test of provider pattern.
