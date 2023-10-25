@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/journey_model.dart';
+import 'package:flutter_db_provider/map_page.dart';
 import 'package:flutter_db_provider/timer_model.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -57,13 +58,12 @@ class JourneyRecordView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AnimatedContainer(
-          height: timerModel.running ? 300.0 : 0.0,
-          color: timerModel.running ? Colors.red : Colors.blue,
+          height: timerModel.running || timerModel.dirty ? 300.0 : 0.0,
           alignment:
           timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
-          duration: const Duration(seconds: 2),
+          duration: const Duration(seconds: 1),
           curve: Curves.fastOutSlowIn,
-          child: const FlutterLogo(size: 75),
+          child: const MapPage(),
         ),
         Expanded(
           child: Center(
