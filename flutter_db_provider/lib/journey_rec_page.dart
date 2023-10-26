@@ -53,72 +53,74 @@ class JourneyRecordView extends StatelessWidget {
 
     var seconds = timerModel.seconds;
 
-    // Format seconds
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AnimatedContainer(
-          height: timerModel.running || timerModel.dirty ? 300.0 : 0.0,
-          alignment:
-          timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
-          duration: const Duration(seconds: 1),
-          curve: Curves.fastOutSlowIn,
-          child: const MapPage(),
-        ),
-        Expanded(
-          child: Center(
-            child: Text(
-              '${formattedTime(timeInSecond: seconds)}',
-              style: const TextStyle(
-                fontSize: 60.0, // Adjust the font size as needed
-                fontWeight: FontWeight.bold,
+    return LayoutBuilder(builder: (context, constraints) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AnimatedContainer(
+            height: timerModel.running || timerModel.dirty ? (constraints.maxHeight*0.70) : 0.0,
+            alignment:
+            timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
+            duration: const Duration(seconds: 1),
+            curve: Curves.fastOutSlowIn,
+            child: const MapPage(),
+          ),
+          Expanded(
+            child: Center(
+              child: Text(
+                '${formattedTime(timeInSecond: seconds)}',
+                style: TextStyle(
+                  fontSize: (constraints.maxHeight/8), // Adjust the font size as needed
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Visibility(
-              visible: !timerModel.running && !timerModel.dirty,
-              child: ElevatedButton(
-                onPressed: () {
-                  start(timerModel, journeyModel);
-                },
-                child: const Text('Start'),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Visibility(
+                visible: !timerModel.running && !timerModel.dirty,
+                child: ElevatedButton(
+                  onPressed: () {
+                    start(timerModel, journeyModel);
+                  },
+                  child: const Text('Start'),
+                ),
               ),
-            ),
-            Visibility(
-              visible: timerModel.running,
-              child: ElevatedButton(
-                onPressed: () {
-                  pause(timerModel, journeyModel);
-                },
-                child: const Text('Pause'),
+              Visibility(
+                visible: timerModel.running,
+                child: ElevatedButton(
+                  onPressed: () {
+                    pause(timerModel, journeyModel);
+                  },
+                  child: const Text('Pause'),
+                ),
               ),
-            ),
-            Visibility(
-              visible: !timerModel.running && timerModel.dirty,
-              child: ElevatedButton(
-                onPressed: () {
-                  resume(timerModel, journeyModel);
-                },
-                child: const Text('Resume'),
+              Visibility(
+                visible: !timerModel.running && timerModel.dirty,
+                child: ElevatedButton(
+                  onPressed: () {
+                    resume(timerModel, journeyModel);
+                  },
+                  child: const Text('Resume'),
+                ),
               ),
-            ),
-            const SizedBox(width: 10),
-            Visibility(
-              visible:!timerModel.running && timerModel.dirty,
-              child: ElevatedButton(
-                onPressed: () {
-                 finish(timerModel, journeyModel);
-                },
-                child: const Text('Finish'),
+              const SizedBox(width: 10),
+              Visibility(
+                visible:!timerModel.running && timerModel.dirty,
+                child: ElevatedButton(
+                  onPressed: () {
+                    finish(timerModel, journeyModel);
+                  },
+                  child: const Text('Finish'),
+                ),
               ),
-            ),
-          ],
-        )
-      ],
-    );
+            ],
+          )
+        ],
+      );
+    });
+    // Format seconds
   }
 }
