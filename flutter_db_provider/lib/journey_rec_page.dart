@@ -63,7 +63,7 @@ class JourneyRecordView extends StatelessWidget {
             timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
             duration: const Duration(seconds: 1),
             curve: Curves.fastOutSlowIn,
-            child: const MapPage(),
+            child: MapPage(),
           ),
           Expanded(
             child: Center(
