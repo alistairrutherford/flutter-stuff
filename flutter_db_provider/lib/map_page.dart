@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,6 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'location_model.dart';
 
 class MapPage extends StatelessWidget {
+  const MapPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     var locationModel = context.watch<LocationModel>();
@@ -17,9 +18,8 @@ class MapPage extends StatelessWidget {
         initialCenter: (locationModel.currentPosition != null)
             ? (LatLng(locationModel.currentPosition!.latitude,
                 locationModel.currentPosition!.longitude))
-            : (LatLng(locationModel.currentPosition!.latitude,
-                locationModel.currentPosition!.longitude)),
-        initialZoom: 9.2,
+            : (const LatLng(51.5072, 0.1276)),
+        initialZoom: 17,
       ),
       children: [
         TileLayer(

@@ -6,8 +6,14 @@ class LocationModel extends ChangeNotifier {
   Position? currentPosition;
 
   LocationModel() {
-    // Initialise current position.
+    // Initialise.
+    initialise();
+    // Get current with callback.
     updateCurrentPosition();
+  }
+
+  void initialise() async {
+    currentPosition = await Geolocator.getLastKnownPosition();
   }
 
   void updateCurrentPosition() {
