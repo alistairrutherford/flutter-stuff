@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/journey_model.dart';
+import 'package:flutter_db_provider/location_model.dart';
 import 'package:flutter_db_provider/map_page.dart';
 import 'package:flutter_db_provider/timer_model.dart';
 import 'package:intl/intl.dart';
@@ -22,21 +23,26 @@ class JourneyRecordView extends StatelessWidget {
     return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
   }
 
-  void start(TimerModel timerModel, JourneyModel journeyModel) async {
+  void start(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
     _journey = await journeyModel.addJourney();
+    locationModel.startPositionStream(_journey, journeyModel);
     timerModel.start();
   }
 
-  void pause(TimerModel timerModel, JourneyModel journeyModel) {
+  void pause(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) {
     timerModel.pause();
+    locationModel.endPositionStream();
   }
 
-  void resume(TimerModel timerModel, JourneyModel journeyModel) {
+  void resume(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) {
     timerModel.resume();
+    locationModel.startPositionStream(_journey, journeyModel);
   }
 
-  void finish(TimerModel timerModel, JourneyModel journeyModel) async {
+  void finish(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
     timerModel.finish();
+    locationModel.endPositionStream();
+
     if (_journey != null) {
       _journey!.endTime = DateTime.now();
       await journeyModel.updateJourney(_journey!);
@@ -50,6 +56,7 @@ class JourneyRecordView extends StatelessWidget {
   Widget build(BuildContext context) {
     var timerModel = context.watch<TimerModel>();
     var journeyModel = context.watch<JourneyModel>();
+    var locationModel =  context.watch<LocationModel>();
 
     var seconds = timerModel.seconds;
 
@@ -83,7 +90,7 @@ class JourneyRecordView extends StatelessWidget {
                 visible: !timerModel.running && !timerModel.dirty,
                 child: ElevatedButton(
                   onPressed: () {
-                    start(timerModel, journeyModel);
+                    start(timerModel, journeyModel, locationModel);
                   },
                   child: const Text('Start'),
                 ),
@@ -92,7 +99,7 @@ class JourneyRecordView extends StatelessWidget {
                 visible: timerModel.running,
                 child: ElevatedButton(
                   onPressed: () {
-                    pause(timerModel, journeyModel);
+                    pause(timerModel, journeyModel, locationModel);
                   },
                   child: const Text('Pause'),
                 ),
@@ -101,7 +108,7 @@ class JourneyRecordView extends StatelessWidget {
                 visible: !timerModel.running && timerModel.dirty,
                 child: ElevatedButton(
                   onPressed: () {
-                    resume(timerModel, journeyModel);
+                    resume(timerModel, journeyModel, locationModel);
                   },
                   child: const Text('Resume'),
                 ),
@@ -111,7 +118,7 @@ class JourneyRecordView extends StatelessWidget {
                 visible:!timerModel.running && timerModel.dirty,
                 child: ElevatedButton(
                   onPressed: () {
-                    finish(timerModel, journeyModel);
+                    finish(timerModel, journeyModel, locationModel);
                   },
                   child: const Text('Finish'),
                 ),

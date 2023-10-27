@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_db_provider/dao/journey.dart';
+import 'package:flutter_db_provider/journey_model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:io' show Platform;
 
@@ -64,14 +66,17 @@ class LocationModel extends ChangeNotifier {
     }
   }
 
-  void startPositionStream() {
-    positionStream =
-        Geolocator.getPositionStream(locationSettings: locationSettings)
-            .listen((Position? position) {
-      print(position == null
-          ? 'Unknown'
-          : '${position.latitude.toString()}, ${position.longitude.toString()}');
-    });
+  void startPositionStream(Journey? journey, JourneyModel journeyModel) {
+    if (journey != null) {
+      positionStream =
+          Geolocator.getPositionStream(locationSettings: locationSettings)
+              .listen((Position? position) {
+            print(position == null
+                ? 'Unknown'
+                : '${position.latitude.toString()}, ${position.longitude
+                .toString()}');
+          });
+    }
   }
 
   void endPositionStream() async {
