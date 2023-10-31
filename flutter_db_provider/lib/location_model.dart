@@ -7,7 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter/foundation.dart';
 
 class LocationModel extends ChangeNotifier {
-  static const int defaultDistanceFilter = 5;
+  static const int defaultDistanceFilter = 0;
 
   late LocationSettings locationSettings;
   StreamSubscription<Position>? positionStream;
@@ -37,18 +37,11 @@ class LocationModel extends ChangeNotifier {
   void initialiseLocationSettings() {
     if (defaultTargetPlatform == TargetPlatform.android) {
       locationSettings = AndroidSettings(
-          accuracy: LocationAccuracy.high,
-          distanceFilter: defaultDistanceFilter,
-          forceLocationManager: true,
-          intervalDuration: const Duration(seconds: 10),
-          //(Optional) Set foreground notification config to keep the app alive
-          //when going to the background
-          foregroundNotificationConfig: const ForegroundNotificationConfig(
-            notificationText:
-                "Example app will continue to receive your location even when you aren't using it",
-            notificationTitle: "Running in Background",
-            enableWakeLock: true,
-          ));
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 2,
+        intervalDuration: const Duration(seconds: 5),
+        forceLocationManager: false,
+      );
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       locationSettings = AppleSettings(
         accuracy: LocationAccuracy.high,
@@ -61,7 +54,7 @@ class LocationModel extends ChangeNotifier {
     } else {
       locationSettings = const LocationSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: 100,
+        distanceFilter: 0,
       );
     }
   }
@@ -71,11 +64,10 @@ class LocationModel extends ChangeNotifier {
       positionStream =
           Geolocator.getPositionStream(locationSettings: locationSettings)
               .listen((Position? position) {
-            print(position == null
-                ? 'Unknown'
-                : '${position.latitude.toString()}, ${position.longitude
-                .toString()}');
-          });
+        print(position == null
+            ? 'Unknown'
+            : '${position.latitude.toString()}, ${position.longitude.toString()}');
+      });
     }
   }
 
@@ -99,6 +91,8 @@ class LocationModel extends ChangeNotifier {
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
+      await Geolocator.openAppSettings();
+      await Geolocator.openLocationSettings();
       return Future.error('Location services are disabled.');
     }
 
@@ -111,6 +105,8 @@ class LocationModel extends ChangeNotifier {
         // Android's shouldShowRequestPermissionRationale
         // returned true. According to Android guidelines
         // your App should show an explanatory UI now.
+        await Geolocator.openAppSettings();
+        await Geolocator.openLocationSettings();
         return Future.error('Location permissions are denied');
       }
     }
