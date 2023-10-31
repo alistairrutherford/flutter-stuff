@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/dao/journey.dart';
 import 'package:flutter_db_provider/journey_model.dart';
 import 'package:geolocator/geolocator.dart';
-import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart';
 
 class LocationModel extends ChangeNotifier {
   static const int defaultDistanceFilter = 5;
@@ -35,7 +35,7 @@ class LocationModel extends ChangeNotifier {
   }
 
   void initialiseLocationSettings() {
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       locationSettings = AndroidSettings(
           accuracy: LocationAccuracy.high,
           distanceFilter: defaultDistanceFilter,
@@ -49,7 +49,7 @@ class LocationModel extends ChangeNotifier {
             notificationTitle: "Running in Background",
             enableWakeLock: true,
           ));
-    } else if (Platform.isIOS) {
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       locationSettings = AppleSettings(
         accuracy: LocationAccuracy.high,
         activityType: ActivityType.fitness,
