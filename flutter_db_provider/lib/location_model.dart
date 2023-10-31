@@ -17,7 +17,7 @@ class LocationModel extends ChangeNotifier {
     // Initialise.
     initialise();
     // Get current with callback.
-    updateCurrentPosition();
+    determineCurrentPosition();
   }
 
   void initialise() async {
@@ -26,12 +26,18 @@ class LocationModel extends ChangeNotifier {
     currentPosition = await Geolocator.getLastKnownPosition();
   }
 
-  void updateCurrentPosition() {
+  void determineCurrentPosition() {
     determinePosition().then((c) {
       currentPosition = c;
       // Once determined notify listeners.
       notifyListeners();
     });
+  }
+
+  void updateCurrentPosition(Position? position) {
+    currentPosition = position;
+    // Once updated notify listeners.
+    notifyListeners();
   }
 
   void initialiseLocationSettings() {
@@ -64,9 +70,7 @@ class LocationModel extends ChangeNotifier {
       positionStream =
           Geolocator.getPositionStream(locationSettings: locationSettings)
               .listen((Position? position) {
-        print(position == null
-            ? 'Unknown'
-            : '${position.latitude.toString()}, ${position.longitude.toString()}');
+        updateCurrentPosition(position);
       });
     }
   }

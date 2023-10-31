@@ -7,19 +7,33 @@ import 'package:url_launcher/url_launcher.dart';
 import 'location_model.dart';
 
 class MapPage extends StatelessWidget {
-  const MapPage({super.key});
+  final MapController _mapController = MapController();
+
+  MapPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const double defaultZoom = 17;
+
     var locationModel = context.watch<LocationModel>();
 
+    // Determine current location (if any).
+    LatLng latLng =  (locationModel.currentPosition != null)
+        ? (LatLng(locationModel.currentPosition!.latitude,
+        locationModel.currentPosition!.longitude))
+        : (const LatLng(51.5072, 0.1276));
+
     return FlutterMap(
+      mapController: _mapController,
       options: MapOptions(
-        initialCenter: (locationModel.currentPosition != null)
-            ? (LatLng(locationModel.currentPosition!.latitude,
-                locationModel.currentPosition!.longitude))
-            : (const LatLng(51.5072, 0.1276)),
-        initialZoom: 17,
+        initialCenter: latLng,
+        initialZoom: defaultZoom,
+        onMapEvent: (e) {
+          _mapController.move(latLng, defaultZoom);
+        },
+        onMapReady: () {
+          _mapController.move(latLng, defaultZoom);
+        },
       ),
       children: [
         TileLayer(
