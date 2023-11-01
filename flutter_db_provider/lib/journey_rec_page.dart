@@ -29,7 +29,7 @@ class JourneyRecordView extends StatelessWidget {
     timerModel.start();
   }
 
-  void pause(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) {
+  void pause(TimerModel timerModel, LocationModel locationModel) {
     timerModel.pause();
     locationModel.endPositionStream();
   }
@@ -70,7 +70,7 @@ class JourneyRecordView extends StatelessWidget {
             timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
             duration: const Duration(seconds: 1),
             curve: Curves.fastOutSlowIn,
-            child: MapPage(),
+            child: const MapPage(),
           ),
           Expanded(
             child: Center(
@@ -99,7 +99,7 @@ class JourneyRecordView extends StatelessWidget {
                 visible: timerModel.running,
                 child: ElevatedButton(
                   onPressed: () {
-                    pause(timerModel, journeyModel, locationModel);
+                    pause(timerModel, locationModel);
                   },
                   child: const Text('Pause'),
                 ),

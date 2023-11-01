@@ -5,7 +5,6 @@ import 'package:flutter_db_provider/timer_model.dart';
 import 'package:provider/provider.dart';
 import 'main_page.dart';
 import 'journey_model.dart';
-import 'journey_point_model.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +23,6 @@ class MainApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: JourneyModel(),
-        ),
-        ChangeNotifierProvider.value(
-          value: JourneyPointModel(),
         ),
         ChangeNotifierProvider.value(
           value: LocationModel(),

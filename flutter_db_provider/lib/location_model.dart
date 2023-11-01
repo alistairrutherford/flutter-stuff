@@ -71,6 +71,7 @@ class LocationModel extends ChangeNotifier {
           Geolocator.getPositionStream(locationSettings: locationSettings)
               .listen((Position? position) {
         updateCurrentPosition(position);
+        journeyModel.addJourneyPoint(journey, position!);
       });
     }
   }

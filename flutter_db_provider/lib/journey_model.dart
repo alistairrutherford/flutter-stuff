@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/dao/journey.dart';
 import 'package:flutter_db_provider/dao/db_service.dart';
+import 'package:flutter_db_provider/dao/journey_point.dart';
+import 'package:geolocator/geolocator.dart';
 
 class JourneyModel extends ChangeNotifier {
   final _database = DBService();
 
   List<Journey> _journeys = [];
+  List<JourneyPoint> _journeyPoints = [];
 
   JourneyModel() {
     // Test Database.
@@ -41,6 +44,13 @@ class JourneyModel extends ChangeNotifier {
 
     return changes;
   }
+
+  void addJourneyPoint(Journey journey, Position position) {
+    // No need to notify listeners
+    JourneyPoint journeyPoint = JourneyPoint(journey: journey.id!, position: position);
+    _database.insertJourneyPoint(journeyPoint);
+  }
+
 
   void removeAll() {
     _journeys.clear();
