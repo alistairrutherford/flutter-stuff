@@ -3,12 +3,12 @@ import 'package:flutter_db_provider/dao/journey.dart';
 import 'package:flutter_db_provider/dao/db_service.dart';
 import 'package:flutter_db_provider/dao/journey_point.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 
 class JourneyModel extends ChangeNotifier {
   final _database = DBService();
 
   List<Journey> _journeys = [];
-  List<JourneyPoint> _journeyPoints = [];
 
   JourneyModel() {
     // Test Database.
@@ -51,6 +51,16 @@ class JourneyModel extends ChangeNotifier {
     _database.insertJourneyPoint(journeyPoint);
   }
 
+  Future<List<LatLng>> getJourneyPoints(int journeyId) async {
+    List<LatLng> points = List.empty(growable: true);
+
+    List<JourneyPoint> journeyPoints = await _database.getJourneyPoints(journeyId);
+    for (JourneyPoint point in journeyPoints) {
+      points.add(LatLng(point.position.latitude, point.position.longitude));
+    }
+
+    return points;
+  }
 
   void removeAll() {
     _journeys.clear();
