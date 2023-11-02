@@ -50,7 +50,6 @@ class JourneyListView extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                     //Text('Route: ${journeys[index].id}'),
                                     Expanded(
                                       child: JourneyMapPage(journeyId: journeys[index].id!),
                                     ),
