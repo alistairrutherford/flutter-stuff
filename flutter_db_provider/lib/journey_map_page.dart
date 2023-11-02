@@ -20,14 +20,13 @@ class JourneyMapPageState extends State<JourneyMapPage> {
   final List<Polyline> _polyLines = List.empty(growable: true);
 
   void drawJourney(JourneyModel journeyModel) {
-
-    List<LatLng> points = List.empty(growable: true);
+    List<LatLng>? points;
 
     journeyModel.getJourneyPoints(widget.journeyId).then((c) {
       points = c;
 
       // Build polyline.
-      Polyline polyline = Polyline(points: points, strokeWidth: 10);
+      Polyline polyline = Polyline(points: points!, strokeWidth: 10);
 
       // Get bounds and fit view to bounds.
       LatLngBounds bounds = polyline.boundingBox;
