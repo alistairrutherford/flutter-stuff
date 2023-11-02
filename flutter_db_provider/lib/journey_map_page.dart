@@ -26,10 +26,13 @@ class JourneyMapPageState extends State<JourneyMapPage> {
     journeyModel.getJourneyPoints(widget.journeyId).then((c) {
       points = c;
       // Calculate centre and bounds for view.
+      Polyline polyline = Polyline(points: points, strokeWidth: 10);
 
+      LatLngBounds bounds = polyline.boundingBox;
+      _mapController.move(bounds.center, 17);
       // Update with polyline
       setState(() {
-        _polyLines.add(Polyline(points: points));
+        _polyLines.add(polyline);
       });
     });
 

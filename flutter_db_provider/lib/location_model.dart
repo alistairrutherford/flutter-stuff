@@ -45,7 +45,7 @@ class LocationModel extends ChangeNotifier {
       locationSettings = AndroidSettings(
         accuracy: LocationAccuracy.high,
         distanceFilter: 2,
-        intervalDuration: const Duration(seconds: 5),
+        intervalDuration: const Duration(seconds: 2),
         forceLocationManager: false,
       );
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
