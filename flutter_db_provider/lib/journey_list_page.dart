@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_db_provider/journey_map_page.dart';
 import 'package:flutter_db_provider/journey_model.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,33 @@ class JourneyListView extends StatelessWidget {
                       title: Text('Route: ${journeys[index].toString()}'),
                       tileColor: Colors.blue,
                       trailing: iconType(journeys[index]),
+                      onTap: () {
+                        showModalBottomSheet<void>(
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Container(
+                              color: Colors.white,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                     //Text('Route: ${journeys[index].id}'),
+                                    Expanded(
+                                      child: JourneyMapPage(journeyId: journeys[index].id!),
+                                    ),
+                                    ElevatedButton(
+                                      child: const Text('Close'),
+                                      onPressed: () => Navigator.pop(context),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                   );
                 },
