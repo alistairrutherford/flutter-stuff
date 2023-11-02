@@ -25,12 +25,15 @@ class JourneyMapPageState extends State<JourneyMapPage> {
 
     journeyModel.getJourneyPoints(widget.journeyId).then((c) {
       points = c;
-      // Calculate centre and bounds for view.
+
+      // Build polyline.
       Polyline polyline = Polyline(points: points, strokeWidth: 10);
 
+      // Get bounds and fit view to bounds.
       LatLngBounds bounds = polyline.boundingBox;
-      _mapController.move(bounds.center, 17);
-      // Update with polyline
+      _mapController.fitCamera(CameraFit.bounds(bounds: bounds));
+
+      // Update view with polyline
       setState(() {
         _polyLines.add(polyline);
       });
