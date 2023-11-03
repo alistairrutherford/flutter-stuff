@@ -5,6 +5,7 @@ class Journey {
   final JourneyType journeyType;
   final DateTime startTime;
   DateTime? endTime;
+  double distance = 0;
 
   Journey(
       {this.id,
@@ -22,12 +23,13 @@ class Journey {
       'id': id,
       'journey_type': journeyType.index,
       'start_time': startTime.millisecondsSinceEpoch,
-      'end_time': endTimeMillisecondsSinceEpoch
+      'end_time': endTimeMillisecondsSinceEpoch,
+      'distance': distance
     };
   }
 
   @override
   String toString() {
-    return 'Journey{id: $id, journeyType: $journeyType, startTime: $startTime, endTime: $endTime';
+    return 'Journey{id: $id, journeyType: $journeyType, startTime: $startTime, endTime: $endTime, distance(km): $distance';
   }
 }

@@ -83,6 +83,21 @@ class JourneyRecordView extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Center(
+              child: Visibility(
+              visible : _journey != null,
+              child: Text(
+                'Distance:',
+                style: TextStyle(
+                fontSize: (constraints.maxHeight/10), // Adjust the font size as needed
+                fontWeight: FontWeight.bold,
+                ),
+                ),
+              ),
+            ),
+          ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [

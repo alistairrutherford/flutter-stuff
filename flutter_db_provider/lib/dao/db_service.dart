@@ -24,7 +24,7 @@ class DBService {
         db.execute(
             'CREATE TABLE IF NOT EXISTS journey_point(id INTEGER PRIMARY KEY, journey INTEGER, position TEXT);');
         db.execute(
-            'CREATE TABLE IF NOT EXISTS journey(id INTEGER PRIMARY KEY, journey_type INTEGER, start_time INTEGER, end_time INTEGER);');
+            'CREATE TABLE IF NOT EXISTS journey(id INTEGER PRIMARY KEY, journey_type INTEGER, start_time INTEGER, end_time INTEGER, REAL distance);');
         return;
       },
       // Set the version. This executes the onCreate function and provides a
