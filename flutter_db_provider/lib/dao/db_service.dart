@@ -22,9 +22,23 @@ class DBService {
       onCreate: (db, version) {
         // Run the CREATE TABLE statement on the database.
         db.execute(
-            'CREATE TABLE IF NOT EXISTS journey_point(id INTEGER PRIMARY KEY, journey INTEGER, position TEXT);');
-        db.execute(
-            'CREATE TABLE IF NOT EXISTS journey(id INTEGER PRIMARY KEY, journey_type INTEGER, start_time INTEGER, end_time INTEGER, REAL distance);');
+            'CREATE TABLE IF NOT EXISTS journey_point(id INTEGER PRIMARY KEY, '
+            'journey INTEGER, '
+            'latitude REAL, '
+            'longitude REAL, '
+            'timestamp INTEGER, '
+            'altitude REAL, '
+            'altitudeAccuracy REAL, '
+            'accuracy REAL, '
+            'heading REAL, '
+            'headingAccuracy REAL, '
+            'speed REAL, '
+            'speedAccuracy REAL);');
+        db.execute('CREATE TABLE IF NOT EXISTS journey(id INTEGER PRIMARY KEY, '
+            'journey_type INTEGER, '
+            'start_time INTEGER, '
+            'end_time INTEGER, '
+            'distance REAL);');
         return;
       },
       // Set the version. This executes the onCreate function and provides a
@@ -41,11 +55,17 @@ class DBService {
     // Get a reference to the database.
     final db = await _database!;
 
-    // Insert the Data into the correct table.
-    int id = await db.insert(
-      'journey',
-      journey.toMap(),
-    );
+    int id = -1;
+
+    try {
+      // Insert the Data into the correct table.
+      id = await db.insert(
+        'journey',
+        journey.toMap(),
+      );
+    } catch (e) {
+      print(e);
+    }
 
     return id;
   }
@@ -55,11 +75,8 @@ class DBService {
     final db = await _database!;
 
     // Update the Data into the correct table.
-    int updateCount = await db.update(
-        'journey',
-        journey.toMap(),
-        where: "id = ?",
-        whereArgs: [journey.id]);
+    int updateCount = await db.update('journey', journey.toMap(),
+        where: "id = ?", whereArgs: [journey.id]);
 
     return updateCount;
   }
@@ -129,15 +146,20 @@ class DBService {
 
     // Convert the List<Map<String, dynamic> into a List<Location>.
     return List.generate(maps.length, (i) {
-      String posStr = maps[i]['position'];
-      Map<dynamic, dynamic> posMap = json.decode(posStr);
-      Position position = Position.fromMap(posMap);
 
       return JourneyPoint(
-        id: maps[i]['id'],
-        journey: maps[i]['journey'],
-        position: position,
-      );
+          id: maps[i]['id'],
+          journey: maps[i]['journey'],
+          latitude: maps[i]['latitude'],
+          longitude: maps[i]['longitude'],
+          timestamp: maps[i]['timestamp'],
+          accuracy: maps[i]['accuracy'],
+          altitude: maps[i]['altitude'],
+          altitudeAccuracy: maps[i]['altitudeAccuracy'],
+          heading: maps[i]['heading'],
+          headingAccuracy: maps[i]['headingAccuracy'],
+          speed: maps[i]['speed'],
+          speedAccuracy: maps[i]['speedAccuracy']);
     });
   }
 

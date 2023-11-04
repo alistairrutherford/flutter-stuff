@@ -55,8 +55,19 @@ class JourneyModel extends ChangeNotifier {
 
   void addJourneyPoint(Journey journey, Position position) {
     // No need to notify listeners
-    JourneyPoint journeyPoint =
-        JourneyPoint(journey: journey.id!, position: position);
+    JourneyPoint journeyPoint = JourneyPoint(
+      journey: journey.id!,
+      latitude: position.latitude,
+      longitude: position.longitude,
+      timestamp: position.timestamp!,
+      accuracy: position.accuracy,
+      altitude: position.altitude,
+      altitudeAccuracy: position.altitudeAccuracy,
+      heading: position.heading,
+      headingAccuracy: position.headingAccuracy,
+      speed: position.speed,
+      speedAccuracy: position.speedAccuracy,
+    );
 
     // Update distance
     if (_lastPosition != null) {
@@ -78,7 +89,7 @@ class JourneyModel extends ChangeNotifier {
     List<JourneyPoint> journeyPoints =
         await _database.getJourneyPoints(journeyId);
     for (JourneyPoint point in journeyPoints) {
-      points.add(LatLng(point.position.latitude, point.position.longitude));
+      points.add(LatLng(point.latitude, point.longitude));
     }
 
     return points;
