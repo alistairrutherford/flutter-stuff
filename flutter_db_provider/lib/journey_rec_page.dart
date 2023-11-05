@@ -65,7 +65,7 @@ class JourneyRecordView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedContainer(
-            height: timerModel.running || timerModel.dirty ? (constraints.maxHeight*0.70) : 0.0,
+            height: timerModel.running || timerModel.dirty ? (constraints.maxHeight*0.60) : 0.0,
             alignment:
             timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
             duration: const Duration(seconds: 1),
@@ -91,7 +91,7 @@ class JourneyRecordView extends StatelessWidget {
               child: Text(
                 'Distance:',
                 style: TextStyle(
-                fontSize: (constraints.maxHeight/10), // Adjust the font size as needed
+                fontSize: (constraints.maxHeight/15), // Adjust the font size as needed
                 fontWeight: FontWeight.bold,
                 ),
                 ),

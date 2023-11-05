@@ -78,8 +78,8 @@ class JourneyModel extends ChangeNotifier {
           LatLng(position.longitude, position.longitude));
       journey.distance += distanceKm;
       updateJourney(journey);
-      _lastPosition = position;
     }
+    _lastPosition = position;
     _database.insertJourneyPoint(journeyPoint);
   }
 

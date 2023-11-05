@@ -25,19 +25,20 @@ class JourneyMapPageState extends State<JourneyMapPage> {
     journeyModel.getJourneyPoints(widget.journeyId).then((c) {
       points = c;
 
-      // Build polyline.
-      Polyline polyline = Polyline(points: points!, strokeWidth: 10);
+      if (points != null && points!.isNotEmpty) {
+        // Build polyline.
+        Polyline polyline = Polyline(points: points!, strokeWidth: 10);
 
-      // Get bounds and fit view to bounds.
-      LatLngBounds bounds = polyline.boundingBox;
-      _mapController.fitCamera(CameraFit.bounds(bounds: bounds));
+        // Get bounds and fit view to bounds.
+        LatLngBounds bounds = polyline.boundingBox;
+        _mapController.fitCamera(CameraFit.bounds(bounds: bounds));
 
-      // Update view with polyline
-      setState(() {
-        _polyLines.add(polyline);
-      });
+        // Update view with polyline
+        setState(() {
+          _polyLines.add(polyline);
+        });
+      }
     });
-
   }
 
   @override

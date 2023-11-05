@@ -1,12 +1,15 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:geolocator/geolocator.dart';
+import 'dart:io';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'journey.dart';
 import 'journey_point.dart';
 
+/// To access data
+/// - >>adb shell
+/// - >>run-as com.example.flutter_db_provider
+///
 class DBService {
   static const String dbName = 'journey.db';
 
@@ -18,7 +21,7 @@ class DBService {
       // `path` package is best practice to ensure the path is correctly
       // constructed for each platform.
       join(await getDatabasesPath(), dbName),
-      // When the database is first created, create a table to store dogs.
+      // When the database is first created, create tables.
       onCreate: (db, version) {
         // Run the CREATE TABLE statement on the database.
         db.execute(
@@ -27,9 +30,9 @@ class DBService {
             'latitude REAL, '
             'longitude REAL, '
             'timestamp INTEGER, '
+            'accuracy REAL, '
             'altitude REAL, '
             'altitudeAccuracy REAL, '
-            'accuracy REAL, '
             'heading REAL, '
             'headingAccuracy REAL, '
             'speed REAL, '
@@ -43,7 +46,7 @@ class DBService {
       },
       // Set the version. This executes the onCreate function and provides a
       // path to perform database upgrades and downgrades.
-      version: 1,
+      version: 2,
     );
   }
 
@@ -64,7 +67,7 @@ class DBService {
         journey.toMap(),
       );
     } catch (e) {
-      print(e);
+      stderr.writeln(e);
     }
 
     return id;
@@ -146,13 +149,12 @@ class DBService {
 
     // Convert the List<Map<String, dynamic> into a List<Location>.
     return List.generate(maps.length, (i) {
-
       return JourneyPoint(
           id: maps[i]['id'],
           journey: maps[i]['journey'],
           latitude: maps[i]['latitude'],
           longitude: maps[i]['longitude'],
-          timestamp: maps[i]['timestamp'],
+          timestamp: DateTime.fromMillisecondsSinceEpoch(maps[i]['timestamp']),
           accuracy: maps[i]['accuracy'],
           altitude: maps[i]['altitude'],
           altitudeAccuracy: maps[i]['altitudeAccuracy'],
@@ -171,8 +173,8 @@ class DBService {
       // Remove the data from the database.
       await db?.delete("journey");
       await db?.delete('journey_point');
-    } on Exception {
-      print('Error');
+    } catch (e) {
+      stderr.writeln(e);
     }
   }
 }
