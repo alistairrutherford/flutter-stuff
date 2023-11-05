@@ -13,6 +13,7 @@ class JourneyRecordView extends StatelessWidget {
   String time = "00:00:00";
   NumberFormat formatter = NumberFormat("00");
   Journey? _journey;
+  double _distance = 0.0;
 
   JourneyRecordView({super.key});
 
@@ -59,6 +60,9 @@ class JourneyRecordView extends StatelessWidget {
     var locationModel =  context.watch<LocationModel>();
 
     var seconds = timerModel.seconds;
+    if (_journey != null) {
+      _distance = _journey!.distance;
+    }
 
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
@@ -89,7 +93,7 @@ class JourneyRecordView extends StatelessWidget {
               child: Visibility(
               visible : _journey != null,
               child: Text(
-                'Distance:',
+                'Distance: $_distance',
                 style: TextStyle(
                 fontSize: (constraints.maxHeight/15), // Adjust the font size as needed
                 fontWeight: FontWeight.bold,

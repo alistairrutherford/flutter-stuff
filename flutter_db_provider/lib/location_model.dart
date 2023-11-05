@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/dao/journey.dart';
 import 'package:flutter_db_provider/journey_model.dart';
 import 'package:geolocator/geolocator.dart';
@@ -68,10 +67,11 @@ class LocationModel extends ChangeNotifier {
   void startPositionStream(Journey? journey, JourneyModel journeyModel) {
     if (journey != null) {
       positionStream =
-          Geolocator.getPositionStream(locationSettings: locationSettings)
-              .listen((Position? position) {
-        updateCurrentPosition(position);
+          Geolocator.getPositionStream(locationSettings: locationSettings).listen((Position? position) {
+        // Update journey point in db and re-calculate distance travelled.
         journeyModel.addJourneyPoint(journey, position!);
+        // Update current position which will trigger a redraw of map.
+        updateCurrentPosition(position);
       });
     }
   }

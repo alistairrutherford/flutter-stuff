@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/dao/journey.dart';
 import 'package:flutter_db_provider/dao/db_service.dart';
@@ -75,7 +77,7 @@ class JourneyModel extends ChangeNotifier {
       double distanceKm = distance.as(
           LengthUnit.Kilometer,
           LatLng(_lastPosition!.latitude, _lastPosition!.longitude),
-          LatLng(position.longitude, position.longitude));
+          LatLng(position.latitude, position.longitude));
       journey.distance += distanceKm;
       updateJourney(journey);
     }
