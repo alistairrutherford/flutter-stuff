@@ -17,11 +17,15 @@ class JourneyRecordView extends StatelessWidget {
 
   JourneyRecordView({super.key});
 
-  formattedTime({required int timeInSecond}) {
+  String formattedTime({required int timeInSecond}) {
     int sec = timeInSecond % 60;
     int min = (timeInSecond / 60).floor();
     int hour = (timeInSecond / 3600).floor();
     return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
+  }
+
+  String formattedDistance({required double distance}) {
+    return formatter.format(distance);
   }
 
   void start(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
@@ -79,7 +83,7 @@ class JourneyRecordView extends StatelessWidget {
           Expanded(
             child: Center(
               child: Text(
-                '${formattedTime(timeInSecond: seconds)}',
+                formattedTime(timeInSecond: seconds),
                 style: TextStyle(
                   fontSize: (constraints.maxHeight/8), // Adjust the font size as needed
                   fontWeight: FontWeight.bold,
@@ -93,7 +97,7 @@ class JourneyRecordView extends StatelessWidget {
               child: Visibility(
               visible : _journey != null,
               child: Text(
-                'Distance: $_distance',
+                'Dist: ${formattedDistance(distance: _distance)}',
                 style: TextStyle(
                 fontSize: (constraints.maxHeight/15), // Adjust the font size as needed
                 fontWeight: FontWeight.bold,
