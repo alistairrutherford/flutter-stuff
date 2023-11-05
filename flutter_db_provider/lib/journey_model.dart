@@ -18,7 +18,11 @@ class JourneyModel extends ChangeNotifier {
     _database.initialise();
   }
 
-  /// Add dummy journey - note ID increments
+  /// Add new ourney
+  ///
+  /// - note ID increments
+  ///
+  /// returns New Journey with populated id.
   Future<Journey> addJourney() async {
     Journey journey =
         Journey(journeyType: JourneyType.commute, startTime: DateTime.now());
@@ -41,6 +45,8 @@ class JourneyModel extends ChangeNotifier {
     return journey;
   }
 
+  /// Update Journey
+  ///
   Future<int> updateJourney(Journey journey) async {
     int changes = await _database.updateJourney(journey);
 
@@ -53,6 +59,8 @@ class JourneyModel extends ChangeNotifier {
     return changes;
   }
 
+  /// Add Point to specified Journey.
+  ///
   void addJourneyPoint(Journey journey, Position position) {
     // No need to notify listeners
     JourneyPoint journeyPoint = JourneyPoint(
@@ -83,6 +91,8 @@ class JourneyModel extends ChangeNotifier {
     _database.insertJourneyPoint(journeyPoint);
   }
 
+  /// Get All Journey Points for supplied Journey.
+  ///
   Future<List<LatLng>> getJourneyPoints(int journeyId) async {
     List<LatLng> points = List.empty(growable: true);
 
@@ -95,12 +105,16 @@ class JourneyModel extends ChangeNotifier {
     return points;
   }
 
+  /// Remove all data.
+  ///
   void removeAll() {
     _journeys.clear();
     _database.deleteAll();
     notifyListeners();
   }
 
+  /// Refresh local Journey list.
+  ///
   void refresh() {
     _database.getJourneys().then((c) {
       _journeys = c;
@@ -108,6 +122,8 @@ class JourneyModel extends ChangeNotifier {
     });
   }
 
+  /// Return local Journey list.
+  ///
   List<Journey> journeys() {
     return _journeys;
   }

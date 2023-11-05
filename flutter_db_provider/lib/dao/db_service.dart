@@ -15,6 +15,7 @@ class DBService {
 
   Future<Database>? _database;
 
+  /// Initialise the database.
   void initialise() async {
     _database = openDatabase(
       // Set the path to the database. Note: Using the `join` function from the
@@ -50,10 +51,13 @@ class DBService {
     );
   }
 
+  /// Get database reference.
+  ///
   Future<Database>? database() {
     return _database;
   }
 
+  /// Insert new Journey into DB.
   Future<int> insertJourney(Journey journey) async {
     // Get a reference to the database.
     final db = await _database!;
@@ -73,6 +77,8 @@ class DBService {
     return id;
   }
 
+  /// Update Journey
+  ///
   Future<int> updateJourney(Journey journey) async {
     // Get a reference to the database.
     final db = await _database!;
@@ -84,6 +90,8 @@ class DBService {
     return updateCount;
   }
 
+  /// Insert Journey Point.
+  ///
   Future<void> insertJourneyPoint(JourneyPoint journeyPoint) async {
     // Get a reference to the database.
     final db = await _database!;
@@ -95,6 +103,8 @@ class DBService {
     );
   }
 
+  /// Get Journey by id.
+  ///
   Future<Journey> getJourney(int id) async {
     final db = await _database;
 
@@ -116,6 +126,8 @@ class DBService {
     );
   }
 
+  /// Get all Journeys.
+  ///
   Future<List<Journey>> getJourneys() async {
     final db = await _database;
 
@@ -138,6 +150,8 @@ class DBService {
     });
   }
 
+  /// Get all Journey related points by Journey id.
+  ///
   Future<List<JourneyPoint>> getJourneyPoints(int journey) async {
     final db = await _database;
 
@@ -165,6 +179,8 @@ class DBService {
     });
   }
 
+  /// Delete All data.
+  ///
   Future<void> deleteAll() async {
     // Get a reference to the database.
     final db = await _database;

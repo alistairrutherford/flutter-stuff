@@ -1,5 +1,7 @@
 enum JourneyType { work, commute, leisure, other }
 
+/// Journey class represents individual Journey.
+///
 class Journey {
   int? id;
   final JourneyType journeyType;

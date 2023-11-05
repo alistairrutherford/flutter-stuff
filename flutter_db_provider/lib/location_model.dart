@@ -19,12 +19,16 @@ class LocationModel extends ChangeNotifier {
     determineCurrentPosition();
   }
 
+  /// Initialise Geolocator settings and set up current position.
+  ///
   void initialise() async {
     initialiseLocationSettings();
 
     currentPosition = await Geolocator.getLastKnownPosition();
   }
 
+  /// Fetch current position and notify any listening views.
+  ///
   void determineCurrentPosition() {
     determinePosition().then((c) {
       currentPosition = c;
@@ -33,12 +37,8 @@ class LocationModel extends ChangeNotifier {
     });
   }
 
-  void updateCurrentPosition(Position? position) {
-    currentPosition = position;
-    // Once updated notify listeners.
-    notifyListeners();
-  }
-
+  /// Initialise Geolocator system settings.
+  ///
   void initialiseLocationSettings() {
     if (defaultTargetPlatform == TargetPlatform.android) {
       locationSettings = AndroidSettings(
@@ -64,18 +64,24 @@ class LocationModel extends ChangeNotifier {
     }
   }
 
+  /// Start listening for positions from Geolocator and
   void startPositionStream(Journey? journey, JourneyModel journeyModel) {
     if (journey != null) {
       positionStream =
-          Geolocator.getPositionStream(locationSettings: locationSettings).listen((Position? position) {
+          Geolocator.getPositionStream(locationSettings: locationSettings)
+              .listen((Position? position) {
         // Update journey point in db and re-calculate distance travelled.
         journeyModel.addJourneyPoint(journey, position!);
         // Update current position which will trigger a redraw of map.
-        updateCurrentPosition(position);
+        currentPosition = position;
+        // Once updated notify listeners.
+        notifyListeners();
       });
     }
   }
 
+  /// Stop listening for positions from Geolocator.
+  ///
   void endPositionStream() async {
     if (positionStream != null) {
       await positionStream!.cancel();
