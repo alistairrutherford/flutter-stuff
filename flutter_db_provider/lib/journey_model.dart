@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/dao/journey.dart';
 import 'package:flutter_db_provider/dao/db_service.dart';
