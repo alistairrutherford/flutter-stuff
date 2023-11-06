@@ -51,6 +51,7 @@ class _MapPageState extends State<MapPage> {
       mapController: _mapController,
       options: MapOptions(
         initialZoom: defaultZoom,
+        initialCenter: _latLng!,
         onMapReady: () {
           _mapReady = true;
         }
