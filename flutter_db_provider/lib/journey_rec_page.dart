@@ -24,10 +24,6 @@ class JourneyRecordView extends StatelessWidget {
     return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
   }
 
-  String formattedDistance({required double distance}) {
-    return formatter.format(distance);
-  }
-
   void start(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
     _journey = await journeyModel.addJourney();
     locationModel.startPositionStream(_journey, journeyModel);
@@ -97,7 +93,7 @@ class JourneyRecordView extends StatelessWidget {
               child: Visibility(
               visible : _journey != null,
               child: Text(
-                'Dist: ${formattedDistance(distance: _distance)}',
+                'Dist: ${_distance.toStringAsFixed(2)}',
                 style: TextStyle(
                 fontSize: (constraints.maxHeight/15), // Adjust the font size as needed
                 fontWeight: FontWeight.bold,
