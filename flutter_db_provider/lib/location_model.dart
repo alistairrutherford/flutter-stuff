@@ -5,6 +5,12 @@ import 'package:flutter_db_provider/journey_model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/foundation.dart';
 
+/// Location Geolocator Model.
+///
+/// Notes:
+/// We don't want to set current position until we actually have the proper
+/// position. Setting it to last know location is a bad idea. Anything utilising
+/// this value should test it is set before using it.
 class LocationModel extends ChangeNotifier {
   static const int defaultDistanceFilter = 0;
 
@@ -23,8 +29,6 @@ class LocationModel extends ChangeNotifier {
   ///
   void initialise() async {
     initialiseLocationSettings();
-
-    currentPosition = await Geolocator.getLastKnownPosition();
   }
 
   /// Fetch current position and notify any listening views.

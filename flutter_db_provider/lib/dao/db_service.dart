@@ -6,6 +6,8 @@ import 'package:sqflite/sqflite.dart';
 import 'journey.dart';
 import 'journey_point.dart';
 
+/// Database Service.
+///
 /// To access data
 /// - >>adb shell
 /// - >>run-as com.example.flutter_db_provider
