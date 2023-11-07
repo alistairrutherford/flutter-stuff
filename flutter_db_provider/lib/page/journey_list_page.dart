@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/journey_map_page.dart';
+import 'package:flutter_db_provider/page/journey_map_page.dart';
 import 'package:flutter_db_provider/model/journey_model.dart';
 import 'package:provider/provider.dart';
 
-import 'dao/journey.dart';
+import '../dao/journey.dart';
 
 class JourneyListView extends StatelessWidget {
   const JourneyListView({super.key});

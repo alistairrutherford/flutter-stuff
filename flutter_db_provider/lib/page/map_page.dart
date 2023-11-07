@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'model/location_model.dart';
+import '../model/location_model.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});

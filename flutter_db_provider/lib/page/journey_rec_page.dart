@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/model/journey_model.dart';
 import 'package:flutter_db_provider/model/location_model.dart';
-import 'package:flutter_db_provider/map_page.dart';
+import 'package:flutter_db_provider/page/map_page.dart';
 import 'package:flutter_db_provider/model/timer_model.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'dao/journey.dart';
+import '../dao/journey.dart';
 
 //ignore: must_be_immutable
 class JourneyRecordView extends StatelessWidget {

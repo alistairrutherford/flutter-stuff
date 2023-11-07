@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'model/journey_model.dart';
+import '../model/journey_model.dart';
 
 class JourneyMapPage extends StatefulWidget {
   final int journeyId;
