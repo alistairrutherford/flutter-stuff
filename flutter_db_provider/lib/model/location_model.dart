@@ -68,7 +68,12 @@ class LocationModel extends ChangeNotifier {
     }
   }
 
-  /// Start listening for positions from Geolocator and
+  /// Start listening for positions from Geolocator.
+  ///
+  /// Note: It seems to take about 4 seconds for the emulator to get a position
+  /// and start the position stream. This will need be tested on real h/w. The
+  /// side-effect of this is that we don't always capture the start position
+  /// of a route.
   void startPositionStream(Journey? journey, JourneyModel journeyModel) {
     // Wait on current position and _then_ start the recording stream.
     getCurrentPosition().then((c) {
@@ -79,7 +84,7 @@ class LocationModel extends ChangeNotifier {
       positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen((Position? position) {
         // Update journey point in db and re-calculate distance travelled.
         journeyModel.addJourneyPoint(journey, position!);
-        // Update current position which will trigger a redraw of map.
+        // Update current position and trigger a redraw of tracking map.
         currentPosition = position;
         // Once updated notify listeners.
         notifyListeners();
