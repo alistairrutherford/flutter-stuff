@@ -22,7 +22,7 @@ class LocationModel extends ChangeNotifier {
     // Initialise.
     initialise();
     // Get current with callback.
-    determineCurrentPosition();
+    setCurrentPosition();
   }
 
   /// Initialise Geolocator settings and set up current position.
@@ -33,8 +33,8 @@ class LocationModel extends ChangeNotifier {
 
   /// Fetch current position and notify any listening views.
   ///
-  void determineCurrentPosition() {
-    determinePosition().then((c) {
+  void setCurrentPosition() {
+    getCurrentPosition().then((c) {
       currentPosition = c;
       // Once determined notify listeners.
       notifyListeners();
@@ -70,10 +70,13 @@ class LocationModel extends ChangeNotifier {
 
   /// Start listening for positions from Geolocator and
   void startPositionStream(Journey? journey, JourneyModel journeyModel) {
-    if (journey != null) {
-      positionStream =
-          Geolocator.getPositionStream(locationSettings: locationSettings)
-              .listen((Position? position) {
+    // Wait on current position and _then_ start the recording stream.
+    getCurrentPosition().then((c) {
+      currentPosition = c;
+
+      journeyModel.addJourneyPoint(journey!, currentPosition!);
+
+      positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen((Position? position) {
         // Update journey point in db and re-calculate distance travelled.
         journeyModel.addJourneyPoint(journey, position!);
         // Update current position which will trigger a redraw of map.
@@ -81,7 +84,7 @@ class LocationModel extends ChangeNotifier {
         // Once updated notify listeners.
         notifyListeners();
       });
-    }
+    });
   }
 
   /// Stop listening for positions from Geolocator.
@@ -96,7 +99,7 @@ class LocationModel extends ChangeNotifier {
   ///
   /// When the location services are not enabled or permissions
   /// are denied the `Future` will return an error.
-  Future<Position> determinePosition() async {
+  Future<Position> getCurrentPosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
