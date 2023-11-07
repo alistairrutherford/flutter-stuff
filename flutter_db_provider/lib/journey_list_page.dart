@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/journey_map_page.dart';
-import 'package:flutter_db_provider/journey_model.dart';
+import 'package:flutter_db_provider/model/journey_model.dart';
 import 'package:provider/provider.dart';
 
 import 'dao/journey.dart';

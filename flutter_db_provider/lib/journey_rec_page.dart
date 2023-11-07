@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/journey_model.dart';
-import 'package:flutter_db_provider/location_model.dart';
+import 'package:flutter_db_provider/model/journey_model.dart';
+import 'package:flutter_db_provider/model/location_model.dart';
 import 'package:flutter_db_provider/map_page.dart';
-import 'package:flutter_db_provider/timer_model.dart';
+import 'package:flutter_db_provider/model/timer_model.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_db_provider/dao/journey.dart';
-import 'package:flutter_db_provider/journey_model.dart';
+import 'package:flutter_db_provider/model/journey_model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/foundation.dart';
 
