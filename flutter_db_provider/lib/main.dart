@@ -30,7 +30,7 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: TimerModel())
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Journey Recorder',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
