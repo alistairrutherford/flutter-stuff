@@ -26,17 +26,25 @@ class JourneyMapPageState extends State<JourneyMapPage> {
       points = c;
 
       if (points != null && points!.isNotEmpty) {
-        // Build polyline.
-        Polyline polyline = Polyline(points: points!, strokeWidth: 10);
+        // It's possible for bounds calc to fail if points are same or not
+        // enough points.
+        // Testing for this is a bit tricky because they are doubles.
+        try {
+          // Build polyline.
+          Polyline polyline = Polyline(points: points!, strokeWidth: 10);
 
-        // Get bounds and fit view to bounds.
-        LatLngBounds bounds = polyline.boundingBox;
-        _mapController.fitCamera(CameraFit.bounds(bounds: bounds));
+          // Get bounds and fit view to bounds.
+          LatLngBounds bounds = polyline.boundingBox;
+          _mapController.fitCamera(CameraFit.bounds(bounds: bounds));
 
-        // Update view with polyline
-        setState(() {
-          _polyLines.add(polyline);
-        });
+          // Update view with polyline
+          setState(() {
+            _polyLines.add(polyline);
+          });
+        } catch (e) {
+          // We've got at least one point so lets centre map on it.
+          _mapController.move(points![0], 17);
+        }
       }
     });
   }

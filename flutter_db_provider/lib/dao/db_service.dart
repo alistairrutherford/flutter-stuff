@@ -44,7 +44,8 @@ class DBService {
             'journey_type INTEGER, '
             'start_time INTEGER, '
             'end_time INTEGER, '
-            'distance REAL);');
+            'distance REAL,'
+            'uploaded INTEGER);');
         return;
       },
       // Set the version. This executes the onCreate function and provides a
@@ -105,6 +106,23 @@ class DBService {
     );
   }
 
+  /// Build a Journey from field map.
+  ///
+  Journey buildJourneyFromMap(Map<String, dynamic> map) {
+    DateTime? endTime;
+    int? endTimeValue = map['end_time'];
+    if (endTimeValue != null) {
+      endTime = DateTime.fromMillisecondsSinceEpoch(endTimeValue);
+    }
+    return Journey(
+        id: map['id'],
+        journeyType: JourneyType.values[map['journey_type']],
+        startTime: DateTime.fromMillisecondsSinceEpoch(map['start_time']),
+        endTime: endTime,
+        distance: map['distance'],
+        uploaded: map['uploaded'] == 1 ? true : false);
+  }
+
   /// Get Journey by id.
   ///
   Future<Journey> getJourney(int id) async {
@@ -115,17 +133,7 @@ class DBService {
     final List<Map<String, dynamic>> maps = await db!
         .query('journey', where: whereString, whereArgs: whereArguments);
 
-    DateTime? endTime;
-    int? endTimeValue = maps[0]['end_time'];
-    if (endTimeValue != null) {
-      endTime = DateTime.fromMillisecondsSinceEpoch(endTimeValue);
-    }
-    return Journey(
-      id: maps[0]['id'],
-      journeyType: JourneyType.values[maps[0]['journey_type']],
-      startTime: DateTime.fromMillisecondsSinceEpoch(maps[0]['start_time']),
-      endTime: endTime,
-    );
+    return buildJourneyFromMap(maps[0]);
   }
 
   /// Get all Journeys.
@@ -137,18 +145,7 @@ class DBService {
 
     // Convert the List<Map<String, dynamic> into a List<Location>.
     return List.generate(maps.length, (i) {
-      DateTime? endTime;
-      int? endTimeValue = maps[0]['end_time'];
-      if (endTimeValue != null) {
-        endTime = DateTime.fromMillisecondsSinceEpoch(endTimeValue);
-      }
-
-      return Journey(
-        id: maps[i]['id'],
-        journeyType: JourneyType.values[maps[i]['journey_type']],
-        startTime: DateTime.fromMillisecondsSinceEpoch(maps[i]['start_time']),
-        endTime: endTime,
-      );
+      return buildJourneyFromMap(maps[i]);
     });
   }
 

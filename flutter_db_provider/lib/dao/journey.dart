@@ -8,13 +8,17 @@ class Journey {
   final DateTime startTime;
   DateTime? endTime;
   double distance = 0;
+  bool uploaded = false;
 
-  Journey(
-      {this.id,
-      required this.journeyType,
-      required this.startTime,
-      this.endTime});
+  Journey({this.id,
+        required this.journeyType,
+        required this.startTime,
+        this.endTime,
+        required this.distance,
+        required this.uploaded});
 
+  /// Convert values to Map.
+  ///
   Map<String, dynamic> toMap() {
     int? endTimeMillisecondsSinceEpoch;
     if (endTime != null) {
@@ -26,7 +30,8 @@ class Journey {
       'journey_type': journeyType.index,
       'start_time': startTime.millisecondsSinceEpoch,
       'end_time': endTimeMillisecondsSinceEpoch,
-      'distance': distance
+      'distance': distance,
+      'uploaded': uploaded ? 1 : 0
     };
   }
 
