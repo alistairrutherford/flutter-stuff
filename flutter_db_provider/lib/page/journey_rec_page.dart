@@ -24,7 +24,8 @@ class JourneyRecordView extends StatelessWidget {
     return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
   }
 
-  void start(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
+  void start(TimerModel timerModel, JourneyModel journeyModel,
+      LocationModel locationModel) async {
     _journey = await journeyModel.addJourney();
     locationModel.startPositionStream(_journey, journeyModel);
     timerModel.start();
@@ -35,12 +36,14 @@ class JourneyRecordView extends StatelessWidget {
     locationModel.endPositionStream();
   }
 
-  void resume(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) {
+  void resume(TimerModel timerModel, JourneyModel journeyModel,
+      LocationModel locationModel) {
     timerModel.resume();
     locationModel.startPositionStream(_journey, journeyModel);
   }
 
-  void finish(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
+  void finish(TimerModel timerModel, JourneyModel journeyModel,
+      LocationModel locationModel) async {
     timerModel.finish();
     locationModel.endPositionStream();
 
@@ -57,7 +60,7 @@ class JourneyRecordView extends StatelessWidget {
   Widget build(BuildContext context) {
     var timerModel = context.watch<TimerModel>();
     var journeyModel = context.watch<JourneyModel>();
-    var locationModel =  context.watch<LocationModel>();
+    var locationModel = context.watch<LocationModel>();
 
     var seconds = timerModel.seconds;
     if (_journey != null) {
@@ -69,9 +72,12 @@ class JourneyRecordView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedContainer(
-            height: timerModel.running || timerModel.dirty ? (constraints.maxHeight*0.60) : 0.0,
-            alignment:
-            timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
+            height: timerModel.running || timerModel.dirty
+                ? (constraints.maxHeight * 0.60)
+                : 0.0,
+            alignment: timerModel.running
+                ? Alignment.center
+                : AlignmentDirectional.topCenter,
             duration: const Duration(seconds: 1),
             curve: Curves.fastOutSlowIn,
             child: const MapPage(),
@@ -81,7 +87,8 @@ class JourneyRecordView extends StatelessWidget {
               child: Text(
                 formattedTime(timeInSecond: seconds),
                 style: TextStyle(
-                  fontSize: (constraints.maxHeight/8), // Adjust the font size as needed
+                  fontSize: (constraints.maxHeight /
+                      8), // Adjust the font size as needed
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -91,13 +98,14 @@ class JourneyRecordView extends StatelessWidget {
           Expanded(
             child: Center(
               child: Visibility(
-              visible : _journey != null,
-              child: Text(
-                'Dist: ${_distance.toStringAsFixed(2)}',
-                style: TextStyle(
-                fontSize: (constraints.maxHeight/15), // Adjust the font size as needed
-                fontWeight: FontWeight.bold,
-                ),
+                visible: _journey != null,
+                child: Text(
+                  'Dist: ${_distance.toStringAsFixed(2)}',
+                  style: TextStyle(
+                    fontSize: (constraints.maxHeight /
+                        15), // Adjust the font size as needed
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -134,10 +142,33 @@ class JourneyRecordView extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Visibility(
-                visible:!timerModel.running && timerModel.dirty,
+                visible: !timerModel.running && timerModel.dirty,
                 child: ElevatedButton(
                   onPressed: () {
-                    finish(timerModel, journeyModel, locationModel);
+                    showModalBottomSheet<void>(
+                      isScrollControlled: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          color: Colors.white,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                ElevatedButton(
+                                  child: const Text('Close'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    finish(timerModel, journeyModel, locationModel);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
                   },
                   child: const Text('Finish'),
                 ),
