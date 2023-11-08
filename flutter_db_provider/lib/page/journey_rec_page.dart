@@ -29,8 +29,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
   }
 
-  void start(TimerModel timerModel, JourneyModel journeyModel,
-      LocationModel locationModel) async {
+  void start(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
     _journey = await journeyModel.addJourney();
     locationModel.startPositionStream(_journey, journeyModel);
     timerModel.start();
@@ -41,18 +40,14 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     locationModel.endPositionStream();
   }
 
-  void resume(TimerModel timerModel, JourneyModel journeyModel,
-      LocationModel locationModel) {
+  void resume(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) {
     timerModel.resume();
     locationModel.startPositionStream(_journey, journeyModel);
   }
 
-  void test(TimerModel timerModel)  {
+  void test(TimerModel timerModel) {}
 
-  }
-
-  void finish(TimerModel timerModel, JourneyModel journeyModel,
-      LocationModel locationModel) async {
+  void finish(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
     timerModel.finish();
     locationModel.endPositionStream();
 
@@ -63,6 +58,11 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
       // Reset local copy of journey.
       _journey = null;
     }
+  }
+
+  void discard(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
+    finish(timerModel, journeyModel, locationModel);
+    await journeyModel.deleteJourney(_journey!);
   }
 
   @override
@@ -77,21 +77,21 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     }
 
     // Create callback function which we will give to journey complete form.
-    void Function() onComplete = () {
+    onComplete() {
       finish(timerModel, journeyModel, locationModel);
-    };
+    }
+    // Create callback function which we will give to journey complete form.
+    onDiscard() {
+      discard(timerModel, journeyModel, locationModel);
+    }
 
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedContainer(
-            height: timerModel.running || timerModel.dirty
-                ? (constraints.maxHeight * 0.60)
-                : 0.0,
-            alignment: timerModel.running
-                ? Alignment.center
-                : AlignmentDirectional.topCenter,
+            height: timerModel.running || timerModel.dirty ? (constraints.maxHeight * 0.60) : 0.0,
+            alignment: timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
             duration: const Duration(seconds: 1),
             curve: Curves.fastOutSlowIn,
             child: const MapPage(),
@@ -101,8 +101,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
               child: Text(
                 formattedTime(timeInSecond: seconds),
                 style: TextStyle(
-                  fontSize: (constraints.maxHeight /
-                      8), // Adjust the font size as needed
+                  fontSize: (constraints.maxHeight / 8), // Adjust the font size as needed
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -116,8 +115,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
                 child: Text(
                   'Dist: ${_distance.toStringAsFixed(2)}',
                   style: TextStyle(
-                    fontSize: (constraints.maxHeight /
-                        15), // Adjust the font size as needed
+                    fontSize: (constraints.maxHeight / 15), // Adjust the font size as needed
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -163,7 +161,11 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
                       isScrollControlled: true,
                       context: context,
                       builder: (BuildContext context) {
-                        return JourneyFormView(journey: _journey!, onPressed: onComplete);
+                        return JourneyFormView(
+                          journey: _journey!,
+                          onComplete: onComplete,
+                          onDiscard: onDiscard,
+                        );
                       },
                     );
                   },

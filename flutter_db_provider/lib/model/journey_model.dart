@@ -59,6 +59,20 @@ class JourneyModel extends ChangeNotifier {
     return changes;
   }
 
+  /// Update Journey
+  ///
+  Future<int> deleteJourney(Journey journey) async {
+    int changes = await _database.delete(journey);
+
+    // Update local list from db.
+    _database.getJourneys().then((c) {
+      _journeys = c;
+      notifyListeners();
+    });
+
+    return changes;
+  }
+
   /// Add Point to specified Journey.
   ///
   void addJourneyPoint(Journey journey, Position position) {
