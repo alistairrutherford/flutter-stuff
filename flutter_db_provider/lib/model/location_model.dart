@@ -75,21 +75,15 @@ class LocationModel extends ChangeNotifier {
   /// side-effect of this is that we don't always capture the start position
   /// of a route.
   void startPositionStream(Journey? journey, JourneyModel journeyModel) {
-    // Wait on current position and _then_ start the recording stream.
-    getCurrentPosition().then((c) {
-      currentPosition = c;
-
-      journeyModel.addJourneyPoint(journey!, currentPosition!);
-
-      positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen((Position? position) {
-        // Update journey point in db and re-calculate distance travelled.
-        journeyModel.addJourneyPoint(journey, position!);
-        // Update current position and trigger a redraw of tracking map.
-        currentPosition = position;
-        // Once updated notify listeners.
-        notifyListeners();
-      });
+    positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen((Position? position) {
+      // Update journey point in db and re-calculate distance travelled.
+      journeyModel.addJourneyPoint(journey!, position!);
+      // Update current position and trigger a redraw of tracking map.
+      currentPosition = position;
+      // Once updated notify listeners.
+      notifyListeners();
     });
+
   }
 
   /// Stop listening for positions from Geolocator.

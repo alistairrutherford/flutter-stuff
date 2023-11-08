@@ -8,14 +8,21 @@ import 'package:provider/provider.dart';
 
 import '../dao/journey.dart';
 
-//ignore: must_be_immutable
-class JourneyRecordView extends StatelessWidget {
+enum Calendar { day, week, month, year }
+
+class JourneyRecordView extends StatefulWidget {
+  const JourneyRecordView({super.key});
+
+  @override
+  State<JourneyRecordView> createState() => JourneyRecordViewState();
+}
+
+class JourneyRecordViewState extends State<JourneyRecordView> {
   String time = "00:00:00";
   NumberFormat formatter = NumberFormat("00");
   Journey? _journey;
   double _distance = 0.0;
-
-  JourneyRecordView({super.key});
+  JourneyType _journeyType = JourneyType.commute;
 
   String formattedTime({required int timeInSecond}) {
     int sec = timeInSecond % 60;
@@ -146,7 +153,7 @@ class JourneyRecordView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     showModalBottomSheet<void>(
-                      isScrollControlled: false,
+                      isScrollControlled: true,
                       context: context,
                       builder: (BuildContext context) {
                         return Container(
@@ -156,11 +163,42 @@ class JourneyRecordView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
+                                SegmentedButton<JourneyType>(
+                                  segments: const <ButtonSegment<JourneyType>>[
+                                    ButtonSegment<JourneyType>(
+                                        value: JourneyType.commute,
+                                        label: Text('Commute'),
+                                        icon: Icon(Icons.motorcycle)),
+                                    ButtonSegment<JourneyType>(
+                                        value: JourneyType.leisure,
+                                        label: Text('Leisure'),
+                                        icon: Icon(Icons.motorcycle)),
+                                    ButtonSegment<JourneyType>(
+                                        value: JourneyType.work,
+                                        label: Text('Work'),
+                                        icon: Icon(Icons.motorcycle)),
+                                    ButtonSegment<JourneyType>(
+                                        value: JourneyType.other,
+                                        label: Text('Other'),
+                                        icon: Icon(Icons.motorcycle)),
+                                  ],
+                                  selected: <JourneyType>{_journeyType},
+                                  onSelectionChanged:
+                                      (Set<JourneyType> newSelection) {
+                                    setState(() {
+                                      // By default there is only a single segment that can be
+                                      // selected at one time, so its value is always the first
+                                      // item in the selected set.
+                                      _journeyType = newSelection.first;
+                                    });
+                                  },
+                                ),
                                 ElevatedButton(
-                                  child: const Text('Close'),
+                                  child: const Text('Complete'),
                                   onPressed: () {
                                     Navigator.pop(context);
-                                    finish(timerModel, journeyModel, locationModel);
+                                    finish(timerModel, journeyModel,
+                                        locationModel);
                                   },
                                 ),
                               ],
