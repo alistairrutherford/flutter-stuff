@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../dao/journey.dart';
@@ -18,9 +19,17 @@ class JourneyFormView extends StatefulWidget {
 }
 
 class JourneyFormViewState extends State<JourneyFormView> {
+  Widget buildSegment(String text){
+    return Container(
+      child: Text(text,style: TextStyle(fontSize: 22,
+          color: Colors.black),),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     JourneyType _journeyType = widget.journey.journeyType;
+    int? groupValue = _journeyType.index;
 
     return Container(
       color: Colors.white,
@@ -29,36 +38,26 @@ class JourneyFormViewState extends State<JourneyFormView> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SegmentedButton<JourneyType>(
-              segments: const <ButtonSegment<JourneyType>>[
-                ButtonSegment<JourneyType>(
-                    value: JourneyType.commute,
-                    label: Text('Commute'),
-                    /*icon: Icon(Icons.motorcycle)*/),
-                ButtonSegment<JourneyType>(
-                    value: JourneyType.leisure,
-                    label: Text('Leisure'),
-                    /*icon: Icon(Icons.motorcycle)*/),
-                ButtonSegment<JourneyType>(
-                    value: JourneyType.work,
-                    label: Text('Work'),
-                    /*icon: Icon(Icons.motorcycle)*/),
-                ButtonSegment<JourneyType>(
-                    value: JourneyType.other,
-                    label: Text('Other'),
-                    /*icon: Icon(Icons.motorcycle)*/),
-              ],
-              selected: <JourneyType>{_journeyType},
-              onSelectionChanged: (Set<JourneyType> newSelection) {
+            CupertinoSlidingSegmentedControl<int>(
+              backgroundColor:  CupertinoColors.white,
+              thumbColor: CupertinoColors.activeGreen,
+              padding: const EdgeInsets.all(8),
+              groupValue: groupValue,
+              children: {
+                0: buildSegment("Commute"),
+                1: buildSegment("Leisure"),
+                2: buildSegment("Work"),
+                3: buildSegment("Other"),
+              },
+              onValueChanged: (value){
                 setState(() {
-                  // By default there is only a single segment that can be
-                  // selected at one time, so its value is always the first
-                  // item in the selected set.
-                  _journeyType = newSelection.first;
+                  _journeyType = JourneyType.values[value!];
                   widget.journey.journeyType = _journeyType;
+                  groupValue = value;
                 });
               },
             ),
+            const SizedBox(height: 40),
             Row(mainAxisSize: MainAxisSize.min, children: [
               ElevatedButton(
                 child: const Text('Discard'),
@@ -67,7 +66,7 @@ class JourneyFormViewState extends State<JourneyFormView> {
                   Navigator.pop(context);
                 },
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 20),
               ElevatedButton(
                 child: const Text('Complete'),
                 onPressed: () {
