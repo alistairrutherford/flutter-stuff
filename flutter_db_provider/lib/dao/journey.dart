@@ -4,7 +4,7 @@ enum JourneyType { work, commute, leisure, other }
 ///
 class Journey {
   int? id;
-  final JourneyType journeyType;
+  JourneyType journeyType;
   final DateTime startTime;
   DateTime? endTime;
   double distance = 0;

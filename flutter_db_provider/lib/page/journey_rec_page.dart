@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/model/journey_model.dart';
 import 'package:flutter_db_provider/model/location_model.dart';
+import 'package:flutter_db_provider/page/journey_form_page.dart';
 import 'package:flutter_db_provider/page/map_page.dart';
 import 'package:flutter_db_provider/model/timer_model.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../dao/journey.dart';
-
-enum Calendar { day, week, month, year }
 
 class JourneyRecordView extends StatefulWidget {
   const JourneyRecordView({super.key});
@@ -22,7 +21,6 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
   NumberFormat formatter = NumberFormat("00");
   Journey? _journey;
   double _distance = 0.0;
-  JourneyType _journeyType = JourneyType.commute;
 
   String formattedTime({required int timeInSecond}) {
     int sec = timeInSecond % 60;
@@ -49,6 +47,10 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     locationModel.startPositionStream(_journey, journeyModel);
   }
 
+  void test(TimerModel timerModel)  {
+
+  }
+
   void finish(TimerModel timerModel, JourneyModel journeyModel,
       LocationModel locationModel) async {
     timerModel.finish();
@@ -73,6 +75,11 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     if (_journey != null) {
       _distance = _journey!.distance;
     }
+
+    // Create callback function which we will give to journey complete form.
+    void Function() onComplete = () {
+      finish(timerModel, journeyModel, locationModel);
+    };
 
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
@@ -156,55 +163,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
                       isScrollControlled: true,
                       context: context,
                       builder: (BuildContext context) {
-                        return Container(
-                          color: Colors.white,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                SegmentedButton<JourneyType>(
-                                  segments: const <ButtonSegment<JourneyType>>[
-                                    ButtonSegment<JourneyType>(
-                                        value: JourneyType.commute,
-                                        label: Text('Commute'),
-                                        icon: Icon(Icons.motorcycle)),
-                                    ButtonSegment<JourneyType>(
-                                        value: JourneyType.leisure,
-                                        label: Text('Leisure'),
-                                        icon: Icon(Icons.motorcycle)),
-                                    ButtonSegment<JourneyType>(
-                                        value: JourneyType.work,
-                                        label: Text('Work'),
-                                        icon: Icon(Icons.motorcycle)),
-                                    ButtonSegment<JourneyType>(
-                                        value: JourneyType.other,
-                                        label: Text('Other'),
-                                        icon: Icon(Icons.motorcycle)),
-                                  ],
-                                  selected: <JourneyType>{_journeyType},
-                                  onSelectionChanged:
-                                      (Set<JourneyType> newSelection) {
-                                    setState(() {
-                                      // By default there is only a single segment that can be
-                                      // selected at one time, so its value is always the first
-                                      // item in the selected set.
-                                      _journeyType = newSelection.first;
-                                    });
-                                  },
-                                ),
-                                ElevatedButton(
-                                  child: const Text('Complete'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    finish(timerModel, journeyModel,
-                                        locationModel);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
+                        return JourneyFormView(journey: _journey!, onPressed: onComplete);
                       },
                     );
                   },
