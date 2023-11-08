@@ -7,7 +7,11 @@ class JourneyFormView extends StatefulWidget {
   final Function() onComplete;
   final Function() onDiscard;
 
-  const JourneyFormView({super.key, required this.journey, required this.onComplete(), required this.onDiscard()});
+  const JourneyFormView(
+      {super.key,
+      required this.journey,
+      required this.onComplete(),
+      required this.onDiscard()});
 
   @override
   State<JourneyFormView> createState() => JourneyFormViewState();
@@ -28,12 +32,21 @@ class JourneyFormViewState extends State<JourneyFormView> {
             SegmentedButton<JourneyType>(
               segments: const <ButtonSegment<JourneyType>>[
                 ButtonSegment<JourneyType>(
-                    value: JourneyType.commute, label: Text('Commute'), icon: Icon(Icons.motorcycle)),
+                    value: JourneyType.commute,
+                    label: Text('Commute'),
+                    icon: Icon(Icons.motorcycle)),
                 ButtonSegment<JourneyType>(
-                    value: JourneyType.leisure, label: Text('Leisure'), icon: Icon(Icons.motorcycle)),
-                ButtonSegment<JourneyType>(value: JourneyType.work, label: Text('Work'), icon: Icon(Icons.motorcycle)),
+                    value: JourneyType.leisure,
+                    label: Text('Leisure'),
+                    icon: Icon(Icons.motorcycle)),
                 ButtonSegment<JourneyType>(
-                    value: JourneyType.other, label: Text('Other'), icon: Icon(Icons.motorcycle)),
+                    value: JourneyType.work,
+                    label: Text('Work'),
+                    icon: Icon(Icons.motorcycle)),
+                ButtonSegment<JourneyType>(
+                    value: JourneyType.other,
+                    label: Text('Other'),
+                    icon: Icon(Icons.motorcycle)),
               ],
               selected: <JourneyType>{_journeyType},
               onSelectionChanged: (Set<JourneyType> newSelection) {
@@ -46,13 +59,23 @@ class JourneyFormViewState extends State<JourneyFormView> {
                 });
               },
             ),
-            ElevatedButton(
-              child: const Text('Complete'),
-              onPressed: () {
-                widget.onComplete();
-                Navigator.pop(context);
-              },
-            ),
+            Row(mainAxisSize: MainAxisSize.min, children: [
+              ElevatedButton(
+                child: const Text('Discard'),
+                onPressed: () {
+                  widget.onDiscard();
+                  Navigator.pop(context);
+                },
+              ),
+              const SizedBox(width: 10),
+              ElevatedButton(
+                child: const Text('Complete'),
+                onPressed: () {
+                  widget.onComplete();
+                  Navigator.pop(context);
+                },
+              ),
+            ])
           ],
         ),
       ),
