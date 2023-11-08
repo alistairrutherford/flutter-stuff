@@ -4,7 +4,7 @@ import '../dao/journey.dart';
 
 class JourneyFormView extends StatefulWidget {
   final Journey journey;
-  final  Function() onPressed;
+  final Function() onPressed;
 
   JourneyFormView(
       {super.key, required this.journey, required this.onPressed()});
