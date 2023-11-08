@@ -158,7 +158,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
                 child: ElevatedButton(
                   onPressed: () {
                     showModalBottomSheet<void>(
-                      isScrollControlled: true,
+                      isScrollControlled: false,
                       context: context,
                       builder: (BuildContext context) {
                         return JourneyFormView(

@@ -34,19 +34,19 @@ class JourneyFormViewState extends State<JourneyFormView> {
                 ButtonSegment<JourneyType>(
                     value: JourneyType.commute,
                     label: Text('Commute'),
-                    icon: Icon(Icons.motorcycle)),
+                    /*icon: Icon(Icons.motorcycle)*/),
                 ButtonSegment<JourneyType>(
                     value: JourneyType.leisure,
                     label: Text('Leisure'),
-                    icon: Icon(Icons.motorcycle)),
+                    /*icon: Icon(Icons.motorcycle)*/),
                 ButtonSegment<JourneyType>(
                     value: JourneyType.work,
                     label: Text('Work'),
-                    icon: Icon(Icons.motorcycle)),
+                    /*icon: Icon(Icons.motorcycle)*/),
                 ButtonSegment<JourneyType>(
                     value: JourneyType.other,
                     label: Text('Other'),
-                    icon: Icon(Icons.motorcycle)),
+                    /*icon: Icon(Icons.motorcycle)*/),
               ],
               selected: <JourneyType>{_journeyType},
               onSelectionChanged: (Set<JourneyType> newSelection) {
