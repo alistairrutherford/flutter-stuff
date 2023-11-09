@@ -20,16 +20,14 @@ class JourneyFormView extends StatefulWidget {
 
 class JourneyFormViewState extends State<JourneyFormView> {
   Widget buildSegment(String text){
-    return Container(
-      child: Text(text,style: TextStyle(fontSize: 22,
-          color: Colors.black),),
-    );
+      return Text(text,style: const TextStyle(fontSize: 22,
+          color: Colors.black));
   }
 
   @override
   Widget build(BuildContext context) {
-    JourneyType _journeyType = widget.journey.journeyType;
-    int? groupValue = _journeyType.index;
+    JourneyType journeyType = widget.journey.journeyType;
+    int? groupValue = journeyType.index;
 
     return Container(
       color: Colors.white,
@@ -40,7 +38,7 @@ class JourneyFormViewState extends State<JourneyFormView> {
           children: <Widget>[
             CupertinoSlidingSegmentedControl<int>(
               backgroundColor:  CupertinoColors.white,
-              thumbColor: CupertinoColors.activeGreen,
+              thumbColor: CupertinoColors.activeBlue,
               padding: const EdgeInsets.all(8),
               groupValue: groupValue,
               children: {
@@ -51,8 +49,8 @@ class JourneyFormViewState extends State<JourneyFormView> {
               },
               onValueChanged: (value){
                 setState(() {
-                  _journeyType = JourneyType.values[value!];
-                  widget.journey.journeyType = _journeyType;
+                  journeyType = JourneyType.values[value!];
+                  widget.journey.journeyType = journeyType;
                   groupValue = value;
                 });
               },
