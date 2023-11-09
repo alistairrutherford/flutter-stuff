@@ -16,12 +16,16 @@ class JourneyRecordView extends StatefulWidget {
   State<JourneyRecordView> createState() => JourneyRecordViewState();
 }
 
+/// This is main Journey recording view.
+///
 class JourneyRecordViewState extends State<JourneyRecordView> {
   String time = "00:00:00";
   NumberFormat formatter = NumberFormat("00");
   Journey? _journey;
   double _distance = 0.0;
 
+  /// This method formats seconds into 00:00:00 form.
+  ///
   String formattedTime({required int timeInSecond}) {
     int sec = timeInSecond % 60;
     int min = (timeInSecond / 60).floor();
@@ -29,24 +33,40 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
   }
 
+  /// Start Journey.
+  ///
+  /// Add new journey to database.
+  /// Start timer.
+  /// Start location stream.
   void start(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
     _journey = await journeyModel.addJourney();
     locationModel.startPositionStream(_journey, journeyModel);
     timerModel.start();
   }
 
+  /// Pause Journey.
+  ///
+  /// Pause timer.
+  /// Stop location stream.
   void pause(TimerModel timerModel, LocationModel locationModel) {
     timerModel.pause();
     locationModel.endPositionStream();
   }
 
+  /// Resume Journey.
+  ///
+  /// Resume timer.
+  /// Restart location stream.
   void resume(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) {
     timerModel.resume();
     locationModel.startPositionStream(_journey, journeyModel);
   }
 
-  void test(TimerModel timerModel) {}
-
+  /// Finish Journey.
+  ///
+  /// Stop timer.
+  /// Stop location stream.
+  /// Update end time in Journey and update in database.
   void finish(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
     timerModel.finish();
     locationModel.endPositionStream();
@@ -60,8 +80,15 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     }
   }
 
+  /// Discard Journey.
+  ///
+  /// Stop timer.
+  /// Stop location stream.
+  /// Delete Journey and all related JourneyPoints from database.
   void discard(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
-    finish(timerModel, journeyModel, locationModel);
+    timerModel.finish();
+    locationModel.endPositionStream();
+
     await journeyModel.deleteJourney(_journey!);
   }
 
