@@ -46,11 +46,9 @@ class JourneyListView extends StatelessWidget {
 
     var itemCount = journeys.length;
 
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('You have ${journeys.length} items:'),
-        ),
-        body: Column(
+    return Container(
+        color: Colors.white,
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
@@ -85,10 +83,11 @@ class JourneyListView extends StatelessWidget {
                                   // mainAxisAlignment: MainAxisAlignment.start,
                                   // mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
-                                    const Text('Distance',style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 20)),
+                                    const Text('Distance',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 20)),
                                     const SizedBox(height: 5),
                                     Text(
                                         "${journeys[index].distance.toStringAsFixed(2)} km",
