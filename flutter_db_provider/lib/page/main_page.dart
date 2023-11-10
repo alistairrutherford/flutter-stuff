@@ -56,11 +56,11 @@ class _TabMainViewState extends State<TabMainView> {
       body: <Widget>[
         Container(
           alignment: Alignment.center,
-          child: JourneyListView(),
+          child: const JourneyListView(),
         ),
         Container(
           alignment: Alignment.center,
-          child: JourneyRecordView(),
+          child: const JourneyRecordView(),
         ),
         Container(
           alignment: Alignment.center,
