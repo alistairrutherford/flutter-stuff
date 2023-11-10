@@ -4,7 +4,6 @@ import 'package:flutter_db_provider/model/location_model.dart';
 import 'package:flutter_db_provider/page/journey_form_page.dart';
 import 'package:flutter_db_provider/page/map_page.dart';
 import 'package:flutter_db_provider/model/timer_model.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../dao/journey.dart';
