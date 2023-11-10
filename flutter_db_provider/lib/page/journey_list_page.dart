@@ -9,7 +9,7 @@ class JourneyListView extends StatelessWidget {
   const JourneyListView({super.key});
 
   Icon iconType(Journey journey) {
-    return const Icon(Icons.access_alarm);
+    return const Icon(Icons.access_alarm, color: Colors.white,);
   }
 
   @override
@@ -34,8 +34,9 @@ class JourneyListView extends StatelessWidget {
                     child: ListTile(
                       contentPadding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, top: 10, bottom: 10),
-                      leading: const Icon(Icons.directions_bike_outlined),
-                      title: Text('Route: ${journeys[index].toString()}'),
+                      leading: const Icon(Icons.directions_bike_outlined, color: Colors.white,),
+                      title: Text('Route: ${journeys[index].toString()}',
+                          style: const TextStyle(color: Colors.white)),
                       tileColor: Colors.blue,
                       trailing: iconType(journeys[index]),
                       onTap: () {
