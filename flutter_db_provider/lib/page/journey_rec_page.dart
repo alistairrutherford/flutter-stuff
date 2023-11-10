@@ -20,18 +20,8 @@ class JourneyRecordView extends StatefulWidget {
 ///
 class JourneyRecordViewState extends State<JourneyRecordView> {
   String time = "00:00:00";
-  NumberFormat formatter = NumberFormat("00");
   Journey? _journey;
   double _distance = 0.0;
-
-  /// This method formats seconds into 00:00:00 form.
-  ///
-  String formattedTime({required int timeInSecond}) {
-    int sec = timeInSecond % 60;
-    int min = (timeInSecond / 60).floor();
-    int hour = (timeInSecond / 3600).floor();
-    return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
-  }
 
   /// Start Journey.
   ///
@@ -126,7 +116,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
           Expanded(
             child: Center(
               child: Text(
-                formattedTime(timeInSecond: seconds),
+                journeyModel.formattedTime(timeInSecond: seconds),
                 style: TextStyle(
                   fontSize: (constraints.maxHeight / 8), // Adjust the font size as needed
                   fontWeight: FontWeight.bold,

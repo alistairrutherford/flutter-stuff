@@ -24,10 +24,14 @@ class JourneyListView extends StatelessWidget {
     );
   }
 
-  String elapsedTime(Journey journey) {
-    Duration myDuration = journey.startTime.difference(journey.endTime!);
+  /// Format duration of journey,
+  ///
+  /// We use helper method from the Journey Model. It might be more efficient
+  /// to keep this string in the record and display it.
+  String elapsedTime(Journey journey, JourneyModel journeyModel) {
+    Duration duration = journey.endTime!.difference(journey.startTime);
 
-    return "${formatter.format(myDuration.inMinutes)} min";
+    return "${journeyModel.formattedTime(timeInSecond: duration.inSeconds)} min";
   }
 
   Text journeyText(JourneyType journeyType) {
@@ -105,7 +109,7 @@ class JourneyListView extends StatelessWidget {
                                             color: Colors.black,
                                             fontSize: 20)),
                                     const SizedBox(height: 5),
-                                    Text(elapsedTime(journeys[index]),
+                                    Text(elapsedTime(journeys[index], model),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,

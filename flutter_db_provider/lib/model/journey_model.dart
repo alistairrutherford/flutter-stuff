@@ -3,9 +3,12 @@ import 'package:flutter_db_provider/dao/journey.dart';
 import 'package:flutter_db_provider/dao/db_service.dart';
 import 'package:flutter_db_provider/dao/journey_point.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 
 class JourneyModel extends ChangeNotifier {
+  NumberFormat formatter = NumberFormat("00");
+
   final _database = DBService();
   final distance = const Distance();
 
@@ -43,6 +46,15 @@ class JourneyModel extends ChangeNotifier {
     });
 
     return journey;
+  }
+
+  /// This method formats seconds into 00:00:00 form.
+  ///
+  String formattedTime({required int timeInSecond}) {
+    int sec = timeInSecond % 60;
+    int min = (timeInSecond / 60).floor();
+    int hour = (timeInSecond / 3600).floor();
+    return "${formatter.format(hour)}:${formatter.format(min)}:${formatter.format(sec)}";
   }
 
   /// Update Journey
