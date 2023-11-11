@@ -17,11 +17,17 @@ class JourneyModel extends ChangeNotifier {
   List<Journey> _journeys = [];
 
   JourneyModel() {
-    // Test Database.
-    _database.initialise();
+    // Initialise database and provide call back to populate model.
+    _database.initialise(onInit);
   }
 
-  /// Add new ourney
+  /// This is called when database has been initialised.
+  ///
+  void onInit() {
+    refresh();
+  }
+
+  /// Add new Journey
   ///
   /// - note ID increments
   ///

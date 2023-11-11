@@ -14,11 +14,14 @@ import 'journey_point.dart';
 ///
 class DBService {
   static const String dbName = 'journey.db';
-
   Future<Database>? _database;
+  Function? onInit;
+
 
   /// Initialise the database.
-  void initialise() async {
+  void initialise(Function onInit) async {
+    this.onInit = onInit;
+
     _database = openDatabase(
       // Set the path to the database. Note: Using the `join` function from the
       // `path` package is best practice to ensure the path is correctly
@@ -45,12 +48,15 @@ class DBService {
             'end_time INTEGER, '
             'distance REAL,'
             'uploaded INTEGER);');
+
         return;
       },
       // Set the version. This executes the onCreate function and provides a
       // path to perform database upgrades and downgrades.
       version: 2,
     );
+    // Call initialisation callback to perform first op on
+    onInit();
   }
 
   /// Get database reference.
