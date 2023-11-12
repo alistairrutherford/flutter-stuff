@@ -46,6 +46,7 @@ class DBService {
             'journey_type INTEGER, '
             'start_time INTEGER, '
             'end_time INTEGER, '
+            'duration INTEGER, '
             'distance REAL,'
             'uploaded INTEGER);');
 
@@ -90,6 +91,12 @@ class DBService {
   Future<int> updateJourney(Journey journey) async {
     // Get a reference to the database.
     final db = await _database!;
+
+    // Calculate and save duration if possible.
+    if (journey.endTime != null) {
+      Duration duration = journey.endTime!.difference(journey.startTime);
+      journey.duration = duration.inSeconds;
+    }
 
     // Update the Data into the correct table.
     int updateCount = await db.update('journey', journey.toMap(), where: "id = ?", whereArgs: [journey.id]);
@@ -138,6 +145,7 @@ class DBService {
         journeyType: JourneyType.values[map['journey_type']],
         startTime: DateTime.fromMillisecondsSinceEpoch(map['start_time']),
         endTime: endTime,
+        duration: map['duration'],
         distance: map['distance'],
         uploaded: map['uploaded'] == 1 ? true : false);
   }

@@ -30,9 +30,7 @@ class JourneyListView extends StatelessWidget {
   /// We use helper method from the Journey Model. It might be more efficient
   /// to keep this string in the record and display it.
   String elapsedTime(Journey journey, JourneyModel journeyModel) {
-    Duration duration = journey.endTime!.difference(journey.startTime);
-
-    return "${journeyModel.formattedTime(timeInSecond: duration.inSeconds)} min";
+    return "${journeyModel.formattedTime(timeInSecond:journey.duration)} min";
   }
 
   Text journeyText(JourneyType journeyType) {

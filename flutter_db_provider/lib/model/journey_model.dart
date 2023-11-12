@@ -34,7 +34,7 @@ class JourneyModel extends ChangeNotifier {
   /// returns New Journey with populated id.
   Future<Journey> addJourney() async {
     Journey journey =
-        Journey(journeyType: JourneyType.work, startTime: DateTime.now(), distance: 0, uploaded: false);
+        Journey(journeyType: JourneyType.work, startTime: DateTime.now(), duration: 0, distance: 0, uploaded: false);
 
     // Reset last position for calculating distance.
     _lastPosition = null;
@@ -99,7 +99,7 @@ class JourneyModel extends ChangeNotifier {
       journey: journey.id!,
       latitude: position.latitude,
       longitude: position.longitude,
-      timestamp: position.timestamp!,
+      timestamp: position.timestamp,
       accuracy: position.accuracy,
       altitude: position.altitude,
       altitudeAccuracy: position.altitudeAccuracy,
