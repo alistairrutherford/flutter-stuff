@@ -19,7 +19,7 @@ class JourneyRecordView extends StatefulWidget {
 ///
 class JourneyRecordViewState extends State<JourneyRecordView> {
   String time = "00:00:00";
-  Journey? _journey;
+  static Journey? _journey;
   double _distance = 0.0;
 
   /// Start Journey.
