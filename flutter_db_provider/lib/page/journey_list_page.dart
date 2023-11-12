@@ -72,9 +72,9 @@ class JourneyListView extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.start,
                               // mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                const Text(
-                                  'Commute',
-                                  style: TextStyle(
+                                 Text(
+                                  journeyTitles[journeys[index].journeyType]!,
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                       fontSize: 30),
