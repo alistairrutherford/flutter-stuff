@@ -99,7 +99,7 @@ class JourneyModel extends ChangeNotifier {
       journey: journey.id!,
       latitude: position.latitude,
       longitude: position.longitude,
-      timestamp: position.timestamp,
+      timestamp: position.timestamp!,
       accuracy: position.accuracy,
       altitude: position.altitude,
       altitudeAccuracy: position.altitudeAccuracy,
