@@ -112,16 +112,17 @@ class JourneyModel extends ChangeNotifier {
     // Update distance
     if (_lastPosition != null) {
       // Calculate distance and update journey
-      double distanceKm = distance.as(
-          LengthUnit.Kilometer,
+      double distanceM = distance.as(
+          LengthUnit.Meter,
           LatLng(_lastPosition!.latitude, _lastPosition!.longitude),
           LatLng(position.latitude, position.longitude));
-      journey.distance += distanceKm;
+      journey.distance += distanceM;
       updateJourney(journey);
     }
     _lastPosition = position;
     _database.insertJourneyPoint(journeyPoint);
   }
+
 
   /// Get All Journey Points for supplied Journey.
   ///

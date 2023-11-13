@@ -94,7 +94,7 @@ class JourneyListView extends StatelessWidget {
                                                 fontSize: 20)),
                                         const SizedBox(height: 5),
                                         Text(
-                                            "${journeys[index].distance.toStringAsFixed(2)} km",
+                                            "${(journeys[index].distance/1000).toStringAsFixed(2)} km",
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white,
