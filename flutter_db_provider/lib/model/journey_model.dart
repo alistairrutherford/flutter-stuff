@@ -13,6 +13,7 @@ class JourneyModel extends ChangeNotifier {
   final distance = const Distance();
 
   Position? _lastPosition;
+  double _distance = 0.0;
 
   List<Journey> _journeys = [];
 
@@ -33,11 +34,16 @@ class JourneyModel extends ChangeNotifier {
   ///
   /// returns New Journey with populated id.
   Future<Journey> addJourney() async {
-    Journey journey =
-        Journey(journeyType: JourneyType.work, startTime: DateTime.now(), duration: 0, distance: 0, uploaded: false);
+    Journey journey = Journey(
+        journeyType: JourneyType.work,
+        startTime: DateTime.now(),
+        duration: 0,
+        distance: 0,
+        uploaded: false);
 
     // Reset last position for calculating distance.
     _lastPosition = null;
+    _distance = 0.0;
 
     // Store new journey
     int id = await _database.insertJourney(journey);
@@ -116,13 +122,16 @@ class JourneyModel extends ChangeNotifier {
           LengthUnit.Meter,
           LatLng(_lastPosition!.latitude, _lastPosition!.longitude),
           LatLng(position.latitude, position.longitude));
-      journey.distance += distanceM;
+
+      // Update distance (m)
+      _distance += distanceM;
+      // Save distance (km)
+      journey.distance = _distance / 1000;
       updateJourney(journey);
     }
     _lastPosition = position;
     _database.insertJourneyPoint(journeyPoint);
   }
-
 
   /// Get All Journey Points for supplied Journey.
   ///

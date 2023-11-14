@@ -43,8 +43,8 @@ class JourneyFormViewState extends State<JourneyFormView> {
               groupValue: groupValue,
               children: {
                 0: buildSegment("Commute"),
-                1: buildSegment("Leisure"),
-                2: buildSegment("Work"),
+                1: buildSegment("Work"),
+                2: buildSegment("Leisure"),
                 3: buildSegment("Other"),
               },
               onValueChanged: (value){

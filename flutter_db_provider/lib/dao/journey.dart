@@ -1,4 +1,4 @@
-enum JourneyType { work, commute, leisure, other }
+enum JourneyType { commute, work, leisure, other }
 
 /// Journey class represents individual Journey.
 ///

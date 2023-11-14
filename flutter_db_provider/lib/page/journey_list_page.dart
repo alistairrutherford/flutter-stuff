@@ -10,16 +10,16 @@ NumberFormat formatter = NumberFormat("00");
 
 class JourneyListView extends StatelessWidget {
   static const Map<JourneyType, String> journeyTitles = {
-    JourneyType.work: 'Work',
     JourneyType.commute: 'Commute',
+    JourneyType.work: 'Work',
     JourneyType.leisure: 'Leisure',
     JourneyType.other: 'Other',
   };
 
   static const Map<JourneyType, IconData> journeyIcons = {
-    JourneyType.work: Icons.work,
     JourneyType.commute: Icons.pedal_bike,
-    JourneyType.leisure: Icons.sports_football,
+    JourneyType.work: Icons.work,
+    JourneyType.leisure: Icons.sports_tennis,
     JourneyType.other: Icons.device_unknown,
   };
 
@@ -30,7 +30,7 @@ class JourneyListView extends StatelessWidget {
   /// We use helper method from the Journey Model. It might be more efficient
   /// to keep this string in the record and display it.
   String elapsedTime(Journey journey, JourneyModel journeyModel) {
-    return "${journeyModel.formattedTime(timeInSecond: journey.duration)} min";
+    return "${journeyModel.formattedTime(timeInSecond: journey.duration)}";
   }
 
   @override
@@ -89,7 +89,7 @@ class JourneyListView extends StatelessWidget {
                                                 fontSize: 20)),
                                         const SizedBox(height: 5),
                                         Text(
-                                            "${(journeys[index].distance / 1000).toStringAsFixed(2)} km",
+                                            "${journeys[index].distance.toStringAsFixed(2)} km",
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white,
@@ -119,7 +119,7 @@ class JourneyListView extends StatelessWidget {
                               ]),
                           tileColor: Colors.blue,
                           trailing: Icon(
-                            journeys[index].uploaded ? Icons.upload_file : Icons.done,
+                            journeys[index].uploaded ? Icons.done : Icons.upload_file,
                             color: Colors.white,
                           ),
                           onTap: () {
