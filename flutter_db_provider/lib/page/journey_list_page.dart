@@ -13,29 +13,24 @@ class JourneyListView extends StatelessWidget {
     JourneyType.work: 'Work',
     JourneyType.commute: 'Commute',
     JourneyType.leisure: 'Leisure',
-    JourneyType.other: 'Other'
+    JourneyType.other: 'Other',
+  };
+
+  static const Map<JourneyType, IconData> journeyIcons = {
+    JourneyType.work: Icons.work,
+    JourneyType.commute: Icons.pedal_bike,
+    JourneyType.leisure: Icons.sports_football,
+    JourneyType.other: Icons.device_unknown,
   };
 
   const JourneyListView({super.key});
-
-  Icon iconType(Journey journey) {
-    return const Icon(
-      Icons.access_alarm,
-      color: Colors.white,
-    );
-  }
 
   /// Format duration of journey,
   ///
   /// We use helper method from the Journey Model. It might be more efficient
   /// to keep this string in the record and display it.
   String elapsedTime(Journey journey, JourneyModel journeyModel) {
-    return "${journeyModel.formattedTime(timeInSecond:journey.duration)} min";
-  }
-
-  Text journeyText(JourneyType journeyType) {
-    return Text('${journeyTitles[journeyType]}',
-        style: const TextStyle(color: Colors.white));
+    return "${journeyModel.formattedTime(timeInSecond: journey.duration)} min";
   }
 
   @override
@@ -62,8 +57,8 @@ class JourneyListView extends StatelessWidget {
                         child: ListTile(
                           contentPadding: const EdgeInsets.only(
                               left: 10.0, right: 10.0, top: 10, bottom: 10),
-                          leading: const Icon(
-                            Icons.directions_bike_outlined,
+                          leading: Icon(
+                            journeyIcons[journeys[index].journeyType]!,
                             color: Colors.white,
                             size: 60,
                           ),
@@ -72,7 +67,7 @@ class JourneyListView extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.start,
                               // mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                 Text(
+                                Text(
                                   journeyTitles[journeys[index].journeyType]!,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -94,7 +89,7 @@ class JourneyListView extends StatelessWidget {
                                                 fontSize: 20)),
                                         const SizedBox(height: 5),
                                         Text(
-                                            "${(journeys[index].distance/1000).toStringAsFixed(2)} km",
+                                            "${(journeys[index].distance / 1000).toStringAsFixed(2)} km",
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white,
@@ -123,7 +118,10 @@ class JourneyListView extends StatelessWidget {
                                 ]),
                               ]),
                           tileColor: Colors.blue,
-                          trailing: iconType(journeys[index]),
+                          trailing: Icon(
+                            journeys[index].uploaded ? Icons.upload_file : Icons.done,
+                            color: Colors.white,
+                          ),
                           onTap: () {
                             showModalBottomSheet<void>(
                               isScrollControlled: true,
