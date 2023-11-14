@@ -7,7 +7,7 @@ class Journey {
   JourneyType journeyType;
   final DateTime startTime;
   DateTime? endTime;
-  int duration= 0;
+  int duration = 0;
   double distance = 0;
   bool uploaded = false;
 

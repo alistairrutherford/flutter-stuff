@@ -35,7 +35,7 @@ class JourneyModel extends ChangeNotifier {
   /// returns New Journey with populated id.
   Future<Journey> addJourney() async {
     Journey journey = Journey(
-        journeyType: JourneyType.work,
+        journeyType: JourneyType.commute,
         startTime: DateTime.now(),
         duration: 0,
         distance: 0,
