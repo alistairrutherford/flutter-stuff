@@ -17,7 +17,6 @@ class DBService {
   Future<Database>? _database;
   Function? onInit;
 
-
   /// Initialise the database.
   void initialise(Function onInit) async {
     this.onInit = onInit;
@@ -30,7 +29,8 @@ class DBService {
       // When the database is first created, create tables.
       onCreate: (db, version) {
         // Run the CREATE TABLE statement on the database.
-        db.execute('CREATE TABLE IF NOT EXISTS journey_point(id INTEGER PRIMARY KEY, '
+        db.execute(
+            'CREATE TABLE IF NOT EXISTS journey_point(id INTEGER PRIMARY KEY, '
             'journey INTEGER, '
             'latitude REAL, '
             'longitude REAL, '
@@ -54,7 +54,7 @@ class DBService {
       },
       // Set the version. This executes the onCreate function and provides a
       // path to perform database upgrades and downgrades.
-      version: 2,
+      version: 1,
     );
     // Call initialisation callback to perform first op on
     onInit();
@@ -99,7 +99,8 @@ class DBService {
     }
 
     // Update the Data into the correct table.
-    int updateCount = await db.update('journey', journey.toMap(), where: "id = ?", whereArgs: [journey.id]);
+    int updateCount = await db.update('journey', journey.toMap(),
+        where: "id = ?", whereArgs: [journey.id]);
 
     return updateCount;
   }
@@ -111,10 +112,12 @@ class DBService {
     final db = await _database!;
 
     // Delete associated journey points.
-    int updateCount = await db.delete('journey_point', where: "journey = ?", whereArgs: [journey.id]);
+    int updateCount = await db
+        .delete('journey_point', where: "journey = ?", whereArgs: [journey.id]);
 
     // Delete journey
-    updateCount += await db.delete('journey', where: "id = ?", whereArgs: [journey.id]);
+    updateCount +=
+        await db.delete('journey', where: "id = ?", whereArgs: [journey.id]);
 
     return updateCount;
   }
@@ -157,7 +160,8 @@ class DBService {
 
     String whereString = 'id = ?';
     List<dynamic> whereArguments = [id];
-    final List<Map<String, dynamic>> maps = await db!.query('journey', where: whereString, whereArgs: whereArguments);
+    final List<Map<String, dynamic>> maps = await db!
+        .query('journey', where: whereString, whereArgs: whereArguments);
 
     return buildJourneyFromMap(maps[0]);
   }
@@ -183,8 +187,8 @@ class DBService {
     // Fetch journey points for stated journey id.
     String whereString = 'journey = ?';
     List<dynamic> whereArguments = [journey];
-    final List<Map<String, dynamic>> maps =
-        await db!.query('journey_point', where: whereString, whereArgs: whereArguments);
+    final List<Map<String, dynamic>> maps = await db!
+        .query('journey_point', where: whereString, whereArgs: whereArguments);
 
     // Convert the List<Map<String, dynamic> into a List<Location>.
     return List.generate(maps.length, (i) {
