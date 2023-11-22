@@ -1,8 +1,8 @@
 package com.mottmac.journeyrec.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
@@ -14,6 +14,8 @@ public class Journey {
 
     public enum JourneyType { commute, work, leisure, other };
 
+    @Id
+    @GeneratedValue
     public int id;
     public JourneyType journeyType;
     public LocalDateTime startTime;
@@ -24,20 +26,18 @@ public class Journey {
     /**
      * Journey.
      *
-     * @param id
      * @param journeyType
      * @param startTime
      * @param endTime
      * @param duration
      * @param distance
      */
-    public void JourneyType(int id,
-                            JourneyType journeyType,
-                            LocalDateTime startTime,
-                            LocalDateTime endTime,
-                            int duration,
-                            double distance) {
-        this.id = id;
+    public Journey(
+                   JourneyType journeyType,
+                   LocalDateTime startTime,
+                   LocalDateTime endTime,
+                   int duration,
+                   double distance) {
         this.journeyType = journeyType;
         this.startTime = startTime;
         this.endTime = endTime;

@@ -1,8 +1,19 @@
 package com.mottmac.journeyrec.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = JourneyPoint.TABLE_NAME)
 public class JourneyPoint {
+    public static final String TABLE_NAME = "journey_point";
+
+    @Id
+    @GeneratedValue
     public int id;
 
     /// Id of parent Journey.
@@ -62,19 +73,18 @@ public class JourneyPoint {
     /// value is 0.0.
     public double speedAccuracy;
 
-    public void JourneyPoint(int id,
-                             int journey,
-                             double latitude,
-                             double longitude,
-                             LocalDateTime timestamp,
-                             double accuracy,
-                             double altitude,
-                             double altitudeAccuracy,
-                             double heading,
-                             double headingAccuracy,
-                             double speed,
-                             double speedAccuracy) {
-        this.id = id;
+    public JourneyPoint(
+            int journey,
+            double latitude,
+            double longitude,
+            LocalDateTime timestamp,
+            double accuracy,
+            double altitude,
+            double altitudeAccuracy,
+            double heading,
+            double headingAccuracy,
+            double speed,
+            double speedAccuracy) {
         this.journey = journey;
         this.latitude = latitude;
         this.longitude = longitude;
