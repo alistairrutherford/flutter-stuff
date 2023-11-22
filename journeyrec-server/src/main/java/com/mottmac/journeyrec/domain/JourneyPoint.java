@@ -14,10 +14,10 @@ public class JourneyPoint {
 
     @Id
     @GeneratedValue
-    public int id;
+    public long id;
 
     /// Id of parent Journey.
-    public int journey;
+    public long journey;
 
     /// The latitude of this position in degrees normalized to the interval -90.0
     /// to +90.0 (both inclusive).
@@ -92,6 +92,101 @@ public class JourneyPoint {
         this.accuracy = accuracy;
         this.altitude = altitude;
         this.altitudeAccuracy = altitudeAccuracy;
+    }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getJourney() {
+        return journey;
+    }
+
+    public void setJourney(long journey) {
+        this.journey = journey;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public double getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(double altitude) {
+        this.altitude = altitude;
+    }
+
+    public double getAltitudeAccuracy() {
+        return altitudeAccuracy;
+    }
+
+    public void setAltitudeAccuracy(double altitudeAccuracy) {
+        this.altitudeAccuracy = altitudeAccuracy;
+    }
+
+    public double getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(double accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public double getHeading() {
+        return heading;
+    }
+
+    public void setHeading(double heading) {
+        this.heading = heading;
+    }
+
+    public double getHeadingAccuracy() {
+        return headingAccuracy;
+    }
+
+    public void setHeadingAccuracy(double headingAccuracy) {
+        this.headingAccuracy = headingAccuracy;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public double getSpeedAccuracy() {
+        return speedAccuracy;
+    }
+
+    public void setSpeedAccuracy(double speedAccuracy) {
+        this.speedAccuracy = speedAccuracy;
     }
 }

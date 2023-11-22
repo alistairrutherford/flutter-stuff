@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface JourneyRepository extends CrudRepository<Journey, Integer> {
+public interface JourneyRepository extends CrudRepository<Journey, Long> {
     List<Journey> fetchJourneys();
-    public Journey findByJourneyId(int journeyId);
+    public Journey findByJourneyId(long journeyId);
 }
