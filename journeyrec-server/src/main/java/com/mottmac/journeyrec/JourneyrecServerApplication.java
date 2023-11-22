@@ -1,4 +1,4 @@
-package com.mottmac.journeyrec.journeyrecserver;
+package com.mottmac.journeyrec;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

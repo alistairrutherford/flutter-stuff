@@ -1,0 +1,52 @@
+# ------------------------------------------------------------------------
+# http://smasue.github.io/spring-yml-datasources
+# ------------------------------------------------------------------------
+application:
+  version: 1.0.0-SNAPSHOT
+
+spring:
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+  servlet:
+    context-path: /journeyrec
+    #context-path: /
+
+
+debug: false
+
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: DEBUG
+
+
+# ------------------------------------------------------------------------
+# MEM - Memory only
+# ------------------------------------------------------------------------
+
+---
+spring:
+  profiles: mem
+  datasource:
+    reportdata:
+      url: 'jdbc:h2:mem:primary;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'
+      username: sa
+      password:
+      driverClassName: org.h2.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+    database: H2
+    show-sql: true
+    open-in-view : true
+

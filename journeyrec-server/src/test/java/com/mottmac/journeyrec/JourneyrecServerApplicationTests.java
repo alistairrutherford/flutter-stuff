@@ -1,4 +1,4 @@
-package com.mottmac.journeyrec.journeyrecserver;
+package com.mottmac.journeyrec;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

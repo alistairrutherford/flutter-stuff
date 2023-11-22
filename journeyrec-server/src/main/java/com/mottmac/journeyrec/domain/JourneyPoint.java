@@ -1,4 +1,4 @@
-package com.mottmac.journeyrec.journeyrecserver.domain;
+package com.mottmac.journeyrec.domain;
 
 import java.time.LocalDateTime;
 
