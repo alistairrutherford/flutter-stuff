@@ -1,9 +1,17 @@
 package com.mottmac.journeyrec.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = Journey.TABLE_NAME)
 public class Journey {
+    public static final String TABLE_NAME = "journey";
+
     public enum JourneyType { commute, work, leisure, other };
 
     public int id;
