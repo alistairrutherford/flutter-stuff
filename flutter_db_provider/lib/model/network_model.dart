@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'dart:convert';
 
 import 'package:async/async.dart';
@@ -12,7 +11,8 @@ import '../dao/journey_point.dart';
 /// This provider model handle sending journey data to server.
 class NetworkService extends ChangeNotifier {
   // TODO: Could maybe persist this and make it configurable.
-  static const String HOST_ENDPOINT = "http://localost:8080/journey";
+  static const String hostEndPoint = "http://localhost:8080/journey";
+  static const int timerPeriod = 5;
 
   late RestartableTimer _periodicTimer;
 
@@ -22,14 +22,15 @@ class NetworkService extends ChangeNotifier {
   NetworkService() {
     // One-shot restartable timer.
     _periodicTimer = RestartableTimer(
-      const Duration(seconds: 5),
+      const Duration(seconds: timerPeriod),
       () {
+        // Only process if we are not already processing.
         if (!processing) {
           process();
         }
+        _periodicTimer.reset(); // Keep going.
       },
     );
-    _periodicTimer.cancel();
   }
 
   void process() async {
@@ -64,7 +65,7 @@ class NetworkService extends ChangeNotifier {
   Future<http.Response> postJourney(
       Journey journey, List<JourneyPoint> journeyPoints) {
     return http.post(
-      Uri.parse(HOST_ENDPOINT),
+      Uri.parse(hostEndPoint),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
