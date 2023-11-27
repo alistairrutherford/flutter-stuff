@@ -19,7 +19,7 @@ class JourneyModel extends ChangeNotifier {
       },
       body: jsonEncode(<String, String>{
         'journey': journey.toMap().toString(),
-        'points':journeyPoints.toString()
+        'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
       }),
     );
   }
