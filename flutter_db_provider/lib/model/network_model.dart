@@ -13,7 +13,7 @@ class JourneyModel extends ChangeNotifier {
 
   Future<http.Response> postJourney(Journey journey, List<JourneyPoint> journeyPoints) {
     return http.post(
-      Uri.parse('https://jsonplaceholder.typicode.com/albums'),
+      Uri.parse(HOST_ENDPOINT),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
