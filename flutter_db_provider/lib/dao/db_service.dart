@@ -208,6 +208,22 @@ class DBService {
     });
   }
 
+  /// Get all Journey related points by Journey id.
+  ///
+  Future<List<int>> getJourneysToUpload() async {
+    final db = await _database;
+
+    // Fetch journey points for stated journey id.
+    String whereString = 'uploaded = false';
+    final List<Map<String, dynamic>> maps =
+        await db!.query('journey', where: whereString);
+
+    // Convert the List<Map<String, dynamic> into a List<Location>.
+    return List.generate(maps.length, (i) {
+      return maps[i]['id'];
+    });
+  }
+
   /// Delete All data.
   ///
   Future<void> deleteAll() async {
