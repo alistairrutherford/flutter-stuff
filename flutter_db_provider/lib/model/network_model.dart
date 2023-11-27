@@ -11,6 +11,7 @@ import '../dao/journey_point.dart';
 
 /// This provider model handle sending journey data to server.
 class NetworkService extends ChangeNotifier {
+  // TODO: Could maybe persist this and make it configurable.
   static const String HOST_ENDPOINT = "http://localost:8080/journey";
 
   late RestartableTimer _periodicTimer;
@@ -31,15 +32,26 @@ class NetworkService extends ChangeNotifier {
     _periodicTimer.cancel();
   }
 
-  void process() {
+  void process() async {
     processing = true;
+
     // Select oldest journey which has not been uploaded
 
     // Fetch journey record
+    int id = -1;
+    Journey journey = await _database.getJourney(id);
 
     // Fetch journey points
+    List<JourneyPoint> journeyPoints =  await _database.getJourneyPoints(id);
 
     // Post to server
+    if (journeyPoints.isNotEmpty) {
+      await postJourney(journey, journeyPoints);
+
+      // Update journey to mark it as uploaded.
+      journey.uploaded = true;
+      _database.updateJourney(journey);
+    }
 
     // Signal processing has completed
     processing = false;
@@ -48,6 +60,7 @@ class NetworkService extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Post journey data to server
   Future<http.Response> postJourney(
       Journey journey, List<JourneyPoint> journeyPoints) {
     return http.post(
