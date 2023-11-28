@@ -214,7 +214,7 @@ class DBService {
     final db = await _database;
 
     // Fetch journey points for stated journey id.
-    String whereString = 'uploaded = false';
+    String whereString = 'uploaded = 0';
     final List<Map<String, dynamic>> maps =
         await db!.query('journey', where: whereString);
 

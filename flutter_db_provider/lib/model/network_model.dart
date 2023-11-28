@@ -9,7 +9,7 @@ import '../dao/journey.dart';
 import '../dao/journey_point.dart';
 
 /// This provider model handle sending journey data to server.
-class NetworkService extends ChangeNotifier {
+class NetworkModel extends ChangeNotifier {
   // TODO: Could maybe persist this and make it configurable.
   static const String hostEndPoint = "http://localhost:8080/journey";
   static const int timerPeriod = 5;
@@ -19,7 +19,7 @@ class NetworkService extends ChangeNotifier {
   final _database = DBService();
   bool processing = false;
 
-  NetworkService() {
+  NetworkModel() {
     // One-shot restartable timer.
     _periodicTimer = RestartableTimer(
       const Duration(seconds: timerPeriod),
@@ -37,21 +37,24 @@ class NetworkService extends ChangeNotifier {
     processing = true;
 
     // Select oldest journey which has not been uploaded
+    List<int> ids = await _database.getJourneysToUpload();
 
-    // Fetch journey record
-    int id = -1;
-    Journey journey = await _database.getJourney(id);
+    // For each journey to upload.
+    for (int id in ids) {
+      // Fetch journey record
+      Journey journey = await _database.getJourney(id);
 
-    // Fetch journey points
-    List<JourneyPoint> journeyPoints =  await _database.getJourneyPoints(id);
+      // Fetch journey points
+      List<JourneyPoint> journeyPoints = await _database.getJourneyPoints(id);
 
-    // Post to server
-    if (journeyPoints.isNotEmpty) {
-      await postJourney(journey, journeyPoints);
+      // Post to server
+      if (journeyPoints.isNotEmpty) {
+        await postJourney(journey, journeyPoints);
 
-      // Update journey to mark it as uploaded.
-      journey.uploaded = true;
-      _database.updateJourney(journey);
+        // Update journey to mark it as uploaded.
+        journey.uploaded = true;
+        _database.updateJourney(journey);
+      }
     }
 
     // Signal processing has completed

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_db_provider/model/location_model.dart';
 import 'package:flutter_db_provider/model/timer_model.dart';
 import 'package:provider/provider.dart';
+import 'model/network_model.dart';
 import 'page/main_page.dart';
 import 'model/journey_model.dart';
 
@@ -27,7 +28,10 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: LocationModel(),
         ),
-        ChangeNotifierProvider.value(value: TimerModel())
+        ChangeNotifierProvider.value(
+          value: NetworkModel(),
+        ),
+        ChangeNotifierProvider.value(value: TimerModel()),
       ],
       child: MaterialApp(
         title: 'Journey Recorder',
