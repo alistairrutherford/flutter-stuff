@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:async/async.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,7 @@ class NetworkModel extends ChangeNotifier {
     // One-shot restartable timer.
     _periodicTimer = RestartableTimer(
       const Duration(seconds: timerPeriod),
-          () {
+      () {
         // Only process if we are not already processing.
         if (!processing) {
           process();
@@ -45,8 +46,9 @@ class NetworkModel extends ChangeNotifier {
     // Select oldest journey which has not been uploaded
     List<int> ids = await _database.getJourneysToUpload();
 
-    // For each journey to upload.
-    for (int id in ids) {
+    // We always fetch only the oldest not uploaded journey,
+    if (ids.length == 1) {
+      int id = ids[0];
       // Fetch journey record
       Journey journey = await _database.getJourney(id);
 
@@ -55,11 +57,18 @@ class NetworkModel extends ChangeNotifier {
 
       // Post to server
       if (journeyPoints.isNotEmpty) {
-        await postJourney(journey, journeyPoints);
-
-        // Update journey to mark it as uploaded.
-        journey.uploaded = true;
-        _database.updateJourney(journey);
+        try {
+          postJourney(journey, journeyPoints).then((c) {
+            var response = c;
+            if (response.statusCode == 200) {
+              // Update journey to mark it as uploaded.
+              journey.uploaded = true;
+              _database.updateJourney(journey);
+            }
+          });
+        } catch (e) {
+          stderr.writeln(e);
+        }
       }
     }
 
@@ -73,15 +82,17 @@ class NetworkModel extends ChangeNotifier {
   /// Post journey data to server
   Future<http.Response> postJourney(
       Journey journey, List<JourneyPoint> journeyPoints) {
+    String encodedJourney = jsonEncode(<String, String>{
+      'journey': journey.toMap().toString(),
+      'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
+    });
+
     return http.post(
       Uri.parse(hostEndPoint),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
-        'journey': journey.toMap().toString(),
-        'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
-      }),
+      body: encodedJourney,
     );
   }
 }
