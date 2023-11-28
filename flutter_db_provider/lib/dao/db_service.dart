@@ -208,15 +208,15 @@ class DBService {
     });
   }
 
-  /// Get all Journey related points by Journey id.
+  /// Get oldest non-uploaded journey (if any).
   ///
   Future<List<int>> getJourneysToUpload() async {
     final db = await _database;
 
     // Fetch journey points for stated journey id.
-    String whereString = 'uploaded = 0';
-    final List<Map<String, dynamic>> maps =
-        await db!.query('journey', where: whereString);
+    String whereString = 'end_time<>null && uploaded = 0';
+    final List<Map<String, dynamic>> maps = await db!.query('journey',
+        where: whereString, limit: 1, orderBy: 'start_time asc');
 
     // Convert the List<Map<String, dynamic> into a List<Location>.
     return List.generate(maps.length, (i) {

@@ -20,10 +20,16 @@ class NetworkModel extends ChangeNotifier {
   bool processing = false;
 
   NetworkModel() {
+    _database.initialise(onInit);
+  }
+
+  /// This is called when database has been initialised.
+  ///
+  void onInit() {
     // One-shot restartable timer.
     _periodicTimer = RestartableTimer(
       const Duration(seconds: timerPeriod),
-      () {
+          () {
         // Only process if we are not already processing.
         if (!processing) {
           process();
