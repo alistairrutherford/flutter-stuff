@@ -58,8 +58,8 @@ class NetworkModel extends ChangeNotifier {
 
       // Post to server
       if (journeyPoints.isNotEmpty) {
-          postJourney(journey, journeyPoints).then((c) {
-            var response = c;
+          postJourney(journey, journeyPoints).then((code) {
+            var response = code;
             if (response.statusCode == 200) {
               // Update journey to mark it as uploaded.
               journey.uploaded = true;
