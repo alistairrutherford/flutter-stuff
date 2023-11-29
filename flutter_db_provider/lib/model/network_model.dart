@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -57,26 +58,25 @@ class NetworkModel extends ChangeNotifier {
 
       // Post to server
       if (journeyPoints.isNotEmpty) {
-        try {
           postJourney(journey, journeyPoints).then((c) {
             var response = c;
             if (response.statusCode == 200) {
               // Update journey to mark it as uploaded.
               journey.uploaded = true;
-              _database.updateJourney(journey);
+              _database.updateJourney(journey).then((c) {
+                // Notify UI to indicate journey uploaded.
+                notifyListeners();
+              });
             }
+          }).catchError((error) {
+            // Catch asynchronous error
+            stderr.writeln(error);
           });
-        } catch (e) {
-          stderr.writeln(e);
         }
       }
-    }
 
     // Signal processing has completed
     processing = false;
-
-    // Notify any listening interface elements.
-    notifyListeners();
   }
 
   /// Post journey data to server
@@ -87,12 +87,14 @@ class NetworkModel extends ChangeNotifier {
       'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
     });
 
-    return http.post(
+    var response = http.post(
       Uri.parse(hostEndPoint),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: encodedJourney,
     );
+
+    return response;
   }
 }
