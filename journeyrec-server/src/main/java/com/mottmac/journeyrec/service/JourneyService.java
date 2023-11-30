@@ -18,7 +18,7 @@ public class JourneyService {
     @Autowired
     private JourneyPointRepository journeyPointRepository;
 
-    public boolean save(JourneyComposite journeyComposite) {
+    public void save(JourneyComposite journeyComposite) {
         try {
             Journey journey = journeyComposite.getJourney();
             List<JourneyPoint> journeyPoints = journeyComposite.getJourneyPoints();
@@ -29,9 +29,8 @@ public class JourneyService {
             }
         }
         catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
 
-        return true;
     }
 }
