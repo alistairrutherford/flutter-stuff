@@ -83,11 +83,11 @@ class JourneyPoint {
       'timestamp': timestamp.microsecondsSinceEpoch,
       'accuracy': accuracy,
       'altitude': altitude,
-      'altitudeAccuracy': altitudeAccuracy,
+      'altitude_accuracy': altitudeAccuracy,
       'heading': heading,
-      'headingAccuracy':headingAccuracy,
+      'heading_accuracy':headingAccuracy,
       'speed': speed,
-      'speedAccuracy': speedAccuracy
+      'speed_accuracy': speedAccuracy
     };
   }
 
