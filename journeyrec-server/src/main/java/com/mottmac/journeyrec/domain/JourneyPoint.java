@@ -1,5 +1,8 @@
 package com.mottmac.journeyrec.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -73,18 +76,20 @@ public class JourneyPoint {
     /// value is 0.0.
     public double speedAccuracy;
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonCreator
     public JourneyPoint(
-            int journey,
-            double latitude,
-            double longitude,
-            LocalDateTime timestamp,
-            double accuracy,
-            double altitude,
-            double altitudeAccuracy,
-            double heading,
-            double headingAccuracy,
-            double speed,
-            double speedAccuracy) {
+            @JsonProperty("journey") int journey,
+            @JsonProperty("latitude") double latitude,
+            @JsonProperty("longitude") double longitude,
+            @JsonProperty("timestamp") LocalDateTime timestamp,
+            @JsonProperty("accuracy") double accuracy,
+            @JsonProperty("altitude") double altitude,
+            @JsonProperty("altitude_accuracy") double altitudeAccuracy,
+            @JsonProperty("heading") double heading,
+            @JsonProperty("heading_accuracy") double headingAccuracy,
+            @JsonProperty("speed") double speed,
+            @JsonProperty("speed_accuracy") double speedAccuracy) {
         this.journey = journey;
         this.latitude = latitude;
         this.longitude = longitude;

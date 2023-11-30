@@ -1,11 +1,12 @@
 package com.mottmac.journeyrec.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = Journey.TABLE_NAME)
@@ -17,30 +18,40 @@ public class Journey {
     @Id
     @GeneratedValue
     public long id;
-    public JourneyType journeyType;
-    public LocalDateTime startTime;
-    public LocalDateTime endTime;
+    public String journey_type;
+    public long start_time;
+    public long end_time;
     public int duration = 0;
     public double distance = 0;
+
+    public Journey() {
+
+    }
 
     /**
      * Journey.
      *
+     * @param id
      * @param journeyType
      * @param startTime
      * @param endTime
      * @param duration
      * @param distance
+     * @param uploaded
      */
-    public Journey(
-                   JourneyType journeyType,
-                   LocalDateTime startTime,
-                   LocalDateTime endTime,
-                   int duration,
-                   double distance) {
-        this.journeyType = journeyType;
-        this.startTime = startTime;
-        this.endTime = endTime;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonCreator
+    public Journey(@JsonProperty("id") int id,
+                   @JsonProperty("journey_type") String journeyType,
+                   @JsonProperty("start_time") long startTime,
+                   @JsonProperty("end_time") long endTime,
+                   @JsonProperty("duration") int duration,
+                   @JsonProperty("distance") double distance,
+                   @JsonProperty("uploaded") boolean uploaded) {
+        this.id = id;
+        this.journey_type = journeyType;
+        this.start_time = startTime;
+        this.end_time = endTime;
         this.duration = duration;
         this.distance = distance;
     }
@@ -53,28 +64,28 @@ public class Journey {
         this.id = id;
     }
 
-    public JourneyType getJourneyType() {
-        return journeyType;
+    public String getJourney_type() {
+        return journey_type;
     }
 
-    public void setJourneyType(JourneyType journeyType) {
-        this.journeyType = journeyType;
+    public void setJourney_type(String journey_type) {
+        this.journey_type = journey_type;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
+    public long getStart_time() {
+        return start_time;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
+    public void setStart_time(long start_time) {
+        this.start_time = start_time;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public long getEnd_time() {
+        return end_time;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setEnd_time(long end_time) {
+        this.end_time = end_time;
     }
 
     public int getDuration() {

@@ -1,14 +1,24 @@
 package com.mottmac.journeyrec.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class JourneyComposite {
     private Journey journey;
-    private List<JourneyPoint> journeyPoints;
+    private List<JourneyPoint> points;
 
-    public JourneyComposite(Journey journey, List<JourneyPoint> journeyPoints) {
+    public JourneyComposite() {
+        // Empty constructor.
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonCreator
+    public JourneyComposite(@JsonProperty("journey") Journey journey, @JsonProperty("points") List<JourneyPoint> points) {
         this.journey = journey;
-        this.journeyPoints = journeyPoints;
+        this.points = points;
     }
 
     public Journey getJourney() {
@@ -19,11 +29,11 @@ public class JourneyComposite {
         this.journey = journey;
     }
 
-    public List<JourneyPoint> getJourneyPoints() {
-        return journeyPoints;
+    public List<JourneyPoint> getPoints() {
+        return points;
     }
 
-    public void setJourneyPoints(List<JourneyPoint> journeyPoints) {
-        this.journeyPoints = journeyPoints;
+    public void setPoints(List<JourneyPoint> points) {
+        this.points = points;
     }
 }

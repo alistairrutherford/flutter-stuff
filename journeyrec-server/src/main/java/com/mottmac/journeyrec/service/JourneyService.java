@@ -21,7 +21,7 @@ public class JourneyService {
     public void save(JourneyComposite journeyComposite) {
         try {
             Journey journey = journeyComposite.getJourney();
-            List<JourneyPoint> journeyPoints = journeyComposite.getJourneyPoints();
+            List<JourneyPoint> journeyPoints = journeyComposite.getPoints();
 
             journeyRepository.save(journey);
             for (JourneyPoint point : journeyPoints) {
