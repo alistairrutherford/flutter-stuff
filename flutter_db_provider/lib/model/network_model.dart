@@ -13,7 +13,7 @@ import '../dao/journey_point.dart';
 /// This provider model handle sending journey data to server.
 class NetworkModel extends ChangeNotifier {
   // TODO: Could maybe persist this and make it configurable.
-  static const String hostEndPoint = "http://10.0.2.2:8080/journey";
+  static const String hostEndPoint = "http://10.0.2.2:8080/journeyrec/journey";
   static const int timerPeriod = 5;
 
   late RestartableTimer _periodicTimer;
