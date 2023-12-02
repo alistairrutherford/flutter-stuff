@@ -200,11 +200,11 @@ class DBService {
           timestamp: DateTime.fromMillisecondsSinceEpoch(maps[i]['timestamp']),
           accuracy: maps[i]['accuracy'],
           altitude: maps[i]['altitude'],
-          altitudeAccuracy: maps[i]['altitudeAccuracy'],
+          altitudeAccuracy: maps[i]['altitude_accuracy'],
           heading: maps[i]['heading'],
-          headingAccuracy: maps[i]['headingAccuracy'],
+          headingAccuracy: maps[i]['heading_accuracy'],
           speed: maps[i]['speed'],
-          speedAccuracy: maps[i]['speedAccuracy']);
+          speedAccuracy: maps[i]['speed_accuracy']);
     });
   }
 
