@@ -37,11 +37,11 @@ class DBService {
             'timestamp INTEGER, '
             'accuracy REAL, '
             'altitude REAL, '
-            'altitudeAccuracy REAL, '
+            'altitude_accuracy REAL, '
             'heading REAL, '
-            'headingAccuracy REAL, '
+            'heading_accuracy REAL, '
             'speed REAL, '
-            'speedAccuracy REAL);');
+            'speed_accuracy REAL);');
         db.execute('CREATE TABLE IF NOT EXISTS journey(id INTEGER PRIMARY KEY, '
             'journey_type INTEGER, '
             'start_time INTEGER, '

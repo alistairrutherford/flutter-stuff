@@ -62,7 +62,7 @@ class NetworkModel extends ChangeNotifier {
             var response = code;
             if (response.statusCode == 200) {
               // Update journey to mark it as uploaded.
-              journey.uploaded = true;
+              journey.uploaded = false; // TODO revert to true.
               _database.updateJourney(journey).then((c) {
                 // Notify UI to indicate journey uploaded.
                 notifyListeners();
@@ -84,7 +84,7 @@ class NetworkModel extends ChangeNotifier {
       Journey journey, List<JourneyPoint> journeyPoints) {
     String encodedJourney = jsonEncode(<String, String>{
       'journey': journey.toMap().toString(),
-      'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
+      'points': journeyPoints.toString()
     });
 
     var response = http.post(
