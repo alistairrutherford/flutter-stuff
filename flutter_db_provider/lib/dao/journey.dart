@@ -39,6 +39,23 @@ class Journey {
     };
   }
 
+  Map toJson() {
+    int? endTimeMillisecondsSinceEpoch;
+    if (endTime != null) {
+      endTimeMillisecondsSinceEpoch = endTime!.millisecondsSinceEpoch;
+    }
+
+    return {
+      'id': id,
+      'journey_type': journeyType.index,
+      'start_time': startTime.millisecondsSinceEpoch,
+      'end_time': endTimeMillisecondsSinceEpoch,
+      'duration': duration,
+      'distance': distance,
+      'uploaded': uploaded ? 1 : 0
+    };
+  }
+
   @override
   String toString() {
     return 'Journey{id: $id, journeyType: $journeyType, startTime: $startTime, endTime: $endTime, distance(km): $distance';

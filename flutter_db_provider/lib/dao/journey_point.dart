@@ -91,6 +91,23 @@ class JourneyPoint {
     };
   }
 
+  Map toJson() {
+    return {
+      'id': id,
+      'journey': journey,
+      'latitude': latitude,
+      'longitude': longitude,
+      'timestamp': timestamp.microsecondsSinceEpoch,
+      'accuracy': accuracy,
+      'altitude': altitude,
+      'altitude_accuracy': altitudeAccuracy,
+      'heading': heading,
+      'heading_accuracy':headingAccuracy,
+      'speed': speed,
+      'speed_accuracy': speedAccuracy
+    };
+  }
+
   @override
   String toString() {
     return 'JourneyPoint{id: $id, route: $journey, latitude: $latitude, longitude: $longitude';

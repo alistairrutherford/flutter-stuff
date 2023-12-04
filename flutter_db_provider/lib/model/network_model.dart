@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 import '../dao/db_service.dart';
 import '../dao/journey.dart';
+import '../dao/journey_composite.dart';
 import '../dao/journey_point.dart';
 
 /// This provider model handle sending journey data to server.
@@ -82,10 +83,9 @@ class NetworkModel extends ChangeNotifier {
   /// Post journey data to server
   Future<http.Response> postJourney(
       Journey journey, List<JourneyPoint> journeyPoints) {
-    String encodedJourney = jsonEncode(<String, String>{
-      'journey': journey.toMap().toString(),
-      'points': journeyPoints.toString()
-    });
+    JourneyComposite journeyComposite = JourneyComposite(journey, journeyPoints);
+
+    String encodedJourney = jsonEncode(journeyComposite);
 
     var response = http.post(
       Uri.parse(hostEndPoint),
