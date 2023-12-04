@@ -31,7 +31,7 @@ public class JourneyPoint {
     public double longitude;
 
     /// Timestamp of when point was recorded.
-    public LocalDateTime timestamp;
+    public long timestamp;
 
     /// The altitude of the device in meters.
     ///
@@ -82,7 +82,7 @@ public class JourneyPoint {
             @JsonProperty("journey") int journey,
             @JsonProperty("latitude") double latitude,
             @JsonProperty("longitude") double longitude,
-            @JsonProperty("timestamp") LocalDateTime timestamp,
+            @JsonProperty("timestamp") long timestamp,
             @JsonProperty("accuracy") double accuracy,
             @JsonProperty("altitude") double altitude,
             @JsonProperty("altitude_accuracy") double altitudeAccuracy,
@@ -131,11 +131,11 @@ public class JourneyPoint {
         this.longitude = longitude;
     }
 
-    public LocalDateTime getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 

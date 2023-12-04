@@ -15,8 +15,8 @@ public class JourneyController {
     }
 
     @PostMapping("/journey")
-    public void addJourney(@RequestBody JourneyComposite journey) {
-       journeyService.save(journey);
+    public void addJourney(@RequestBody JourneyComposite journeyComposite) {
+        System.out.println(journeyComposite.toString());
     }
 
     @GetMapping("/ping")
