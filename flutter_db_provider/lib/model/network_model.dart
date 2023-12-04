@@ -87,7 +87,12 @@ class NetworkModel extends ChangeNotifier {
     JourneyComposite journeyComposite =
         JourneyComposite(journey, journeyPoints);
 
-    String encodedJourney = jsonEncode(journeyComposite).replaceAll("\"", '');
+    String encodedJourney = jsonEncode(journeyComposite)
+        .replaceAll("\"[", '[')
+        .replaceAll("]\"", ']')
+        .replaceAll("\"{", '{')
+        .replaceAll("}\"", '}')
+        .replaceAll("\\", '');
 
     var response = http.post(
       Uri.parse(hostEndPoint),
