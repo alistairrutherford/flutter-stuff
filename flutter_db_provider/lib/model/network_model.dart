@@ -59,22 +59,22 @@ class NetworkModel extends ChangeNotifier {
 
       // Post to server
       if (journeyPoints.isNotEmpty) {
-          postJourney(journey, journeyPoints).then((code) {
-            var response = code;
-            if (response.statusCode == 200) {
-              // Update journey to mark it as uploaded.
-              journey.uploaded = false; // TODO revert to true.
-              _database.updateJourney(journey).then((c) {
-                // Notify UI to indicate journey uploaded.
-                notifyListeners();
-              });
-            }
-          }).catchError((error) {
-            // Catch asynchronous error
-            stderr.writeln(error);
-          });
-        }
+        postJourney(journey, journeyPoints).then((code) {
+          var response = code;
+          if (response.statusCode == 200) {
+            // Update journey to mark it as uploaded.
+            journey.uploaded = false; // TODO revert to true.
+            _database.updateJourney(journey).then((c) {
+              // Notify UI to indicate journey uploaded.
+              notifyListeners();
+            });
+          }
+        }).catchError((error) {
+          // Catch asynchronous error
+          stderr.writeln(error);
+        });
       }
+    }
 
     // Signal processing has completed
     processing = false;
@@ -83,9 +83,11 @@ class NetworkModel extends ChangeNotifier {
   /// Post journey data to server
   Future<http.Response> postJourney(
       Journey journey, List<JourneyPoint> journeyPoints) {
-    JourneyComposite journeyComposite = JourneyComposite(journey, journeyPoints);
+    // Build composite
+    JourneyComposite journeyComposite =
+        JourneyComposite(journey, journeyPoints);
 
-    String encodedJourney = jsonEncode(journeyComposite);
+    String encodedJourney = jsonEncode(journeyComposite).replaceAll("\"", '');
 
     var response = http.post(
       Uri.parse(hostEndPoint),
