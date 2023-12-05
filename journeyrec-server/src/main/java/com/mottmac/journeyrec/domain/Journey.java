@@ -2,7 +2,6 @@ package com.mottmac.journeyrec.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
@@ -41,13 +40,13 @@ public class Journey {
      */
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonCreator
-    public Journey(@JsonProperty("id") int id,
-                   @JsonProperty("journey_type") String journeyType,
-                   @JsonProperty("start_time") long startTime,
-                   @JsonProperty("end_time") long endTime,
-                   @JsonProperty("duration") int duration,
-                   @JsonProperty("distance") double distance,
-                   @JsonProperty("uploaded") boolean uploaded) {
+    public Journey(int id,
+                   String journeyType,
+                   long startTime,
+                  long endTime,
+                   int duration,
+                   double distance,
+                   boolean uploaded) {
         this.id = id;
         this.journey_type = journeyType;
         this.start_time = startTime;

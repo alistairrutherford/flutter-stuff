@@ -1,22 +1,12 @@
 package com.mottmac.journeyrec.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 
 public class JourneyComposite {
     private Journey journey;
     private List<JourneyPoint> points;
 
-    public JourneyComposite() {
-        // Empty constructor.
-    }
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    @JsonCreator
-    public JourneyComposite(@JsonProperty("journey") Journey journey, @JsonProperty("points") List<JourneyPoint> points) {
+    public JourneyComposite(Journey journey, List<JourneyPoint> points) {
         this.journey = journey;
         this.points = points;
     }
