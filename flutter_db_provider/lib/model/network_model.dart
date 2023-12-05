@@ -100,7 +100,7 @@ class NetworkModel extends ChangeNotifier {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        'journey': journey.toMap().toString(),
+        'journey': jsonEncode(journey.toMap()),
         'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
       })
       .replaceAll("\"[", '[')
