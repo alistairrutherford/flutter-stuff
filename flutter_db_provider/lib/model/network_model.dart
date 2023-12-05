@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 
 import '../dao/db_service.dart';
 import '../dao/journey.dart';
-import '../dao/journey_composite.dart';
 import '../dao/journey_point.dart';
 
 /// This provider model handle sending journey data to server.
@@ -81,33 +80,24 @@ class NetworkModel extends ChangeNotifier {
   }
 
   /// Post journey data to server
-  Future<http.Response> postJourney(
-      Journey journey, List<JourneyPoint> journeyPoints) {
-    // Build composite
-    JourneyComposite journeyComposite =
-        JourneyComposite(journey, journeyPoints);
+  Future<http.Response> postJourney(Journey journey, List<JourneyPoint> journeyPoints) {
 
-    String encodedJourney = jsonEncode(journeyComposite)
-        .replaceAll("\"[", '[')
-        .replaceAll("]\"", ']')
-        .replaceAll("\"{", '{')
-        .replaceAll("}\"", '}')
-        .replaceAll("\\", '');
+    String encodedJourney = jsonEncode(<String, String>{
+      'journey': jsonEncode(journey.toMap()),
+      'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
+    })
+    .replaceAll("\"[", '[')
+    .replaceAll("]\"", ']')
+    .replaceAll("\"{", '{')
+    .replaceAll("}\"", '}')
+    .replaceAll("\\", '');
 
     var response = http.post(
       Uri.parse(hostEndPoint),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
-        'journey': jsonEncode(journey.toMap()),
-        'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
-      })
-      .replaceAll("\"[", '[')
-      .replaceAll("]\"", ']')
-      .replaceAll("\"{", '{')
-      .replaceAll("}\"", '}')
-      .replaceAll("\\", ''),
+      body: encodedJourney,
     );
 
     return response;
