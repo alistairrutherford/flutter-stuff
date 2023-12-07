@@ -31,7 +31,6 @@ class DBService {
         // Run the CREATE TABLE statement on the database.
         db.execute(
             'CREATE TABLE IF NOT EXISTS journey_point(id INTEGER PRIMARY KEY, '
-            'device_id TEXT, '
             'journey INTEGER, '
             'latitude REAL, '
             'longitude REAL, '
@@ -44,6 +43,7 @@ class DBService {
             'speed REAL, '
             'speed_accuracy REAL);');
         db.execute('CREATE TABLE IF NOT EXISTS journey(id INTEGER PRIMARY KEY, '
+            'device_id TEXT, '
             'journey_type INTEGER, '
             'start_time INTEGER, '
             'end_time INTEGER, '

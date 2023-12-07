@@ -25,6 +25,7 @@ class SharedPreferencesModel extends ChangeNotifier {
       var uuid = const Uuid();
       String id = uuid.v4();
       await prefs.setString(deviceID, id);
+      deviceId = id;
     }
   }
 }
