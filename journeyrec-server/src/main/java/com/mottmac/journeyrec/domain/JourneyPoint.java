@@ -74,6 +74,21 @@ public class JourneyPoint {
     /// value is 0.0.
     public double speedAccuracy;
 
+    /**
+     * Journey Point
+     *
+     * @param journey
+     * @param latitude
+     * @param longitude
+     * @param timestamp
+     * @param accuracy
+     * @param altitude
+     * @param altitudeAccuracy
+     * @param heading
+     * @param headingAccuracy
+     * @param speed
+     * @param speedAccuracy
+     */
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonCreator
     public JourneyPoint(int journey,

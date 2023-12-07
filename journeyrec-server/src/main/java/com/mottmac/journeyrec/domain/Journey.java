@@ -30,8 +30,11 @@ public class Journey {
     }
 
 
+
     /**
      * Journey.
+     * Note we only need JsonProperty for where the field name doesn't match
+     * the incoming parameter.
      *
      * @param id
      * @param deviceId
@@ -41,9 +44,6 @@ public class Journey {
      * @param duration
      * @param distance
      * @param uploaded
-     *
-     * Note we only need JsonProperty for where the field name doesn't match
-     * the incoming parameter.
      */
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonCreator
