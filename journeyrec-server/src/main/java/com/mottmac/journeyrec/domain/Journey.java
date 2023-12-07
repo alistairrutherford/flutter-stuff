@@ -17,7 +17,7 @@ public class Journey {
     @Id
     @GeneratedValue
     public long id;
-    public String deviceId;
+    public String device_id;
     public String journey_type;
     public long start_time;
     public long end_time;
@@ -50,7 +50,7 @@ public class Journey {
                    double distance,
                    boolean uploaded) {
         this.id = id;
-        this.deviceId = deviceId;
+        this.device_id = deviceId;
         this.journey_type = journeyType;
         this.start_time = startTime;
         this.end_time = endTime;
@@ -66,9 +66,10 @@ public class Journey {
         this.id = id;
     }
 
-    public String getDeviceId() { return deviceId; }
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
+    public String getDevice_id() { return device_id; }
+
+    public void setDevice_id(String device_id) {
+        this.device_id = device_id;
     }
 
     public String getJourney_type() {
