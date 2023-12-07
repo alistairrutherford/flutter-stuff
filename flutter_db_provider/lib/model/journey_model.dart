@@ -31,10 +31,12 @@ class JourneyModel extends ChangeNotifier {
   /// Add new Journey
   ///
   /// - note ID increments
+  /// - We don't need to assign device Id until we post it to server.
   ///
   /// returns New Journey with populated id.
-  Future<Journey> addJourney() async {
+  Future<Journey> addJourney(String deviceId) async {
     Journey journey = Journey(
+        deviceId: deviceId,
         journeyType: JourneyType.commute,
         startTime: DateTime.now(),
         duration: 0,

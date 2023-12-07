@@ -31,6 +31,7 @@ class DBService {
         // Run the CREATE TABLE statement on the database.
         db.execute(
             'CREATE TABLE IF NOT EXISTS journey_point(id INTEGER PRIMARY KEY, '
+            'device_id TEXT, '
             'journey INTEGER, '
             'latitude REAL, '
             'longitude REAL, '
@@ -145,6 +146,7 @@ class DBService {
     }
     return Journey(
         id: map['id'],
+        deviceId: map['device_id'],
         journeyType: JourneyType.values[map['journey_type']],
         startTime: DateTime.fromMillisecondsSinceEpoch(map['start_time']),
         endTime: endTime,

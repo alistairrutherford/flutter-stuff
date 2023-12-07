@@ -4,6 +4,7 @@ enum JourneyType { commute, work, leisure, other }
 ///
 class Journey {
   int? id;
+  String deviceId;
   JourneyType journeyType;
   final DateTime startTime;
   DateTime? endTime;
@@ -13,6 +14,7 @@ class Journey {
 
   Journey(
       {this.id,
+      required this.deviceId,
       required this.journeyType,
       required this.startTime,
       this.endTime,
@@ -30,6 +32,7 @@ class Journey {
 
     return {
       'id': id,
+      'device_id' : deviceId,
       'journey_type': journeyType.index,
       'start_time': startTime.millisecondsSinceEpoch,
       'end_time': endTimeMillisecondsSinceEpoch,
@@ -41,6 +44,6 @@ class Journey {
 
   @override
   String toString() {
-    return 'Journey{id: $id, journeyType: $journeyType, startTime: $startTime, endTime: $endTime, distance(km): $distance';
+    return 'Journey, id: $id, deviceId: $deviceId, journeyType: $journeyType, startTime: $startTime, endTime: $endTime, distance(km): $distance';
   }
 }

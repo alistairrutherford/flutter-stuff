@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_db_provider/model/journey_model.dart';
 import 'package:flutter_db_provider/model/location_model.dart';
+import 'package:flutter_db_provider/model/prefs_model.dart';
 import 'package:flutter_db_provider/page/journey_form_page.dart';
 import 'package:flutter_db_provider/page/map_page.dart';
 import 'package:flutter_db_provider/model/timer_model.dart';
@@ -27,8 +28,12 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
   /// Add new journey to database.
   /// Start timer.
   /// Start location stream.
-  void start(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
-    _journey = await journeyModel.addJourney();
+  void start(
+      TimerModel timerModel,
+      JourneyModel journeyModel,
+      LocationModel locationModel,
+      SharedPreferencesModel sharedPreferencesModel) async {
+    _journey = await journeyModel.addJourney(sharedPreferencesModel.deviceId!);
     locationModel.startPositionStream(_journey, journeyModel);
     timerModel.start();
   }
@@ -46,7 +51,8 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
   ///
   /// Resume timer.
   /// Restart location stream.
-  void resume(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) {
+  void resume(TimerModel timerModel, JourneyModel journeyModel,
+      LocationModel locationModel) {
     timerModel.resume();
     locationModel.startPositionStream(_journey, journeyModel);
   }
@@ -56,7 +62,8 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
   /// Stop timer.
   /// Stop location stream.
   /// Update end time in Journey and update in database.
-  void finish(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
+  void finish(TimerModel timerModel, JourneyModel journeyModel,
+      LocationModel locationModel) async {
     timerModel.finish();
     locationModel.endPositionStream();
 
@@ -74,7 +81,8 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
   /// Stop timer.
   /// Stop location stream.
   /// Delete Journey and all related JourneyPoints from database.
-  void discard(TimerModel timerModel, JourneyModel journeyModel, LocationModel locationModel) async {
+  void discard(TimerModel timerModel, JourneyModel journeyModel,
+      LocationModel locationModel) async {
     timerModel.finish();
     locationModel.endPositionStream();
 
@@ -86,6 +94,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     var timerModel = context.watch<TimerModel>();
     var journeyModel = context.watch<JourneyModel>();
     var locationModel = context.watch<LocationModel>();
+    var sharedPreferencesModel = context.watch<SharedPreferencesModel>();
 
     var seconds = timerModel.seconds;
     if (_journey != null) {
@@ -96,6 +105,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
     onComplete() {
       finish(timerModel, journeyModel, locationModel);
     }
+
     // Create callback function which we will give to journey complete form.
     onDiscard() {
       discard(timerModel, journeyModel, locationModel);
@@ -106,8 +116,12 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedContainer(
-            height: timerModel.running || timerModel.dirty ? (constraints.maxHeight * 0.60) : 0.0,
-            alignment: timerModel.running ? Alignment.center : AlignmentDirectional.topCenter,
+            height: timerModel.running || timerModel.dirty
+                ? (constraints.maxHeight * 0.60)
+                : 0.0,
+            alignment: timerModel.running
+                ? Alignment.center
+                : AlignmentDirectional.topCenter,
             duration: const Duration(seconds: 1),
             curve: Curves.fastOutSlowIn,
             child: const MapPage(),
@@ -117,7 +131,8 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
               child: Text(
                 journeyModel.formattedTime(timeInSecond: seconds),
                 style: TextStyle(
-                  fontSize: (constraints.maxHeight / 8), // Adjust the font size as needed
+                  fontSize: (constraints.maxHeight /
+                      8), // Adjust the font size as needed
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -131,7 +146,8 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
                 child: Text(
                   'Dist: ${_distance.toStringAsFixed(2)}',
                   style: TextStyle(
-                    fontSize: (constraints.maxHeight / 15), // Adjust the font size as needed
+                    fontSize: (constraints.maxHeight /
+                        15), // Adjust the font size as needed
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -145,7 +161,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
                 visible: !timerModel.running && !timerModel.dirty,
                 child: ElevatedButton(
                   onPressed: () {
-                    start(timerModel, journeyModel, locationModel);
+                    start(timerModel, journeyModel, locationModel, sharedPreferencesModel);
                   },
                   child: const Text('Start'),
                 ),
