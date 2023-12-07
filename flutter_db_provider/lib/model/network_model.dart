@@ -82,6 +82,10 @@ class NetworkModel extends ChangeNotifier {
   /// Post journey data to server
   Future<http.Response> postJourney(Journey journey, List<JourneyPoint> journeyPoints) {
 
+    /**
+     * Encode the data to JSON. Note we've got to remove quotes and \ slashes
+     * from the final payload.
+     */
     String encodedJourney = jsonEncode(<String, String>{
       'journey': jsonEncode(journey.toMap()),
       'points': jsonEncode(journeyPoints.map((e) => e.toMap()).toList())
