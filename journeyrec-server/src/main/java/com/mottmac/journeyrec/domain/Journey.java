@@ -19,9 +19,9 @@ public class Journey {
     @GeneratedValue
     public long id;
     public String deviceId;
-    public String journey_type;
-    public long start_time;
-    public long end_time;
+    public String journeyType;
+    public long startTime;
+    public long endTime;
     public int duration = 0;
     public double distance = 0;
 
@@ -41,22 +41,25 @@ public class Journey {
      * @param duration
      * @param distance
      * @param uploaded
+     *
+     * Note we only need JsonProperty for where the field name doesn't match
+     * the incoming parameter.
      */
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonCreator
     public Journey(int id,
                    @JsonProperty("device_id") String deviceId,
-                   String journeyType,
-                   long startTime,
-                   long endTime,
+                   @JsonProperty("journey_type") String journeyType,
+                   @JsonProperty("start_time") long startTime,
+                   @JsonProperty("end_time") long endTime,
                    int duration,
                    double distance,
                    boolean uploaded) {
         this.id = id;
         this.deviceId = deviceId;
-        this.journey_type = journeyType;
-        this.start_time = startTime;
-        this.end_time = endTime;
+        this.journeyType = journeyType;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.duration = duration;
         this.distance = distance;
     }
@@ -75,28 +78,28 @@ public class Journey {
         this.deviceId = deviceId;
     }
 
-    public String getJourney_type() {
-        return journey_type;
+    public String getJourneyType() {
+        return journeyType;
     }
 
-    public void setJourney_type(String journey_type) {
-        this.journey_type = journey_type;
+    public void setJourneyType(String journeyType) {
+        this.journeyType = journeyType;
     }
 
-    public long getStart_time() {
-        return start_time;
+    public long getStartTime() {
+        return startTime;
     }
 
-    public void setStart_time(long start_time) {
-        this.start_time = start_time;
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
-    public long getEnd_time() {
-        return end_time;
+    public long getEndTime() {
+        return endTime;
     }
 
-    public void setEnd_time(long end_time) {
-        this.end_time = end_time;
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
     }
 
     public int getDuration() {

@@ -2,6 +2,7 @@ package com.mottmac.journeyrec.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,7 +17,7 @@ public class JourneyPoint {
     @GeneratedValue
     public long id;
 
-    /// Id of parent Journey.
+    // Journey id.
     public long journey;
 
     /// The latitude of this position in degrees normalized to the interval -90.0
@@ -60,7 +61,7 @@ public class JourneyPoint {
     /// value is 0.0.
     public double headingAccuracy;
 
-    /// The speed at which the devices is traveling in meters per second over
+    /// The speed at which the devices are traveling in meters per second over
     /// ground.
     ///
     /// The speed is not available on all devices. In these cases the value is
@@ -76,16 +77,16 @@ public class JourneyPoint {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonCreator
     public JourneyPoint(int journey,
-            double latitude,
-            double longitude,
-            long timestamp,
-            double accuracy,
-            double altitude,
-            double altitudeAccuracy,
-            double heading,
-            double headingAccuracy,
-            double speed,
-            double speedAccuracy) {
+                        double latitude,
+                        double longitude,
+                        long timestamp,
+                        double accuracy,
+                        double altitude,
+                        @JsonProperty("altitude_accuracy") double altitudeAccuracy,
+                        double heading,
+                        @JsonProperty("heading_accuracy") double headingAccuracy,
+                        double speed,
+                        @JsonProperty("speed_accuracy") double speedAccuracy) {
         this.journey = journey;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -93,6 +94,10 @@ public class JourneyPoint {
         this.accuracy = accuracy;
         this.altitude = altitude;
         this.altitudeAccuracy = altitudeAccuracy;
+        this.heading = heading;
+        this.headingAccuracy = headingAccuracy;
+        this.speed = speed;
+        this.speedAccuracy = speedAccuracy;
     }
 
     public long getId() {
