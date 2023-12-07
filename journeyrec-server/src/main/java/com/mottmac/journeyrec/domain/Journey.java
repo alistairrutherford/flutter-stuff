@@ -17,6 +17,7 @@ public class Journey {
     @Id
     @GeneratedValue
     public long id;
+    public String deviceId;
     public String journey_type;
     public long start_time;
     public long end_time;
@@ -41,13 +42,15 @@ public class Journey {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonCreator
     public Journey(int id,
+                   String deviceId,
                    String journeyType,
                    long startTime,
-                  long endTime,
+                   long endTime,
                    int duration,
                    double distance,
                    boolean uploaded) {
         this.id = id;
+        this.deviceId = deviceId;
         this.journey_type = journeyType;
         this.start_time = startTime;
         this.end_time = endTime;
@@ -61,6 +64,11 @@ public class Journey {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getDeviceId() { return deviceId; }
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     public String getJourney_type() {

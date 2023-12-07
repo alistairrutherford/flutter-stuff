@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface JourneyRepository extends CrudRepository<Journey, Long> {
-    public Journey findById(long journeyId);
 }
