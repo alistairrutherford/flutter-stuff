@@ -2,6 +2,7 @@ package com.mottmac.journeyrec.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class Journey {
     @Id
     @GeneratedValue
     public long id;
-    public String device_id;
+    public String deviceId;
     public String journey_type;
     public long start_time;
     public long end_time;
@@ -28,10 +29,12 @@ public class Journey {
 
     }
 
+
     /**
      * Journey.
      *
      * @param id
+     * @param deviceId
      * @param journeyType
      * @param startTime
      * @param endTime
@@ -42,7 +45,7 @@ public class Journey {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonCreator
     public Journey(int id,
-                   String deviceId,
+                   @JsonProperty("device_id") String deviceId,
                    String journeyType,
                    long startTime,
                    long endTime,
@@ -50,7 +53,7 @@ public class Journey {
                    double distance,
                    boolean uploaded) {
         this.id = id;
-        this.device_id = deviceId;
+        this.deviceId = deviceId;
         this.journey_type = journeyType;
         this.start_time = startTime;
         this.end_time = endTime;
@@ -66,10 +69,10 @@ public class Journey {
         this.id = id;
     }
 
-    public String getDevice_id() { return device_id; }
+    public String getDeviceId() { return deviceId; }
 
-    public void setDevice_id(String device_id) {
-        this.device_id = device_id;
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     public String getJourney_type() {
