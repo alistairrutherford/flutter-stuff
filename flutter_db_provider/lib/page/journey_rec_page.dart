@@ -142,7 +142,7 @@ class JourneyRecordViewState extends State<JourneyRecordView> {
           Expanded(
             child: Center(
               child: Visibility(
-                visible: _journey != null,
+                visible: true,
                 child: Text(
                   'Dist: ${_distance.toStringAsFixed(2)}',
                   style: TextStyle(
