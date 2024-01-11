@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Get Me Home',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.indigo,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: const ArrivalsDeparturesView(),
