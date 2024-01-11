@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:async/async.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_me_home/dao/arrivals.dart';
+import 'package:get_me_home/dao/departures.dart';
 import 'package:get_me_home/model/prefs_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -67,5 +68,24 @@ class NetworkModel extends ChangeNotifier {
       return arrivals;
     }
     return arrivals; //empty list
+  }
+
+  Future<List<Departures>> getDepartures() async {
+    final response = await http.get(
+        Uri.parse(_sharedPreferences.departuresURL!),
+        headers: {'x-apikey': _sharedPreferences.apiKey!}
+    );
+
+    var data = jsonDecode(response.body.toString());
+
+    List<Departures> departures = List.empty(growable: true);
+
+    if (response.statusCode == 200) {
+      for (Map<String, dynamic> index in data) {
+        departures.add(Departures.fromJson(index));
+      }
+      return departures;
+    }
+    return departures; //empty list
   }
 }
