@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_me_home/model/timetable_model.dart';
 import 'package:provider/provider.dart';
 import 'arrivalsdepartures.dart';
 import 'model/network_model.dart';
 import 'model/prefs_model.dart';
-
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +26,9 @@ class MainApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: NetworkModel(),
+        ),
+        ChangeNotifierProvider.value(
+          value: TimeTableModel(),
         ),
       ],
       child: MaterialApp(

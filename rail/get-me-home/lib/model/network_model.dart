@@ -6,14 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:get_me_home/dao/arrivals.dart';
 import 'package:get_me_home/dao/departures.dart';
 import 'package:get_me_home/model/prefs_model.dart';
+import 'package:get_me_home/model/timetable_model.dart';
 import 'package:http/http.dart' as http;
 
 /// This provider model handle sending journey data to server.
 class NetworkModel extends ChangeNotifier {
   // TODO: Could maybe persist this and make it configurable.
-  static const int timerPeriod = 5;
-
-  List<Arrivals> arrivalsData = [];
+  static const int timerPeriod = 60;
 
   final _sharedPreferences = SharedPreferencesModel();
 
@@ -21,9 +20,8 @@ class NetworkModel extends ChangeNotifier {
   bool processing = false;
   String? hostEndpoint;
 
-  /// This is called when preferences have been initialised
-  ///
-  void onInit() {
+
+  void onInit(TimeTableModel timeTableModel) {
     hostEndpoint = _sharedPreferences.arrivalsURL;
 
     // One-shot restartable timer.
@@ -32,20 +30,17 @@ class NetworkModel extends ChangeNotifier {
       () {
         // Only process if we are not already processing.
         if (!processing) {
-          process();
+          process(timeTableModel);
         }
         _periodicTimer.reset(); // Keep going.
       },
     );
   }
 
-  void process() async {
+  void process(TimeTableModel timeTableModel) async {
     processing = true;
 
-    // TODO Get Pending Arrivals at station from hostEndpoint.
-    arrivalsData = await getArrivals();
-
-    notifyListeners();
+    timeTableModel.refresh(this);
 
     // processing has completed
     processing = false;

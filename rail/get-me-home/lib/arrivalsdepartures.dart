@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get_me_home/model/timetable_model.dart';
+import 'package:provider/provider.dart';
 
 class ArrivalsDeparturesView extends StatelessWidget {
   const ArrivalsDeparturesView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var model = context.watch<TimeTableModel>();
+    var arrivals = model.arrivals;
+    var departures = model.departusers;
+
+    // How do we update this
+    // var networkModel = context.watch<NetworkModel>();
+    // model.refresh(networkModel);
+
     return Material(
       child: Container(
         color: Colors.indigo,
