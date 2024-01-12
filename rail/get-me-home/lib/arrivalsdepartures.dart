@@ -140,7 +140,7 @@ class ArrivalsDeparturesView extends StatelessWidget {
   }
 }
 
-/// Helper class which adds an one time initialsation to StatelessWId
+/// Helper class which adds an one time initialization to StatelessWidget
 class StatefulWrapper extends StatefulWidget {
   final Function onInit;
   final Widget child;
