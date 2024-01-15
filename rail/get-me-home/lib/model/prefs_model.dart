@@ -25,8 +25,6 @@ class SharedPreferencesModel extends ChangeNotifier {
     // load secrets
     loadAsset();
 
-    apiKey = await loadAsset();
-
     // Load and obtain the shared preferences for this app.
     final prefs = await SharedPreferences.getInstance();
 
@@ -49,7 +47,9 @@ class SharedPreferencesModel extends ChangeNotifier {
     }
   }
 
-  Future<String> loadAsset() async {
-    return await rootBundle.loadString('assets/secrets.txt');
+  // TODO Re-write this
+  Future<void> loadAsset() async {
+    String secret = await rootBundle.loadString('assets/secrets.txt');
+    apiKey = secret.split("=").last;
   }
 }

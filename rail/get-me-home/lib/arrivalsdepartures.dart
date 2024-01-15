@@ -1,8 +1,40 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get_me_home/model/timetable_model.dart';
 import 'package:provider/provider.dart';
 
 import 'model/network_model.dart';
+
+
+/// Helper class which adds an one time initialization to StatelessWidget
+class StatefulWrapper extends StatefulWidget {
+  final Function onInit;
+  final Widget child;
+
+  StatefulWrapper({required this.onInit, required this.child}) {
+    log("hello");
+  }
+
+  @override
+  StatefulWrapperState createState() => StatefulWrapperState();
+}
+
+class StatefulWrapperState extends State<StatefulWrapper> {
+  @override
+  void initState() {
+    if (widget.onInit != null) {
+      widget.onInit();
+    }
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.child;
+  }
+}
+
 
 class ArrivalsDeparturesView extends StatelessWidget {
   const ArrivalsDeparturesView({super.key});
@@ -17,7 +49,7 @@ class ArrivalsDeparturesView extends StatelessWidget {
     return StatefulWrapper(
       onInit: () {
         var networkModel = context.watch<NetworkModel>();
-        model.refresh(networkModel);
+        //model.refresh(networkModel);
       },
       child: Material(
         child: Container(
@@ -40,7 +72,7 @@ class ArrivalsDeparturesView extends StatelessWidget {
                       // mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                          "Arrival",
+                          "Arrivals",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -137,31 +169,5 @@ class ArrivalsDeparturesView extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-/// Helper class which adds an one time initialization to StatelessWidget
-class StatefulWrapper extends StatefulWidget {
-  final Function onInit;
-  final Widget child;
-
-  const StatefulWrapper({required this.onInit, required this.child});
-
-  @override
-  _StatefulWrapperState createState() => _StatefulWrapperState();
-}
-
-class _StatefulWrapperState extends State<StatefulWrapper> {
-  @override
-  void initState() {
-    if (widget.onInit != null) {
-      widget.onInit();
-    }
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return widget.child;
   }
 }
