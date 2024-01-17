@@ -11,21 +11,22 @@ class TimeTableModel extends ChangeNotifier {
   NetworkModel? _networkModel;
 
   void initialise(NetworkModel networkModel) {
+    _networkModel = _networkModel;
     networkModel.initialise(onInit);
   }
 
   void onInit() {
-    refresh(_networkModel!);
+    refresh();
   }
 
   /// Refresh local Journey list.
   ///
-  void refresh(NetworkModel networkModel) {
-    networkModel.getArrivals().then((c) {
+  void refresh() {
+    _networkModel!.getArrivals().then((c) {
       arrivals = c;
       notifyListeners();
     });
-    networkModel.getDepartures().then((c) {
+    _networkModel!.getDepartures().then((c) {
       departures = c;
       notifyListeners();
     });
