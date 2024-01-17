@@ -8,6 +8,8 @@ import 'package:get_me_home/model/prefs_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 
+import '../dao/callingpoint.dart';
+
 /// This provider model handle sending journey data to server.
 class NetworkModel extends ChangeNotifier {
   final _sharedPreferences = SharedPreferencesModel();
@@ -20,50 +22,46 @@ class NetworkModel extends ChangeNotifier {
     this.onInit = onInit;
 
     // Do await.
-    await loadAPIKey();
+    await loadAPIKeys();
 
     // Call callers onInit().
     onInit();
   }
 
   /// Fetch Arrivals.
-  Future<List<Arrivals>> getArrivals() async {
+  Future<List<TrainService?>> getArrivals() async {
     final response = await http.get(Uri.parse(_sharedPreferences.arrivalsURL!),
         headers: {'x-apikey': _apiKeys!.arrivalApiKey});
 
     var data = jsonDecode(response.body);
 
-    List<Arrivals> arrivals = List.empty(growable: true);
+    List<TrainService?>? trainServices = List.empty(growable: true);
 
     if (response.statusCode == 200) {
-      for (Map<String, dynamic> index in data) {
-        arrivals.add(Arrivals.fromJson(index));
-      }
-      return arrivals;
+      Arrivals arrivals = Arrivals.fromJson(data);
+      trainServices = arrivals.trainServices!;
     }
-    return arrivals; //empty list
+    return trainServices; //empty list
   }
 
   /// Fetch Departures.
-  Future<List<Departures>> getDepartures() async {
-    final response = await http.get(
-        Uri.parse(_sharedPreferences.departuresURL!),
+  Future<List<TrainService?>> getDepartures() async {
+    final response = await http.get(Uri.parse(_sharedPreferences.departuresURL!),
         headers: {'x-apikey': _apiKeys!.departureApiKey});
 
     var data = jsonDecode(response.body);
 
-    List<Departures> departures = List.empty(growable: true);
+    List<TrainService?>? trainServices = List.empty(growable: true);
 
     if (response.statusCode == 200) {
-      for (Map<String, dynamic> index in data) {
-        departures.add(Departures.fromJson(index));
-      }
-      return departures;
+      Departures arrivals = Departures.fromJson(data);
+      trainServices = arrivals.trainServices!;
     }
-    return departures; //empty list
+    return trainServices; //empty list
   }
 
-  Future<void> loadAPIKey() async {
+  /// Load API keys from secret file.
+  Future<void> loadAPIKeys() async {
     _apiKeys = await rootBundle
         .loadStructuredData<ApiKeys>('assets/secrets.json', (jsonStr) async {
       final secret = ApiKeys.fromJson(json.decode(jsonStr));

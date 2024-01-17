@@ -4,7 +4,7 @@ import 'callingpoint.dart';
 class Arrivals {
   List<TrainService?>? trainServices;
   Xmlns? xmlns;
-  DateTime? generatedAt;
+  String? generatedAt;
   String? locationName;
   String? crs;
   String? filterType;

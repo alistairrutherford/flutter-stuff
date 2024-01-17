@@ -185,6 +185,8 @@ class TrainService {
     data['destination'] =destination != null ? destination!.map((v) => v?.toJson()).toList() : null;
     data['std'] = std;
     data['etd'] = etd;
+    data['sta'] = std;
+    data['eta'] = etd;
     data['platform'] = platform;
     data['operator'] = operator;
     data['operatorCode'] = operatorCode;
