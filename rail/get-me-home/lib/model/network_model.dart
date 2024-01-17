@@ -1,55 +1,36 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:async/async.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_me_home/dao/arrivals.dart';
 import 'package:get_me_home/dao/departures.dart';
 import 'package:get_me_home/model/prefs_model.dart';
-import 'package:get_me_home/model/timetable_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart' show rootBundle;
 
 /// This provider model handle sending journey data to server.
 class NetworkModel extends ChangeNotifier {
-  // TODO: Could maybe persist this and make it configurable.
-  static const int timerPeriod = 60;
-
   final _sharedPreferences = SharedPreferencesModel();
 
-  late RestartableTimer _periodicTimer;
-  bool processing = false;
-  String? hostEndpoint;
+  Function? onInit;
+  String? _apiKey;
 
+  /// Chain the initialise.
+  void initialise(Function onInit) async {
+    this.onInit = onInit;
 
-  void onInit(TimeTableModel timeTableModel) {
-    hostEndpoint = _sharedPreferences.arrivalsURL;
+    // Do await.
+    loadAPIKey();
 
-    // One-shot restartable timer.
-    _periodicTimer = RestartableTimer(
-      const Duration(seconds: timerPeriod),
-      () {
-        // Only process if we are not already processing.
-        if (!processing) {
-          process(timeTableModel);
-        }
-        _periodicTimer.reset(); // Keep going.
-      },
-    );
+    // Call callers onInit().
+    onInit();
   }
 
-  void process(TimeTableModel timeTableModel) async {
-    processing = true;
-
-    timeTableModel.refresh(this);
-
-    // processing has completed
-    processing = false;
-  }
-
+  /// Fetch Arrivals.
   Future<List<Arrivals>> getArrivals() async {
     final response = await http.get(
         Uri.parse(_sharedPreferences.arrivalsURL!),
-        headers: {'x-apikey': _sharedPreferences.apiKey!}
+        headers: {'x-apikey': _apiKey!}
     );
 
     var data = jsonDecode(response.body.toString());
@@ -65,10 +46,11 @@ class NetworkModel extends ChangeNotifier {
     return arrivals; //empty list
   }
 
+  /// Fetch Departures.
   Future<List<Departures>> getDepartures() async {
     final response = await http.get(
         Uri.parse(_sharedPreferences.departuresURL!),
-        headers: {'x-apikey': _sharedPreferences.apiKey!}
+        headers: {'x-apikey': _apiKey!}
     );
 
     var data = jsonDecode(response.body.toString());
@@ -82,5 +64,10 @@ class NetworkModel extends ChangeNotifier {
       return departures;
     }
     return departures; //empty list
+  }
+
+  Future<void> loadAPIKey() async {
+    String secret = await rootBundle.loadString('assets/secrets.txt');
+    _apiKey = secret.split("=").last;
   }
 }

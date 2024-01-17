@@ -6,50 +6,20 @@ import 'package:provider/provider.dart';
 
 import 'model/network_model.dart';
 
-
-/// Helper class which adds an one time initialization to StatelessWidget
-class StatefulWrapper extends StatefulWidget {
-  final Function onInit;
-  final Widget child;
-
-  StatefulWrapper({required this.onInit, required this.child}) {
-    log("hello");
-  }
-
-  @override
-  StatefulWrapperState createState() => StatefulWrapperState();
-}
-
-class StatefulWrapperState extends State<StatefulWrapper> {
-  @override
-  void initState() {
-    if (widget.onInit != null) {
-      widget.onInit();
-    }
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return widget.child;
-  }
-}
-
-
 class ArrivalsDeparturesView extends StatelessWidget {
   const ArrivalsDeparturesView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var model = context.watch<TimeTableModel>();
+    var timeTableModel = context.watch<TimeTableModel>();
 
-    var arrivals = model.arrivals;
-    var departures = model.departusers;
+    var arrivals = timeTableModel.arrivals;
+    var departures = timeTableModel.departures;
 
-    return StatefulWrapper(
+    return _StatefulWrapper(
       onInit: () {
         var networkModel = context.watch<NetworkModel>();
-        //model.refresh(networkModel);
+        timeTableModel.initialise(networkModel);
       },
       child: Material(
         child: Container(
@@ -169,5 +139,30 @@ class ArrivalsDeparturesView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+
+/// StatefulWrapper provides a call back mechanism for StateLess widgets to perform
+/// initialisation.
+///
+class _StatefulWrapper extends StatefulWidget {
+  final Function onInit;
+  final Widget child;
+  const _StatefulWrapper({required this.onInit, required this.child});
+  @override
+  _StatefulWrapperState createState() => _StatefulWrapperState();
+}
+
+class _StatefulWrapperState extends State<_StatefulWrapper> {
+  @override
+  void initState() {
+    widget.onInit();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.child;
   }
 }

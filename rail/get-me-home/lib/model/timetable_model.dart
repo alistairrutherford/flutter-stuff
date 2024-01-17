@@ -6,9 +6,17 @@ import 'network_model.dart';
 
 class TimeTableModel extends ChangeNotifier {
 
-
   List<Arrivals> arrivals = [];
-  List<Departures> departusers = [];
+  List<Departures> departures = [];
+  NetworkModel? _networkModel;
+
+  void initialise(NetworkModel networkModel) {
+    networkModel.initialise(onInit);
+  }
+
+  void onInit() {
+    refresh(_networkModel!);
+  }
 
   /// Refresh local Journey list.
   ///
@@ -17,8 +25,8 @@ class TimeTableModel extends ChangeNotifier {
       arrivals = c;
       notifyListeners();
     });
-    networkModel.getArrivals().then((c) {
-      arrivals = c;
+    networkModel.getDepartures().then((c) {
+      departures = c;
       notifyListeners();
     });
   }
