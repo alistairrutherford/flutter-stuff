@@ -14,14 +14,26 @@ class ArrivalsDeparturesView extends StatelessWidget {
 
     var arrivals = timeTableModel.arrivals;
     TrainService? arrivalsTrainService;
+    String? arrivalOrigin = "--";
+    String? arrivalDestination = "--";
     if (arrivals.isNotEmpty) {
       arrivalsTrainService = arrivals[0];
+      Origin? origin = arrivalsTrainService!.origin![0];
+      arrivalOrigin = origin!.locationName;
+      Destination? destination = arrivalsTrainService!.destination![0];
+      arrivalDestination = destination!.locationName;
     }
 
     var departures = timeTableModel.departures;
     TrainService? departuresTrainService;
+    String? departureOrigin = "--";
+    String? departureDestination = "--";
     if (departures.isNotEmpty) {
-      arrivalsTrainService = departures[0];
+      departuresTrainService = departures[0];
+      Origin? origin = departuresTrainService!.origin![0];
+      departureOrigin = origin!.locationName;
+      Destination? destination = departuresTrainService!.destination![0];
+      departureDestination = destination!.locationName;
     }
 
     return _StatefulWrapper(
