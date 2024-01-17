@@ -11,7 +11,7 @@ class TimeTableModel extends ChangeNotifier {
   NetworkModel? _networkModel;
 
   void initialise(NetworkModel networkModel) {
-    _networkModel = _networkModel;
+    _networkModel = networkModel;
     networkModel.initialise(onInit);
   }
 

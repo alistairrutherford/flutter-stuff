@@ -20,7 +20,7 @@ class NetworkModel extends ChangeNotifier {
     this.onInit = onInit;
 
     // Do await.
-    loadAPIKey();
+    await loadAPIKey();
 
     // Call callers onInit().
     onInit();
