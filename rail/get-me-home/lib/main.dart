@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_me_home/model/timetable_model.dart';
 import 'package:provider/provider.dart';
-import 'arrivalsdepartures.dart';
+import 'arrivals_departures.dart';
 import 'model/network_model.dart';
 import 'model/prefs_model.dart';
 
