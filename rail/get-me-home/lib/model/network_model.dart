@@ -13,7 +13,7 @@ class NetworkModel extends ChangeNotifier {
   final _sharedPreferences = SharedPreferencesModel();
 
   Function? onInit;
-  String? _apiKey;
+  ApiKeys? _apiKeys;
 
   /// Chain the initialise.
   void initialise(Function onInit) async {
@@ -28,12 +28,10 @@ class NetworkModel extends ChangeNotifier {
 
   /// Fetch Arrivals.
   Future<List<Arrivals>> getArrivals() async {
-    final response = await http.get(
-        Uri.parse(_sharedPreferences.arrivalsURL!),
-        headers: {'x-apikey': _apiKey!}
-    );
+    final response = await http.get(Uri.parse(_sharedPreferences.arrivalsURL!),
+        headers: {'x-apikey': _apiKeys!.arrivalApiKey});
 
-    var data = jsonDecode(response.body.toString());
+    var data = jsonDecode(response.body);
 
     List<Arrivals> arrivals = List.empty(growable: true);
 
@@ -50,10 +48,9 @@ class NetworkModel extends ChangeNotifier {
   Future<List<Departures>> getDepartures() async {
     final response = await http.get(
         Uri.parse(_sharedPreferences.departuresURL!),
-        headers: {'x-apikey': _apiKey!}
-    );
+        headers: {'x-apikey': _apiKeys!.departureApiKey});
 
-    var data = jsonDecode(response.body.toString());
+    var data = jsonDecode(response.body);
 
     List<Departures> departures = List.empty(growable: true);
 
@@ -67,7 +64,24 @@ class NetworkModel extends ChangeNotifier {
   }
 
   Future<void> loadAPIKey() async {
-    String secret = await rootBundle.loadString('assets/secrets.txt');
-    _apiKey = secret.split("=").last;
+    _apiKeys = await rootBundle
+        .loadStructuredData<ApiKeys>('assets/secrets.json', (jsonStr) async {
+      final secret = ApiKeys.fromJson(json.decode(jsonStr));
+      return secret;
+    });
+  }
+}
+
+/// Local API Keys class (loaded from JSON).
+class ApiKeys {
+  final String departureApiKey;
+  final String arrivalApiKey;
+
+  ApiKeys({this.departureApiKey = "", this.arrivalApiKey = ""});
+
+  factory ApiKeys.fromJson(Map<String, dynamic> jsonMap) {
+    return ApiKeys(
+        departureApiKey: jsonMap["DEPARTURES_KEY"],
+        arrivalApiKey: jsonMap["ARRIVALS_KEY"]);
   }
 }
