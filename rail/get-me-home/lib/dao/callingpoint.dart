@@ -126,6 +126,8 @@ class TrainService {
   List<Destination?>? destination;
   String? std;
   String? etd;
+  String? sta;
+  String? eta;
   String? platform;
   String? operator;
   String? operatorCode;
@@ -163,6 +165,8 @@ class TrainService {
     }
     std = json['std'];
     etd = json['etd'];
+    sta = json['sta'];
+    eta = json['eta'];
     platform = json['platform'];
     operator = json['operator'];
     operatorCode = json['operatorCode'];

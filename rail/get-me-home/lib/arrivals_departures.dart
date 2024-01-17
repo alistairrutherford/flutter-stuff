@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_me_home/dao/callingpoint.dart';
 import 'package:get_me_home/model/timetable_model.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,16 @@ class ArrivalsDeparturesView extends StatelessWidget {
     var timeTableModel = context.watch<TimeTableModel>();
 
     var arrivals = timeTableModel.arrivals;
+    TrainService? arrivalsTrainService;
+    if (arrivals.isNotEmpty) {
+      arrivalsTrainService = arrivals[0];
+    }
+
     var departures = timeTableModel.departures;
+    TrainService? departuresTrainService;
+    if (departures.isNotEmpty) {
+      arrivalsTrainService = departures[0];
+    }
 
     return _StatefulWrapper(
       onInit: () {
