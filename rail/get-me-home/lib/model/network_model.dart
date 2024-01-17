@@ -54,8 +54,8 @@ class NetworkModel extends ChangeNotifier {
     List<TrainService?>? trainServices = List.empty(growable: true);
 
     if (response.statusCode == 200) {
-      Departures arrivals = Departures.fromJson(data);
-      trainServices = arrivals.trainServices!;
+      Departures departures = Departures.fromJson(data);
+      trainServices = departures.trainServices!;
     }
     return trainServices; //empty list
   }
