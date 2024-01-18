@@ -85,38 +85,38 @@ class ArrivalsDeparturesView extends StatelessWidget {
                         const Divider(
                           height: 10,
                         ),
-                        const Row(mainAxisSize: MainAxisSize.max, children: [
+                        Row(mainAxisSize: MainAxisSize.max, children: [
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               // mainAxisAlignment: MainAxisAlignment.start,
                               // mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                Text('Arrival',
+                                const Text('Arrival',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                         fontSize: 20)),
-                                SizedBox(height: 5),
-                                Text("12:00:00",
-                                    style: TextStyle(
+                                const SizedBox(height: 5),
+                                Text(timeTableModel.arrivalTrainServiceDetails.arrival,
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 20))
                               ]),
-                          SizedBox(width: 40),
+                          const SizedBox(width: 40),
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               // mainAxisAlignment: MainAxisAlignment.start,
                               // mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                Text('ETA',
+                                const Text('ETA',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                         fontSize: 20)),
                                 SizedBox(height: 5),
-                                Text("12:00:02",
-                                    style: TextStyle(
+                                Text(timeTableModel.arrivalTrainServiceDetails.eta,
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 20))

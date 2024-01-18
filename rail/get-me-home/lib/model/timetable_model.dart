@@ -6,10 +6,10 @@ import '../dao/departures.dart';
 import 'network_model.dart';
 
 class TrainServiceDetails {
-  String origin = "";
-  String destination = "";
-  String arrival = "";
-  String eta = "";
+  String origin = "---";
+  String destination = "---";
+  String arrival = "---";
+  String eta = "---";
 }
 
 class TimeTableModel extends ChangeNotifier {
@@ -38,6 +38,10 @@ class TimeTableModel extends ChangeNotifier {
     trainServiceDetails.origin = origin!.locationName!;
     Destination? destination = trainService.destination![0];
     trainServiceDetails.destination = destination!.locationName!;
+    String arrival = trainService.sta !=null ? trainService.sta! : trainService.std!;
+    String eta = trainService.eta !=null ? trainService.eta! : trainService.etd!;
+    trainServiceDetails.arrival = arrival;
+    trainServiceDetails.eta = eta;
   }
 
   /// Refresh local Journey list.
