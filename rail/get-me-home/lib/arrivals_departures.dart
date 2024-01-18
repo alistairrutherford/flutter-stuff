@@ -12,30 +12,6 @@ class ArrivalsDeparturesView extends StatelessWidget {
   Widget build(BuildContext context) {
     var timeTableModel = context.watch<TimeTableModel>();
 
-    var arrivals = timeTableModel.arrivals;
-    TrainService? arrivalsTrainService;
-    String? arrivalOrigin = "--";
-    String? arrivalDestination = "--";
-    if (arrivals.isNotEmpty) {
-      arrivalsTrainService = arrivals[0];
-      Origin? origin = arrivalsTrainService!.origin![0];
-      arrivalOrigin = origin!.locationName;
-      Destination? destination = arrivalsTrainService!.destination![0];
-      arrivalDestination = destination!.locationName;
-    }
-
-    var departures = timeTableModel.departures;
-    TrainService? departuresTrainService;
-    String? departureOrigin = "--";
-    String? departureDestination = "--";
-    if (departures.isNotEmpty) {
-      departuresTrainService = departures[0];
-      Origin? origin = departuresTrainService!.origin![0];
-      departureOrigin = origin!.locationName;
-      Destination? destination = departuresTrainService!.destination![0];
-      departureDestination = destination!.locationName;
-    }
-
     return _StatefulWrapper(
       onInit: () {
         var networkModel = context.watch<NetworkModel>();
@@ -44,14 +20,14 @@ class ArrivalsDeparturesView extends StatelessWidget {
       child: Material(
         child: Container(
           color: Colors.indigo,
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Card(
                 child: ListTile(
-                  contentPadding: EdgeInsets.only(
+                  contentPadding: const EdgeInsets.only(
                       left: 10.0, right: 10.0, top: 10, bottom: 10),
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.train,
                     color: Colors.white,
                     size: 60,
@@ -61,7 +37,7 @@ class ArrivalsDeparturesView extends StatelessWidget {
                       // mainAxisAlignment: MainAxisAlignment.start,
                       // mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           "Arrivals",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -75,14 +51,14 @@ class ArrivalsDeparturesView extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.start,
                               // mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                Text('Origin',
+                                const Text('Origin',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                         fontSize: 20)),
                                 SizedBox(height: 5),
-                                Text("Milngavie",
-                                    style: TextStyle(
+                                Text(timeTableModel.arrivalTrainServiceDetails.origin,
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 20))
@@ -93,23 +69,23 @@ class ArrivalsDeparturesView extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.start,
                               // mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                Text('Destination',
+                                const Text('Destination',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                         fontSize: 20)),
                                 SizedBox(height: 5),
-                                Text("Motherwell",
-                                    style: TextStyle(
+                                Text(timeTableModel.arrivalTrainServiceDetails.destination,
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 20))
                               ]),
                         ]),
-                        Divider(
+                        const Divider(
                           height: 10,
                         ),
-                        Row(mainAxisSize: MainAxisSize.max, children: [
+                        const Row(mainAxisSize: MainAxisSize.max, children: [
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               // mainAxisAlignment: MainAxisAlignment.start,
@@ -148,7 +124,7 @@ class ArrivalsDeparturesView extends StatelessWidget {
                         ]),
                       ]),
                   tileColor: Colors.blue,
-                  trailing: Icon(
+                  trailing: const Icon(
                     Icons.upload_file,
                     color: Colors.white,
                   ),
