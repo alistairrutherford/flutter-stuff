@@ -14,8 +14,8 @@ class TrainServiceDetails {
 
 class TimeTableModel extends ChangeNotifier {
 
-  Arrivals? arrivals;
-  Departures? departures;
+  Arrivals? arrivals = Arrivals(locationName: "----");
+  Departures? departures = Departures(locationName: "----");
   List<TrainService?> arrivalsTrainService = [];
   List<TrainService?> departuresTrainService = [];
   TrainServiceDetails arrivalTrainServiceDetails = TrainServiceDetails();
