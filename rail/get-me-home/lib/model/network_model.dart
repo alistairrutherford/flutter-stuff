@@ -29,23 +29,24 @@ class NetworkModel extends ChangeNotifier {
   }
 
   /// Fetch Arrivals.
-  Future<List<TrainService?>> getArrivals() async {
+  Future<Arrivals?> getArrivals() async {
     final response = await http.get(Uri.parse(_sharedPreferences.arrivalsURL!),
         headers: {'x-apikey': _apiKeys!.arrivalApiKey});
 
     var data = jsonDecode(response.body);
 
+    Arrivals? arrivals;
+
     List<TrainService?>? trainServices = List.empty(growable: true);
 
     if (response.statusCode == 200) {
-      Arrivals arrivals = Arrivals.fromJson(data);
-      trainServices = arrivals.trainServices!;
+      arrivals = Arrivals.fromJson(data);
     }
-    return trainServices; //empty list
+    return arrivals; //empty list
   }
 
   /// Fetch Departures.
-  Future<List<TrainService?>> getDepartures() async {
+  Future<Departures?> getDepartures() async {
     final response = await http.get(Uri.parse(_sharedPreferences.departuresURL!),
         headers: {'x-apikey': _apiKeys!.departureApiKey});
 
@@ -53,11 +54,13 @@ class NetworkModel extends ChangeNotifier {
 
     List<TrainService?>? trainServices = List.empty(growable: true);
 
+    Departures? departures;
+
     if (response.statusCode == 200) {
-      Departures departures = Departures.fromJson(data);
-      trainServices = departures.trainServices!;
+      departures = Departures.fromJson(data);
     }
-    return trainServices; //empty list
+
+    return departures; //empty list
   }
 
   /// Load API keys from secret file.

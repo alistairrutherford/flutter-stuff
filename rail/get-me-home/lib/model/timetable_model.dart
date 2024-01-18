@@ -14,8 +14,10 @@ class TrainServiceDetails {
 
 class TimeTableModel extends ChangeNotifier {
 
-  List<TrainService?> arrivals = [];
-  List<TrainService?> departures = [];
+  Arrivals? arrivals;
+  Departures? departures;
+  List<TrainService?> arrivalsTrainService = [];
+  List<TrainService?> departuresTrainService = [];
   TrainServiceDetails arrivalTrainServiceDetails = TrainServiceDetails();
   TrainServiceDetails departureTrainServiceDetails = TrainServiceDetails();
 
@@ -43,16 +45,17 @@ class TimeTableModel extends ChangeNotifier {
   void refresh() {
     _networkModel!.getArrivals().then((c) {
       arrivals = c;
-      if (arrivals.isNotEmpty) {
-        TrainService? trainService = arrivals[0];
+      if (arrivals != null) {
+        TrainService? trainService = arrivals!.trainServices![0];
         populateTrainServiceDetails(trainService!, arrivalTrainServiceDetails);
       }
       notifyListeners();
     });
+
     _networkModel!.getDepartures().then((c) {
       departures = c;
-      if (departures.isNotEmpty) {
-        TrainService? trainService = departures[0];
+      if (departures != null) {
+        TrainService? trainService = departures!.trainServices![0];
         populateTrainServiceDetails(trainService!, departureTrainServiceDetails);
       }
       notifyListeners();
