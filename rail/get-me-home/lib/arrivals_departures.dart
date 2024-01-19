@@ -36,6 +36,16 @@ class ArrivalsDeparturesView extends StatelessWidget {
                       // mainAxisAlignment: MainAxisAlignment.start,
                       // mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
+                        const Text(
+                          "Arrival",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 30),
+                        ),
+                        const Divider(
+                          height: 10,
+                        ),
                         Text(
                           timeTableModel.arrivals!.locationName!,
                           style: const TextStyle(
