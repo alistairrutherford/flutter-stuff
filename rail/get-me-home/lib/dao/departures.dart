@@ -1,5 +1,3 @@
-
-import 'arrivals.dart';
 import 'callingpoint.dart';
 
 class Departures {

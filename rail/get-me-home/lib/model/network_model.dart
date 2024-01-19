@@ -8,8 +8,6 @@ import 'package:get_me_home/model/prefs_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 
-import '../dao/callingpoint.dart';
-
 /// This provider model handle sending journey data to server.
 class NetworkModel extends ChangeNotifier {
   final _sharedPreferences = SharedPreferencesModel();
@@ -37,12 +35,10 @@ class NetworkModel extends ChangeNotifier {
 
     Arrivals? arrivals;
 
-    List<TrainService?>? trainServices = List.empty(growable: true);
-
     if (response.statusCode == 200) {
       arrivals = Arrivals.fromJson(data);
     }
-    return arrivals; //empty list
+    return arrivals;
   }
 
   /// Fetch Departures.
@@ -52,15 +48,13 @@ class NetworkModel extends ChangeNotifier {
 
     var data = jsonDecode(response.body);
 
-    List<TrainService?>? trainServices = List.empty(growable: true);
-
     Departures? departures;
 
     if (response.statusCode == 200) {
       departures = Departures.fromJson(data);
     }
 
-    return departures; //empty list
+    return departures;
   }
 
   /// Load API keys from secret file.
