@@ -40,6 +40,8 @@ class TimeTableModel extends ChangeNotifier {
     trainServiceDetails.destination = destination!.locationName!;
     String arrival = trainService.sta !=null ? trainService.sta! : trainService.std!;
     String eta = trainService.eta !=null ? trainService.eta! : trainService.etd!;
+    arrival = arrival ?? "---";
+    eta = eta ?? "---";
     trainServiceDetails.arrival = arrival;
     trainServiceDetails.eta = eta;
   }
