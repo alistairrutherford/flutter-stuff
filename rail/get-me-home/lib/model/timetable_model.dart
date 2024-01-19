@@ -35,11 +35,11 @@ class TimeTableModel extends ChangeNotifier {
   /// Extract train service detail fields.
   void populateTrainServiceDetails(TrainService trainService, TrainServiceDetails trainServiceDetails) {
     Origin? origin = trainService.origin![0];
-    trainServiceDetails.origin = origin!.locationName!;
+    trainServiceDetails.origin = origin!.locationName ?? "---";
     Destination? destination = trainService.destination![0];
-    trainServiceDetails.destination = destination!.locationName!;
-    String arrival = trainService.sta !=null ? trainService.sta! : trainService.std!;
-    String eta = trainService.eta !=null ? trainService.eta! : trainService.etd!;
+    trainServiceDetails.destination = destination!.locationName ?? "---";
+    String? arrival = trainService.sta ?? trainService.std;
+    String? eta = trainService.eta ?? trainService.etd;
     arrival = arrival ?? "---";
     eta = eta ?? "---";
     trainServiceDetails.arrival = arrival;
