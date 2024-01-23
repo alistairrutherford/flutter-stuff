@@ -8,7 +8,7 @@ class TimeTableCard extends StatelessWidget {
   final String arrival;
   final String eta;
 
-  TimeTableCard(this.title, this.locationName, this.origin, this.destination, this.arrival, this.eta, {super.key});
+  const TimeTableCard(this.title, this.locationName, this.origin, this.destination, this.arrival, this.eta, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class TimeTableCard extends StatelessWidget {
                               color: Colors.white,
                               fontSize: 20))
                     ]),
-                SizedBox(width: 40),
+                const SizedBox(width: 40),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     // mainAxisAlignment: MainAxisAlignment.start,
@@ -73,7 +73,7 @@ class TimeTableCard extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                               fontSize: 20)),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(destination,
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class TimeTableCard extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                               fontSize: 20)),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(eta,
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
