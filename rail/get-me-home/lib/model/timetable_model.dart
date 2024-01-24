@@ -45,6 +45,7 @@ class TimeTableModel extends ChangeNotifier {
       },
     );
 
+    refresh();
   }
 
   /// Extract train service detail fields.
