@@ -1,3 +1,4 @@
+import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 
 import '../dao/arrivals.dart';
@@ -13,6 +14,9 @@ class TrainServiceDetails {
 }
 
 class TimeTableModel extends ChangeNotifier {
+  static const int timerPeriod = 1;
+  bool processing = true;
+  late RestartableTimer _periodicTimer;
 
   Arrivals? arrivals = Arrivals(locationName: "----");
   Departures? departures = Departures(locationName: "----");
@@ -29,7 +33,18 @@ class TimeTableModel extends ChangeNotifier {
   }
 
   void onInit() {
-    refresh();
+
+    _periodicTimer = RestartableTimer(
+      const Duration(minutes: timerPeriod),
+          () {
+        // Only process if we are not already processing.
+        if (processing) {
+         refresh();
+        }
+        _periodicTimer.reset(); // Keep going.
+      },
+    );
+
   }
 
   /// Extract train service detail fields.
