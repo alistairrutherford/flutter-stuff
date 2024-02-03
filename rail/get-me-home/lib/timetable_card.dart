@@ -8,14 +8,20 @@ class TimeTableCard extends StatelessWidget {
   final String arrival;
   final String eta;
 
-  const TimeTableCard(this.title, this.locationName, this.origin, this.destination, this.arrival, this.eta, {super.key});
+  const TimeTableCard(this.title,
+                      this.locationName,
+                      this.origin,
+                      this.destination,
+                      this.arrival,
+                      this.eta,
+                      {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        contentPadding: const EdgeInsets.only(
-            left: 10.0, right: 10.0, top: 10, bottom: 10),
+        contentPadding:
+            const EdgeInsets.only(left: 10.0, right: 10.0, top: 10, bottom: 10),
         leading: const Icon(
           Icons.train,
           color: Colors.white,
