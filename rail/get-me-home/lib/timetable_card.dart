@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get_me_home/dao/callingpoint.dart';
 
 class TimeTableCard extends StatelessWidget {
-  final String title;
-  final String locationName;
-  final String origin;
-  final String destination;
-  final String arrival;
-  final String eta;
 
-  const TimeTableCard(this.title,
-                      this.locationName,
-                      this.origin,
-                      this.destination,
-                      this.arrival,
-                      this.eta,
-                      {super.key});
+  final TrainService trainService;
+
+  const TimeTableCard(this.trainService, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    // TODO Refactor this to tidy it up.
+    String title;
+    String locationName;
+    String origin;
+    String destination;
+    String? arrival;
+    String? eta;
+
+    title = "test";
+    locationName = "location";
+    Origin? org = trainService.origin![0];
+    origin = org!.locationName ?? "---";
+    Destination? dest = trainService.destination![0];
+    destination = dest!.locationName ?? "---";
+    arrival = trainService.sta ?? trainService.std;
+    eta = trainService.eta ?? trainService.etd;
+    arrival = arrival ?? "---";
+    eta = eta ?? "---";
+
     return Card(
       child: ListTile(
         contentPadding:

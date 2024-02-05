@@ -11,6 +11,8 @@ class ArrivalsDeparturesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var timeTableModel = context.watch<TimeTableModel>();
+    var trainServices = timeTableModel.trainServices;
+    int itemCount = trainServices.length;
 
     return _StatefulWrapper(
       onInit: () {
@@ -18,31 +20,26 @@ class ArrivalsDeparturesView extends StatelessWidget {
         timeTableModel.initialise(networkModel);
       },
       child: Material(
-        child: Container(
-          color: Colors.indigo,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TimeTableCard('Arrival',
-                  timeTableModel.arrivals!.locationName!,
-                  timeTableModel.arrivalTrainServiceDetails.origin,
-                  timeTableModel.arrivalTrainServiceDetails.destination,
-                  timeTableModel.arrivalTrainServiceDetails.arrival,
-                  timeTableModel.arrivalTrainServiceDetails.eta),
-              TimeTableCard('Departures',
-                  timeTableModel.departures!.locationName!,
-                  timeTableModel.departureTrainServiceDetails.origin,
-                  timeTableModel.departureTrainServiceDetails.destination,
-                  timeTableModel.departureTrainServiceDetails.arrival,
-                  timeTableModel.departureTrainServiceDetails.eta)
-            ],
-          ),
-        ),
+          child: Container(
+              color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: itemCount,
+                      itemBuilder: (BuildContext context, int index) {
+                        return TimeTableCard(trainServices[index]!);
+                      },
+                    ),
+                  ),
+                ],
+              )
+          )
       ),
     );
   }
 }
-
 
 /// StatefulWrapper provides a call back mechanism for StateLess widgets to perform
 /// initialisation.

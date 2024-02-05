@@ -18,10 +18,8 @@ class TimeTableModel extends ChangeNotifier {
   bool processing = true;
   late RestartableTimer _periodicTimer;
 
-  Arrivals? arrivals = Arrivals(locationName: "----");
-  Departures? departures = Departures(locationName: "----");
-  List<TrainService?> arrivalsTrainService = [];
-  List<TrainService?> departuresTrainService = [];
+  List<TrainService?> trainServices = [];
+
   TrainServiceDetails arrivalTrainServiceDetails = TrainServiceDetails();
   TrainServiceDetails departureTrainServiceDetails = TrainServiceDetails();
 
@@ -65,13 +63,17 @@ class TimeTableModel extends ChangeNotifier {
   /// Refresh local Journey list.
   ///
   void refresh() {
+    Arrivals? arrivals = Arrivals(locationName: "----");
+    Departures? departures = Departures(locationName: "----");
+
     _networkModel!.getArrivals().then((c) {
       arrivals = c;
       if (arrivals != null) {
         TrainService? trainService = arrivals!.trainServices![0];
         populateTrainServiceDetails(trainService!, arrivalTrainServiceDetails);
+        trainServices.add(trainService);
+        notifyListeners();
       }
-      notifyListeners();
     });
 
     _networkModel!.getDepartures().then((c) {
@@ -79,8 +81,15 @@ class TimeTableModel extends ChangeNotifier {
       if (departures != null) {
         TrainService? trainService = departures!.trainServices![0];
         populateTrainServiceDetails(trainService!, departureTrainServiceDetails);
+        trainServices.add(trainService);
+        notifyListeners();
       }
-      notifyListeners();
     });
+
+    // Process arrivals and departures for relevant service data
+
+    // For each trainservice in arrivals or departures extract the closest to
+    // time now for each possible platform
+
   }
 }
