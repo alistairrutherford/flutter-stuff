@@ -66,6 +66,8 @@ class TimeTableModel extends ChangeNotifier {
     Arrivals? arrivals = Arrivals(locationName: "----");
     Departures? departures = Departures(locationName: "----");
 
+    trainServices.clear();
+
     _networkModel!.getArrivals().then((c) {
       arrivals = c;
       if (arrivals != null) {
