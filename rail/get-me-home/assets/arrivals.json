@@ -1,0 +1,1627 @@
+{
+  "trainServices": [
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Motherwell",
+              "crs": "MTH",
+              "st": "16:27",
+              "at": "16:30",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Whifflet",
+              "crs": "WFF",
+              "st": "16:34",
+              "at": "16:39",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Kirkwood",
+              "crs": "KWD",
+              "st": "16:37",
+              "at": "16:42",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bargeddie",
+              "crs": "BGI",
+              "st": "16:40",
+              "at": "16:44",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Baillieston",
+              "crs": "BIO",
+              "st": "16:44",
+              "at": "16:48",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Mount Vernon",
+              "crs": "MTV",
+              "st": "16:46",
+              "at": "16:50",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Carmyle",
+              "crs": "CML",
+              "st": "16:49",
+              "at": "16:52",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Rutherglen",
+              "crs": "RUT",
+              "st": "16:54",
+              "at": "16:58",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dalmarnock",
+              "crs": "DAK",
+              "st": "16:56",
+              "at": "17:00",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bridgeton",
+              "crs": "BDG",
+              "st": "16:58",
+              "at": "17:02",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Argyle Street",
+              "crs": "AGS",
+              "st": "17:02",
+              "at": "17:05",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Glasgow Central",
+              "crs": "GLC",
+              "st": "17:04",
+              "at": "17:07",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Anderston",
+              "crs": "AND",
+              "st": "17:06",
+              "at": "17:09",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Exhibition Centre",
+              "crs": "EXG",
+              "st": "17:08",
+              "at": "17:11",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Motherwell",
+          "crs": "MTH",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Dalmuir",
+          "crs": "DMR",
+          "via": "via Yoker",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:11",
+      "eta": "17:13",
+      "platform": "2",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4122941PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Springburn",
+              "crs": "SPR",
+              "st": "16:51",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Barnhill",
+              "crs": "BNL",
+              "st": "16:53",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Alexandra Parade",
+              "crs": "AXP",
+              "st": "16:56",
+              "at": "No report",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Duke Street",
+              "crs": "DST",
+              "st": "16:58",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bellgrove",
+              "crs": "BLG",
+              "st": "17:00",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "High Street",
+              "crs": "HST",
+              "st": "17:03",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Glasgow Queen Street",
+              "crs": "GLQ",
+              "st": "17:07",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Charing Cross (Glasgow)",
+              "crs": "CHC",
+              "st": "17:10",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Springburn",
+          "crs": "SPR",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Milngavie",
+          "crs": "MLN",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:14",
+      "eta": "On time",
+      "platform": "2",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4123441PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Dalmuir",
+              "crs": "DMR",
+              "st": "17:00",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Clydebank",
+              "crs": "CYK",
+              "st": "17:02",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Yoker",
+              "crs": "YOK",
+              "st": "17:04",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Garscadden",
+              "crs": "GRS",
+              "st": "17:07",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Scotstounhill",
+              "crs": "SCH",
+              "st": "17:09",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Jordanhill",
+              "crs": "JOR",
+              "st": "17:12",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hyndland",
+              "crs": "HYN",
+              "st": "17:14",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Dalmuir",
+          "crs": "DMR",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Motherwell",
+          "crs": "MTH",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:16",
+      "eta": "On time",
+      "platform": "1",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4118486PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Airdrie",
+              "crs": "ADR",
+              "st": "16:40",
+              "at": "16:42",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Coatdyke",
+              "crs": "COA",
+              "st": "16:43",
+              "at": "16:46",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Coatbridge Sunnyside",
+              "crs": "CBS",
+              "st": "16:46",
+              "at": "16:48",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Blairhill",
+              "crs": "BAI",
+              "st": "16:48",
+              "at": "16:51",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Easterhouse",
+              "crs": "EST",
+              "st": "16:52",
+              "at": "16:55",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Garrowhill",
+              "crs": "GAR",
+              "st": "16:55",
+              "at": "16:57",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Shettleston",
+              "crs": "SLS",
+              "st": "16:58",
+              "at": "17:00",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Carntyne",
+              "crs": "CAY",
+              "st": "17:00",
+              "at": "17:02",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bellgrove",
+              "crs": "BLG",
+              "st": "17:04",
+              "at": "17:06",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "High Street",
+              "crs": "HST",
+              "st": "17:07",
+              "at": "17:08",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Glasgow Queen Street",
+              "crs": "GLQ",
+              "st": "17:11",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Charing Cross (Glasgow)",
+              "crs": "CHC",
+              "st": "17:14",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Airdrie",
+          "crs": "ADR",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Balloch",
+          "crs": "BHC",
+          "via": "via Singer",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:18",
+      "eta": "On time",
+      "platform": "2",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4119219PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Balloch",
+              "crs": "BHC",
+              "st": "16:38",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Alexandria",
+              "crs": "ALX",
+              "st": "16:40",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Renton",
+              "crs": "RTN",
+              "st": "16:43",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dalreoch",
+              "crs": "DLR",
+              "st": "16:46",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dumbarton Central",
+              "crs": "DBC",
+              "st": "16:47",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dumbarton East",
+              "crs": "DBE",
+              "st": "16:49",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bowling",
+              "crs": "BWG",
+              "st": "16:54",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Kilpatrick",
+              "crs": "KPT",
+              "st": "16:57",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dalmuir",
+              "crs": "DMR",
+              "st": "17:01",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Singer",
+              "crs": "SIN",
+              "st": "17:03",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Drumry",
+              "crs": "DMY",
+              "st": "17:06",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Drumchapel",
+              "crs": "DMC",
+              "st": "17:08",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Westerton",
+              "crs": "WES",
+              "st": "17:11",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Anniesland",
+              "crs": "ANL",
+              "st": "17:14",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hyndland",
+              "crs": "HYN",
+              "st": "17:17",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Balloch",
+          "crs": "BHC",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Airdrie",
+          "crs": "ADR",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:19",
+      "eta": "On time",
+      "platform": "1",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4119229PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Milngavie",
+              "crs": "MLN",
+              "st": "17:07",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hillfoot",
+              "crs": "HLF",
+              "st": "17:10",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bearsden",
+              "crs": "BRN",
+              "st": "17:12",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Westerton",
+              "crs": "WES",
+              "st": "17:15",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Anniesland",
+              "crs": "ANL",
+              "st": "17:18",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hyndland",
+              "crs": "HYN",
+              "st": "17:21",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Milngavie",
+          "crs": "MLN",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Springburn",
+          "crs": "SPR",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:23",
+      "eta": "On time",
+      "platform": "1",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4123544PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Larkhall",
+              "crs": "LRH",
+              "st": "16:33",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Merryton",
+              "crs": "MEY",
+              "st": "16:35",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Chatelherault",
+              "crs": "CTE",
+              "st": "16:38",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hamilton Central",
+              "crs": "HNC",
+              "st": "16:43",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hamilton West",
+              "crs": "HNW",
+              "st": "16:45",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Blantyre",
+              "crs": "BLT",
+              "st": "16:49",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Newton",
+              "crs": "NTN",
+              "st": "16:59",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Cambuslang",
+              "crs": "CBL",
+              "st": "17:02",
+              "at": "17:04",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Rutherglen",
+              "crs": "RUT",
+              "st": "17:06",
+              "at": "17:08",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dalmarnock",
+              "crs": "DAK",
+              "st": "17:08",
+              "at": "17:11",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bridgeton",
+              "crs": "BDG",
+              "st": "17:10",
+              "at": "17:13",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Argyle Street",
+              "crs": "AGS",
+              "st": "17:14",
+              "et": "17:17",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Glasgow Central",
+              "crs": "GLC",
+              "st": "17:17",
+              "et": "17:19",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Anderston",
+              "crs": "AND",
+              "st": "17:19",
+              "et": "17:21",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Exhibition Centre",
+              "crs": "EXG",
+              "st": "17:21",
+              "et": "17:23",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Larkhall",
+          "crs": "LRH",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Dalmuir",
+          "crs": "DMR",
+          "via": "via Yoker",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:25",
+      "eta": "On time",
+      "platform": "2",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4121580PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Dalmuir",
+              "crs": "DMR",
+              "st": "17:09",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Clydebank",
+              "crs": "CYK",
+              "st": "17:11",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Yoker",
+              "crs": "YOK",
+              "st": "17:13",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Garscadden",
+              "crs": "GRS",
+              "st": "17:16",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Scotstounhill",
+              "crs": "SCH",
+              "st": "17:18",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Jordanhill",
+              "crs": "JOR",
+              "st": "17:22",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hyndland",
+              "crs": "HYN",
+              "st": "17:24",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Dalmuir",
+          "crs": "DMR",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Motherwell",
+          "crs": "MTH",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:26",
+      "eta": "On time",
+      "platform": "1",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4122883PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Edinburgh",
+              "crs": "EDB",
+              "st": "16:08",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Haymarket",
+              "crs": "HYM",
+              "st": "16:12",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Edinburgh Park",
+              "crs": "EDP",
+              "st": "16:17",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Uphall",
+              "crs": "UHA",
+              "st": "16:26",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Livingston North",
+              "crs": "LSN",
+              "st": "16:30",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bathgate",
+              "crs": "BHG",
+              "st": "16:36",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Armadale",
+              "crs": "ARM",
+              "st": "16:40",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Blackridge",
+              "crs": "BKR",
+              "st": "16:43",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Caldercruix",
+              "crs": "CAC",
+              "st": "16:50",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Drumgelloch",
+              "crs": "DRU",
+              "st": "16:53",
+              "at": "16:55",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Airdrie",
+              "crs": "ADR",
+              "st": "16:58",
+              "at": "17:00",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Coatbridge Sunnyside",
+              "crs": "CBS",
+              "st": "17:02",
+              "at": "17:04",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Shettleston",
+              "crs": "SLS",
+              "st": "17:10",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Carntyne",
+              "crs": "CAY",
+              "st": "17:12",
+              "at": "17:13",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bellgrove",
+              "crs": "BLG",
+              "st": "17:16",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "High Street",
+              "crs": "HST",
+              "st": "17:18",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Glasgow Queen Street",
+              "crs": "GLQ",
+              "st": "17:22",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Charing Cross (Glasgow)",
+              "crs": "CHC",
+              "st": "17:24",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Edinburgh",
+          "crs": "EDB",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Milngavie",
+          "crs": "MLN",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "SR804300",
+      "sta": "17:28",
+      "eta": "On time",
+      "platform": "2",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4121881PTCK____"
+    },
+    {
+      "previousCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Helensburgh Central",
+              "crs": "HLC",
+              "st": "16:53",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Craigendoran",
+              "crs": "CGD",
+              "st": "16:56",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Cardross",
+              "crs": "CDR",
+              "st": "17:01",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dalreoch",
+              "crs": "DLR",
+              "st": "17:06",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dumbarton Central",
+              "crs": "DBC",
+              "st": "17:08",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dumbarton East",
+              "crs": "DBE",
+              "st": "17:10",
+              "at": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Dalmuir",
+              "crs": "DMR",
+              "st": "17:20",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hyndland",
+              "crs": "HYN",
+              "st": "17:27",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Helensburgh Central",
+          "crs": "HLC",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Edinburgh",
+          "crs": "EDB",
+          "assocIsCancelled": false
+        }
+      ],
+      "sta": "17:29",
+      "eta": "On time",
+      "platform": "1",
+      "operator": "ScotRail",
+      "operatorCode": "SR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4120437PTCK____"
+    }
+  ],
+  "Xmlns": {
+    "Count": 8
+  },
+  "generatedAt": "2024-02-06T17:16:18.4624898+00:00",
+  "locationName": "Partick",
+  "crs": "PTK",
+  "filterType": "to",
+  "platformAvailable": true,
+  "areServicesAvailable": true
+}
