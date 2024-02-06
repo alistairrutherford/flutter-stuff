@@ -6,22 +6,12 @@ import '../dao/callingpoint.dart';
 import '../dao/departures.dart';
 import 'network_model.dart';
 
-class TrainServiceDetails {
-  String origin = "---";
-  String destination = "---";
-  String arrival = "---";
-  String eta = "---";
-}
-
 class TimeTableModel extends ChangeNotifier {
   static const int timerPeriod = 1;
   bool processing = true;
   late RestartableTimer _periodicTimer;
 
   List<TrainService?> trainServices = [];
-
-  TrainServiceDetails arrivalTrainServiceDetails = TrainServiceDetails();
-  TrainServiceDetails departureTrainServiceDetails = TrainServiceDetails();
 
   NetworkModel? _networkModel;
 
@@ -46,20 +36,6 @@ class TimeTableModel extends ChangeNotifier {
     refresh();
   }
 
-  /// Extract train service detail fields.
-  void populateTrainServiceDetails(TrainService trainService, TrainServiceDetails trainServiceDetails) {
-    Origin? origin = trainService.origin![0];
-    trainServiceDetails.origin = origin!.locationName ?? "---";
-    Destination? destination = trainService.destination![0];
-    trainServiceDetails.destination = destination!.locationName ?? "---";
-    String? arrival = trainService.sta ?? trainService.std;
-    String? eta = trainService.eta ?? trainService.etd;
-    arrival = arrival ?? "---";
-    eta = eta ?? "---";
-    trainServiceDetails.arrival = arrival;
-    trainServiceDetails.eta = eta;
-  }
-
   /// Refresh local Journey list.
   ///
   void refresh() {
@@ -72,7 +48,6 @@ class TimeTableModel extends ChangeNotifier {
       arrivals = c;
       if (arrivals != null) {
         TrainService? trainService = arrivals!.trainServices![0];
-        populateTrainServiceDetails(trainService!, arrivalTrainServiceDetails);
         trainServices.add(trainService);
         notifyListeners();
       }
@@ -82,7 +57,6 @@ class TimeTableModel extends ChangeNotifier {
       departures = c;
       if (departures != null) {
         TrainService? trainService = departures!.trainServices![0];
-        populateTrainServiceDetails(trainService!, departureTrainServiceDetails);
         trainServices.add(trainService);
         notifyListeners();
       }

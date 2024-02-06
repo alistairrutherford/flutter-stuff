@@ -8,7 +8,7 @@ import 'package:get_me_home/model/prefs_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 
-/// This provider model handle sending journey data to server.
+/// Implement fetching data.
 class NetworkModel extends ChangeNotifier {
   final _sharedPreferences = SharedPreferencesModel();
 
