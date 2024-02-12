@@ -29,14 +29,13 @@ class ArrivalsDeparturesView extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: itemCount,
                       itemBuilder: (BuildContext context, int index) {
-                        return TimeTableCard(trainServices[index]!);
+                        return TimeTableCard(trainServices[index]!.locationName,
+                                             trainServices[index]!.trainService);
                       },
                     ),
                   ),
                 ],
-              )
-          )
-      ),
+              ))),
     );
   }
 }

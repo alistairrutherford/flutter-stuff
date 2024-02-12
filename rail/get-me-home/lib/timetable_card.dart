@@ -3,22 +3,19 @@ import 'package:get_me_home/dao/callingpoint.dart';
 
 class TimeTableCard extends StatelessWidget {
 
+  final String locationName;
   final TrainService trainService;
 
-  const TimeTableCard(this.trainService, {super.key});
+  const TimeTableCard(this.locationName, this.trainService, {super.key});
 
   @override
   Widget build(BuildContext context) {
     // TODO Refactor this to tidy it up.
-    String title;
-    String locationName;
     String origin;
     String destination;
     String? arrival;
     String? eta;
 
-    title = "test";
-    locationName = "location";
     Origin? org = trainService.origin![0];
     origin = org!.locationName ?? "---";
     Destination? dest = trainService.destination![0];
@@ -42,16 +39,6 @@ class TimeTableCard extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.start,
             // mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text(
-                title,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 30),
-              ),
-              const Divider(
-                height: 10,
-              ),
               Text(
                 locationName,
                 style: const TextStyle(

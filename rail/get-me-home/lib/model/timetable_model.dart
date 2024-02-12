@@ -6,12 +6,19 @@ import '../dao/callingpoint.dart';
 import '../dao/departures.dart';
 import 'network_model.dart';
 
+class TimeTableEntry {
+  String locationName;
+  TrainService trainService;
+
+  TimeTableEntry(this.locationName, this.trainService);
+}
+
 class TimeTableModel extends ChangeNotifier {
   static const int timerPeriod = 1;
   bool processing = true;
   late RestartableTimer _periodicTimer;
 
-  List<TrainService?> trainServices = [];
+  List<TimeTableEntry?> trainServices = [];
 
   NetworkModel? _networkModel;
 
@@ -48,7 +55,8 @@ class TimeTableModel extends ChangeNotifier {
       arrivals = c;
       if (arrivals != null) {
         TrainService? trainService = arrivals!.trainServices![0];
-        trainServices.add(trainService);
+
+        trainServices.add(TimeTableEntry(arrivals!.locationName!, trainService!));
         notifyListeners();
       }
     });
@@ -57,7 +65,7 @@ class TimeTableModel extends ChangeNotifier {
       departures = c;
       if (departures != null) {
         TrainService? trainService = departures!.trainServices![0];
-        trainServices.add(trainService);
+        trainServices.add(TimeTableEntry(arrivals!.locationName!, trainService!));
         notifyListeners();
       }
     });
