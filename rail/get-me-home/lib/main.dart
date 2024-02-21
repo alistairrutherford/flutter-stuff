@@ -38,12 +38,13 @@ class MainApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: const AppBarTheme(
               titleTextStyle: TextStyle(
-                backgroundColor:Colors.blue,
+                fontSize: 25,
             fontWeight: FontWeight.bold,
           )),
         ),
         home: Scaffold(
           appBar: AppBar(
+              backgroundColor:Colors.blue,
             title: const Text('Next Train'),
           ),
           body: const ArrivalsDeparturesView(),
