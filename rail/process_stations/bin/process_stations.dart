@@ -26,13 +26,12 @@ Future<void> main(List<String> arguments) async {
   print("Filepath: $filePath");
 
   // read stations data, filter and write back.
-  List<Station?>? stationsdata = await service.readStations(filePath);
+  List<Station?>? stationsData = await service.readStations(filePath);
 
   // read stations data, filter and write back.
-  List<Station?>? filteredStation = service.filterStations(stationsdata);
+  List<Station?>? filteredStation = service.filterStations(stationsData);
 
   String outPath = buildFilePath(OUTPUT_DATA);
 
   service.writeStations(outPath, filteredStation);
-
 }
