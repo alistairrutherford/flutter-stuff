@@ -1,3 +1,5 @@
+import "parse_helper.dart";
+
 /*
 // Example Usage
 Map<String, dynamic> map = jsonDecode(<myJSONString>);
@@ -20,7 +22,7 @@ class ReferenceData {
 }
 
 class Station {
-  int? nlc;
+  String? nlc;
   String? name;
   String? tiploc;
   String? cRS;
@@ -34,16 +36,22 @@ class Station {
   Station({this.nlc, this.name, this.tiploc, this.cRS, this.oJPEnabled, this.oJPDisplayName, this.oJPAdviceMessage, this.rSPDisplayName, this.attendedTIS, this.unattendedTIS});
 
   Station.fromJson(Map<String, dynamic> json) {
-    nlc = json['Nlc'];
-    name = json['Name'];
-    tiploc = json['Tiploc'];
-    cRS = json['CRS'];
-    oJPEnabled = json['OJPEnabled'];
-    oJPDisplayName = json['OJPDisplayName'];
-    oJPAdviceMessage = json['OJPAdviceMessage'];
-    rSPDisplayName = json['RSPDisplayName'];
-    attendedTIS = json['AttendedTIS'];
-    unattendedTIS = json['UnattendedTIS'];
+    try {
+      nlc = ParserHelper.parseIntString(json, 'Nlc');
+
+      name = json['Name'];
+      tiploc = json['Tiploc'];
+      cRS = json['CRS'];
+      oJPEnabled = json['OJPEnabled'];
+      oJPDisplayName = json['OJPDisplayName'];
+      oJPAdviceMessage = json['OJPAdviceMessage'];
+      rSPDisplayName = json['RSPDisplayName'];
+      attendedTIS = json['AttendedTIS'];
+      unattendedTIS = json['UnattendedTIS'];
+    } catch(e) {
+      print(e);
+    }
+
   }
 
   Map<String, dynamic> toJson() {
