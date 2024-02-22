@@ -1,0 +1,1 @@
+This folder contains assets which are not stored in git project.
