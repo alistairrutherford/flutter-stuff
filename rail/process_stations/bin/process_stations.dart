@@ -6,6 +6,7 @@ import 'package:process_stations/stations.dart';
 const String INPUT_DATA = "stations.json";
 const String OUTPUT_DATA = "filtered.json";
 
+/// Build path file local to app.
 String buildFilePath(String fileName) {
   Directory current = Directory.current;
 
@@ -16,6 +17,7 @@ String buildFilePath(String fileName) {
   return path;
 }
 
+/// Main app.
 Future<void> main(List<String> arguments) async {
   StationService service = StationService();
 
