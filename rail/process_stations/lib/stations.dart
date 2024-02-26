@@ -54,7 +54,7 @@ class Station {
 
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toFullJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['Nlc'] = nlc;
     data['Name'] = name;
@@ -66,6 +66,13 @@ class Station {
     data['RSPDisplayName'] = rSPDisplayName;
     data['AttendedTIS'] = attendedTIS;
     data['UnattendedTIS'] = unattendedTIS;
+    return data;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['Name'] = name;
+    data['Tiploc'] = tiploc;
     return data;
   }
 }
