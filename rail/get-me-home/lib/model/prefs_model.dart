@@ -5,13 +5,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// onInit call-back.
 class SharedPreferencesModel extends ChangeNotifier {
   static const String prefArrivalsURL = "ARRIVALS_URL";
-  static const String defaultArrivalsURL = "https://api1.raildata.org.uk/1010-live-arrival-board-arr/LDBWS/api/20220120/GetArrBoardWithDetails/BRN";
+  static const String defaultArrivalsURL = "https://api1.raildata.org.uk/1010-live-arrival-board-arr/LDBWS/api/20220120/GetArrBoardWithDetails/";
 
   static const String prefDeparturesURL = "DEPARTURES_URL";
-  static const String defaultDeparturesURL = "https://api1.raildata.org.uk/1010-live-departure-board-dep/LDBWS/api/20220120/GetDepBoardWithDetails/BRN";
+  static const String defaultDeparturesURL = "https://api1.raildata.org.uk/1010-live-departure-board-dep/LDBWS/api/20220120/GetDepBoardWithDetails/";
+
+  static const String prefStation = "STATION";
+  static const String defaultStation = "BRN";
+
 
   String? arrivalsURL;
   String? departuresURL;
+  String? station;
 
   SharedPreferencesModel() {
     initialise();
@@ -37,6 +42,14 @@ class SharedPreferencesModel extends ChangeNotifier {
       // Generate default.
       departuresURL = defaultDeparturesURL;
       await prefs.setString(prefDeparturesURL, departuresURL!);
+    }
+
+    // Departures
+    station = prefs.getString(prefStation);
+    if (station == null) {
+      // Generate default.
+      station = defaultStation;
+      await prefs.setString(prefStation, station!);
     }
   }
 }

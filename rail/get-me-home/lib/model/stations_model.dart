@@ -12,21 +12,12 @@ import '../dao/stations.dart';
 
 /// Implement fetching data.
 class StationsModel extends ChangeNotifier {
-  final _sharedPreferences = SharedPreferencesModel();
-
-  Function? onInit;
-
   ReferenceData? stations;
 
   /// Chain the initialise.
-  void initialise(Function onInit) async {
-    this.onInit = onInit;
-
+  void initialise() async {
     // Do await.
     await loadStations();
-
-    // Call callers onInit().
-    onInit();
   }
 
   /// Load station data from JSON
@@ -36,6 +27,8 @@ class StationsModel extends ChangeNotifier {
       final stations = ReferenceData.fromJson(json.decode(jsonStr));
       return stations;
     });
+    // Notify model subscribers that station loaded.
+    notifyListeners();
   }
 
 }

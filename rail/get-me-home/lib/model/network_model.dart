@@ -28,7 +28,7 @@ class NetworkModel extends ChangeNotifier {
 
   /// Fetch Arrivals.
   Future<Arrivals?> getArrivals() async {
-    final response = await http.get(Uri.parse(_sharedPreferences.arrivalsURL!),
+    final response = await http.get(Uri.parse(_sharedPreferences.arrivalsURL! + _sharedPreferences.station!),
         headers: {'x-apikey': _apiKeys!.arrivalApiKey});
 
     var data = jsonDecode(response.body);
@@ -43,7 +43,7 @@ class NetworkModel extends ChangeNotifier {
 
   /// Fetch Departures.
   Future<Departures?> getDepartures() async {
-    final response = await http.get(Uri.parse(_sharedPreferences.departuresURL!),
+    final response = await http.get(Uri.parse(_sharedPreferences.departuresURL! + _sharedPreferences.station!),
         headers: {'x-apikey': _apiKeys!.departureApiKey});
 
     var data = jsonDecode(response.body);

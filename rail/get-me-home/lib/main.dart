@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_me_home/model/stations_model.dart';
 import 'package:get_me_home/model/timetable_model.dart';
 import 'package:provider/provider.dart';
 import 'arrivals_departures.dart';
@@ -29,6 +30,9 @@ class MainApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: TimeTableModel(),
+        ),
+        ChangeNotifierProvider.value(
+          value: StationsModel(),
         ),
       ],
       child: MaterialApp(
