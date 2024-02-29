@@ -13,7 +13,6 @@ class SharedPreferencesModel extends ChangeNotifier {
   static const String prefStation = "STATION";
   static const String defaultStation = "BRN";
 
-
   String? arrivalsURL;
   String? departuresURL;
   String? station;
@@ -44,7 +43,7 @@ class SharedPreferencesModel extends ChangeNotifier {
       await prefs.setString(prefDeparturesURL, departuresURL!);
     }
 
-    // Departures
+    // Chosen station
     station = prefs.getString(prefStation);
     if (station == null) {
       // Generate default.

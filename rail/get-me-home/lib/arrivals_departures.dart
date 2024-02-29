@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_me_home/dao/stations.dart';
 import 'package:get_me_home/model/stations_model.dart';
 import 'package:get_me_home/model/timetable_model.dart';
 import 'package:get_me_home/timetable_card.dart';

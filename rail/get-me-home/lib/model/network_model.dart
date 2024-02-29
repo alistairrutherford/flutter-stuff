@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 
 /// Implement fetching data.
+/// TODO make the URL more efficient by concatenating this inside the prefs.
 class NetworkModel extends ChangeNotifier {
   final _sharedPreferences = SharedPreferencesModel();
 
@@ -28,7 +29,9 @@ class NetworkModel extends ChangeNotifier {
 
   /// Fetch Arrivals.
   Future<Arrivals?> getArrivals() async {
-    final response = await http.get(Uri.parse(_sharedPreferences.arrivalsURL! + _sharedPreferences.station!),
+    String station = _sharedPreferences.station!;
+    String url = _sharedPreferences.arrivalsURL! + station;
+    final response = await http.get(Uri.parse(url),
         headers: {'x-apikey': _apiKeys!.arrivalApiKey});
 
     var data = jsonDecode(response.body);
@@ -43,7 +46,9 @@ class NetworkModel extends ChangeNotifier {
 
   /// Fetch Departures.
   Future<Departures?> getDepartures() async {
-    final response = await http.get(Uri.parse(_sharedPreferences.departuresURL! + _sharedPreferences.station!),
+    String station = _sharedPreferences.station!;
+    String url = _sharedPreferences.departuresURL! + station;
+    final response = await http.get(Uri.parse(url),
         headers: {'x-apikey': _apiKeys!.departureApiKey});
 
     var data = jsonDecode(response.body);
