@@ -36,7 +36,7 @@ class ArrivalsDeparturesView extends StatelessWidget {
                       itemCount: itemCount,
                       itemBuilder: (BuildContext context, int index) {
                         return TimeTableCard(trainServices[index]!.locationName,
-                                             trainServices[index]!.trainService);
+                            trainServices[index]!.trainService);
                       },
                     ),
                   ),
