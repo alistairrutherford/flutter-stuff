@@ -36,24 +36,37 @@ class MainApp extends StatelessWidget {
           value: StationsModel(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Get Me Home',
-        theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme: const AppBarTheme(
-              titleTextStyle: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              )),
+      child: MainView(),
+    );
+  }
+}
+
+class MainView extends StatelessWidget {
+  const MainView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return MaterialApp(
+      title: 'Get Me Home',
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            )),
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor:Colors.blue,
+          title: const Text('Next Train'),
         ),
-        home: Scaffold(
-          appBar: AppBar(
-            backgroundColor:Colors.blue,
-            title: const Text('Next Train'),
-          ),
-          body: const ArrivalsDeparturesView(),
-        ),
+        body: const ArrivalsDeparturesView(),
       ),
     );
   }

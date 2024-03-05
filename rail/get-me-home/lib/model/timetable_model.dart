@@ -24,9 +24,22 @@ class TimeTableModel extends ChangeNotifier {
 
   void initialise(NetworkModel networkModel) {
     _networkModel = networkModel;
-    networkModel.initialise(onInit);
+
+    _periodicTimer = RestartableTimer(
+      const Duration(minutes: timerPeriod),
+          () {
+        // Only process if we are not already processing.
+        if (processing) {
+          refresh();
+        }
+        _periodicTimer.reset(); // Keep going.
+      },
+    );
+
+    refresh();
   }
 
+  /*
   void onInit() {
 
     _periodicTimer = RestartableTimer(
@@ -42,6 +55,8 @@ class TimeTableModel extends ChangeNotifier {
 
     refresh();
   }
+  */
+
 
   /// Refresh local Journey list.
   ///

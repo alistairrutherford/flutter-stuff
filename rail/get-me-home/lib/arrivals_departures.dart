@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_me_home/model/prefs_model.dart';
 import 'package:get_me_home/model/stations_model.dart';
 import 'package:get_me_home/model/timetable_model.dart';
 import 'package:get_me_home/timetable_card.dart';
@@ -12,17 +13,20 @@ class ArrivalsDeparturesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var timeTableModel = context.watch<TimeTableModel>();
-    var stationsModel = context.watch<StationsModel>();
 
     var trainServices = timeTableModel.trainServices;
     int itemCount = trainServices.length;
 
     return _StatefulWrapper(
-      onInit: () {
-        // Load stations
-        stationsModel.initialise();
+      onInit: () async {
+        // Initialise models in sequence.
+        var preferencesModel = context.watch<SharedPreferencesModel>();
         var networkModel = context.watch<NetworkModel>();
-        // Load data.
+        var stationsModel = context.watch<StationsModel>();
+
+        await preferencesModel.initialise();
+        await networkModel.initialise(preferencesModel);
+        await stationsModel.initialise();
         timeTableModel.initialise(networkModel);
       },
       child: Material(

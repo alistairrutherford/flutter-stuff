@@ -17,11 +17,7 @@ class SharedPreferencesModel extends ChangeNotifier {
   String? departuresURL;
   String? station;
 
-  SharedPreferencesModel() {
-    initialise();
-  }
-
-  void initialise() async {
+  Future<void> initialise() async {
     // Load and obtain the shared preferences for this app.
     final prefs = await SharedPreferences.getInstance();
 

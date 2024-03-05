@@ -11,20 +11,22 @@ import 'package:flutter/services.dart' show rootBundle;
 /// Implement fetching data.
 /// TODO make the URL more efficient by concatenating this inside the prefs.
 class NetworkModel extends ChangeNotifier {
-  final _sharedPreferences = SharedPreferencesModel();
+  late SharedPreferencesModel _sharedPreferences;
 
   Function? onInit;
   ApiKeys? _apiKeys;
 
   /// Chain the initialise.
-  void initialise(Function onInit) async {
+  Future<void> initialise(SharedPreferencesModel sharedPreferencesModel, [Function? onInit]) async {
+    this._sharedPreferences = sharedPreferencesModel;
+
     this.onInit = onInit;
 
     // Do await.
     await loadAPIKeys();
 
     // Call callers onInit().
-    onInit();
+    if (onInit != null) onInit();
   }
 
   /// Fetch Arrivals.

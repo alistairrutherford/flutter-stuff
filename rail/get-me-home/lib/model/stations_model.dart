@@ -15,7 +15,7 @@ class StationsModel extends ChangeNotifier {
   ReferenceData? stations;
 
   /// Chain the initialise.
-  void initialise() async {
+  Future<void> initialise() async {
     // Do await.
     await loadStations();
   }
