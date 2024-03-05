@@ -61,7 +61,7 @@ class TimeTableModel extends ChangeNotifier {
       departures = c;
       if (departures != null) {
         TrainService? trainService = departures!.trainServices![0];
-        trainServices.add(TimeTableEntry(arrivals!.locationName!, trainService!));
+        trainServices.add(TimeTableEntry(departures!.locationName!, trainService!));
         notifyListeners();
       }
     });
