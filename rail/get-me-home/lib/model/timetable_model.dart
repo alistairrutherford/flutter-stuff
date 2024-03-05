@@ -39,25 +39,6 @@ class TimeTableModel extends ChangeNotifier {
     refresh();
   }
 
-  /*
-  void onInit() {
-
-    _periodicTimer = RestartableTimer(
-      const Duration(minutes: timerPeriod),
-          () {
-        // Only process if we are not already processing.
-        if (processing) {
-         refresh();
-        }
-        _periodicTimer.reset(); // Keep going.
-      },
-    );
-
-    refresh();
-  }
-  */
-
-
   /// Refresh local Journey list.
   ///
   void refresh() {
