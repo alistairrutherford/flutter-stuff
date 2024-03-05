@@ -48,15 +48,10 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  bool isDark = false;
 
   @override
   Widget build(BuildContext context) {
     var stationsModel = context.watch<StationsModel>();
-
-    final ThemeData themeData = ThemeData(
-        useMaterial3: true,
-        brightness: isDark ? Brightness.dark : Brightness.light);
 
     return MaterialApp(
       title: 'Get Me Home',
@@ -94,8 +89,8 @@ class _MainViewState extends State<MainView> {
                 );
               }, suggestionsBuilder:
                       (BuildContext context, SearchController controller) {
-                return List<ListTile>.generate(5, (int index) {
-                  final String item = 'item $index';
+                return List<ListTile>.generate(stationsModel.stationsCount(stationsModel), (int index) {
+                  final String item = stationsModel.getStationName(index);
                   return ListTile(
                     title: Text(item),
                     onTap: () {

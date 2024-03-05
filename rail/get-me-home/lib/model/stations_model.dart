@@ -31,4 +31,33 @@ class StationsModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// TODO Rerwrite this
+  String getStationName(int index) {
+    String name = "";
+
+    if (stations != null) {
+      if (stations!.stationsReferenceData != null) {
+        if (stations!.stationsReferenceData!.station != null) {
+          name = stations!.stationsReferenceData!.station![index]!.name!;
+        }
+      }
+    }
+
+    return name;
+  }
+
+  /// TODO Rerwrite this
+  int stationsCount(StationsModel model) {
+    int count = 0;
+
+    if (stations != null) {
+      if (stations!.stationsReferenceData != null) {
+        if (stations!.stationsReferenceData!.station != null) {
+          count = stations!.stationsReferenceData!.station!.length;
+        }
+      }
+    }
+
+    return count;
+  }
 }
