@@ -35,7 +35,7 @@ class MainApp extends StatelessWidget {
           value: StationsModel(),
         ),
       ],
-      child: MainView(),
+      child: const MainView(),
     );
   }
 }
@@ -102,8 +102,8 @@ class _MainViewState extends State<MainView> {
                 });
               }),
             ),
-            Expanded(
-              child: const ArrivalsDeparturesView(),
+            const Expanded(
+              child: ArrivalsDeparturesView(),
             ),
           ])),
     );
