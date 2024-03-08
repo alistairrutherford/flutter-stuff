@@ -2,10 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:get_me_home/dao/arrivals.dart';
-import 'package:get_me_home/dao/departures.dart';
-import 'package:get_me_home/model/prefs_model.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 
 import '../dao/stations.dart';
@@ -31,33 +27,19 @@ class StationsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// TODO Rerwrite this
+  /// Extract station name.
+  ///
+  /// We build JSON to ensure no empty values.
   String getStationName(int index) {
-    String name = "";
-
-    if (stations != null) {
-      if (stations!.stationsReferenceData != null) {
-        if (stations!.stationsReferenceData!.station != null) {
-          name = stations!.stationsReferenceData!.station![index]!.name!;
-        }
-      }
-    }
-
+    String name = stations!.stationsReferenceData!.station![index]!.name!;
     return name;
   }
 
-  /// TODO Rerwrite this
+  /// Extract count.
+  ///
+  /// We build JSON to ensure no empty values.
   int stationsCount(StationsModel model) {
-    int count = 0;
-
-    if (stations != null) {
-      if (stations!.stationsReferenceData != null) {
-        if (stations!.stationsReferenceData!.station != null) {
-          count = stations!.stationsReferenceData!.station!.length;
-        }
-      }
-    }
-
+    int count = stations!.stationsReferenceData!.station!.length;
     return count;
   }
 }
