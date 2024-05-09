@@ -1,1 +1,1 @@
-This folder contains serets which are not stored in git project.
+This folder contains a secrets file with keys to rail data API which are not stored in git project.
