@@ -1,3 +1,8 @@
-# flutter_db_provider
+# Journey Recorder mobile client
 
-Test of provider pattern.
+This is a flutter based journey recorder.
+
+Features:
+
+  List view with card based rows and icons for different journey types.
+  Map based recorder view loosely based on the layout of Strava with a realtime map which expands into the view.
