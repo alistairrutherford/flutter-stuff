@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get_me_home/dao/arrivals.dart';
@@ -31,34 +32,51 @@ class NetworkModel extends ChangeNotifier {
 
   /// Fetch Arrivals.
   Future<Arrivals?> getArrivals() async {
-    String station = _sharedPreferences.station!;
-    String url = _sharedPreferences.arrivalsURL! + station;
-    final response = await http.get(Uri.parse(url),
-        headers: {'x-apikey': _apiKeys!.arrivalApiKey});
-
-    var data = jsonDecode(response.body);
-
     Arrivals? arrivals;
 
-    if (response.statusCode == 200) {
-      arrivals = Arrivals.fromJson(data);
+    String station = _sharedPreferences.station!;
+    String url = _sharedPreferences.arrivalsURL! + station;
+    try {
+      final response = await http.get(Uri.parse(url),
+          headers: {'x-apikey': _apiKeys!.arrivalApiKey});
+
+      var data = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        arrivals = Arrivals.fromJson(data);
+      }
+    } on SocketException {
+      print('No Internet connection');
+    } on HttpException {
+      print("Couldn't find the post");
+    } on FormatException {
+      print("Bad response format");
     }
+
     return arrivals;
   }
 
   /// Fetch Departures.
   Future<Departures?> getDepartures() async {
-    String station = _sharedPreferences.station!;
-    String url = _sharedPreferences.departuresURL! + station;
-    final response = await http.get(Uri.parse(url),
-        headers: {'x-apikey': _apiKeys!.departureApiKey});
-
-    var data = jsonDecode(response.body);
-
     Departures? departures;
 
-    if (response.statusCode == 200) {
-      departures = Departures.fromJson(data);
+    String station = _sharedPreferences.station!;
+    String url = _sharedPreferences.departuresURL! + station;
+    try {
+      final response = await http.get(Uri.parse(url),
+          headers: {'x-apikey': _apiKeys!.departureApiKey});
+
+      var data = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        departures = Departures.fromJson(data);
+      }
+    } on SocketException {
+      print('No Internet connection');
+    } on HttpException {
+      print("Couldn't find the post");
+    } on FormatException {
+      print("Bad response format");
     }
 
     return departures;
