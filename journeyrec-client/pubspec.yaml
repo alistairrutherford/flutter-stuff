@@ -1,5 +1,5 @@
-name: flutter_db_provider
-description: A new Flutter project.
+name: journeyrec_client
+description: A Flutter application with embedded map which can record journeys and post to server.
 publish_to: 'none'
 version: 0.1.0
 

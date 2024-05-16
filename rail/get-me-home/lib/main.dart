@@ -47,7 +47,24 @@ class MainView extends StatefulWidget {
   State<MainView> createState() => _MainViewState();
 }
 
+enum IconLabel {
+  smile('Smile', Icons.sentiment_satisfied_outlined),
+  cloud(
+    'Cloud',
+    Icons.cloud_outlined,
+  ),
+  brush('Brush', Icons.brush_outlined),
+  heart('Heart', Icons.favorite);
+
+  const IconLabel(this.label, this.icon);
+  final String label;
+  final IconData icon;
+}
+
+
 class _MainViewState extends State<MainView> {
+  final TextEditingController iconController = TextEditingController();
+  IconLabel? selectedIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -73,34 +90,33 @@ class _MainViewState extends State<MainView> {
           body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SearchAnchor(
-                  builder: (BuildContext context, SearchController controller) {
-                return SearchBar(
-                  controller: controller,
-                  padding: const MaterialStatePropertyAll<EdgeInsets>(
-                      EdgeInsets.symmetric(horizontal: 16.0)),
-                  onTap: () {
-                    controller.openView();
+              child:
+              DropdownMenu<IconLabel>(
+                controller: iconController,
+                enableFilter: true,
+                requestFocusOnTap: true,
+                leadingIcon: const Icon(Icons.search),
+                label: const Text('Icon'),
+                inputDecorationTheme: const InputDecorationTheme(
+                  filled: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 5.0),
+                ),
+                onSelected: (IconLabel? icon) {
+                  setState(() {
+                    selectedIcon = icon;
+                  });
+                },
+                dropdownMenuEntries:
+                IconLabel.values.map<DropdownMenuEntry<IconLabel>>(
+                      (IconLabel icon) {
+                    return DropdownMenuEntry<IconLabel>(
+                      value: icon,
+                      label: icon.label,
+                      leadingIcon: Icon(icon.icon),
+                    );
                   },
-                  onChanged: (_) {
-                    controller.openView();
-                  },
-                  leading: const Icon(Icons.search),
-                );
-              }, suggestionsBuilder:
-                      (BuildContext context, SearchController controller) {
-                return List<ListTile>.generate(stationsModel.stationsCount(stationsModel), (int index) {
-                  final String item = stationsModel.getStationName(index);
-                  return ListTile(
-                    title: Text(item),
-                    onTap: () {
-                      setState(() {
-                        controller.closeView(item);
-                      });
-                    },
-                  );
-                });
-              }),
+                ).toList(),
+              ),
             ),
             const Expanded(
               child: ArrivalsDeparturesView(),
