@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -57,15 +56,14 @@ class IconLabel {
   final IconData icon;
 }
 
-
 class _MainViewState extends State<MainView> {
   final TextEditingController iconController = TextEditingController();
   IconLabel? selectedIcon;
 
   /// Build dropdown list.
   List<DropdownMenuEntry<IconLabel>> buildStations(StationsModel model) {
-    List<Station?>? stations = List<Station>.empty();
-    List<DropdownMenuEntry<IconLabel>> dropdownStations = List<DropdownMenuEntry<IconLabel>>.empty();
+    List<Station?>? stations = List<Station>.empty(growable: true);
+    List<DropdownMenuEntry<IconLabel>> dropdownStations = List<DropdownMenuEntry<IconLabel>>.empty(growable: true);
 
      if (model.stations != null) {
        if (model.stations!.stationsReferenceData != null) {
@@ -76,7 +74,7 @@ class _MainViewState extends State<MainView> {
              String name = station!.name!;
              IconLabel iconLabel = IconLabel(name, Icons.favorite);
 
-             DropdownMenuEntry<IconLabel> entry = new DropdownMenuEntry<IconLabel>(value: iconLabel, label: name);
+             DropdownMenuEntry<IconLabel> entry = DropdownMenuEntry<IconLabel>(value: iconLabel, label: name);
 
              dropdownStations.add(entry);
            }
