@@ -58,37 +58,15 @@ class IconLabel {
 
 class _MainViewState extends State<MainView> {
   final TextEditingController iconController = TextEditingController();
+
   IconLabel? selectedIcon;
 
-  /// Build dropdown list.
-  List<DropdownMenuEntry<IconLabel>> buildStations(StationsModel model) {
-    List<Station?>? stations = List<Station>.empty(growable: true);
-    List<DropdownMenuEntry<IconLabel>> dropdownStations = List<DropdownMenuEntry<IconLabel>>.empty(growable: true);
 
-     if (model.stations != null) {
-       if (model.stations!.stationsReferenceData != null) {
-         if (model.stations!.stationsReferenceData!.station != null) {
-           stations = model.stations!.stationsReferenceData!.station;
-
-           for (final station in stations!) {
-             String name = station!.name!;
-             IconLabel iconLabel = IconLabel(name, Icons.favorite);
-
-             DropdownMenuEntry<IconLabel> entry = DropdownMenuEntry<IconLabel>(value: iconLabel, label: name);
-
-             dropdownStations.add(entry);
-           }
-         }
-        }
-     }
-
-     return dropdownStations;
-  }
 
   @override
   Widget build(BuildContext context) {
     var stationsModel = context.watch<StationsModel>();
-    List<DropdownMenuEntry<IconLabel>> dropdownMenuEntries = buildStations(stationsModel);
+    List<DropdownMenuEntry<IconLabel>> dropdownMenuEntries = stationsModel.dropdownStations;
 
     return MaterialApp(
       title: 'Get Me Home',
