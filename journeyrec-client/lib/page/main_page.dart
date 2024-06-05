@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/page/journey_rec_page.dart';
+import 'package:journeyrec_client/page/journey_rec_page.dart';
 import 'journey_list_page.dart';
 
 class MainAppView extends StatelessWidget {

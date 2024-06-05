@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/model/journey_model.dart';
-import 'package:flutter_db_provider/model/location_model.dart';
-import 'package:flutter_db_provider/model/prefs_model.dart';
-import 'package:flutter_db_provider/page/journey_form_page.dart';
-import 'package:flutter_db_provider/page/map_page.dart';
-import 'package:flutter_db_provider/model/timer_model.dart';
+import 'package:journeyrec_client/model/journey_model.dart';
+import 'package:journeyrec_client/model/location_model.dart';
+import 'package:journeyrec_client/model/prefs_model.dart';
+import 'package:journeyrec_client/page/journey_form_page.dart';
+import 'package:journeyrec_client/page/map_page.dart';
+import 'package:journeyrec_client/model/timer_model.dart';
 import 'package:provider/provider.dart';
 
 import '../dao/journey.dart';

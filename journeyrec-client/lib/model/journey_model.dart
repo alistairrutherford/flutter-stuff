@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/dao/journey.dart';
-import 'package:flutter_db_provider/dao/db_service.dart';
-import 'package:flutter_db_provider/dao/journey_point.dart';
+import 'package:journeyrec_client/dao/journey.dart';
+import 'package:journeyrec_client/dao/db_service.dart';
+import 'package:journeyrec_client/dao/journey_point.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
