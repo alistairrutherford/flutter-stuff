@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/dao/journey.dart';
-import 'package:flutter_db_provider/dao/db_service.dart';
-import 'package:flutter_db_provider/dao/journey_point.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
+
+import '../dao/db_service.dart';
+import '../dao/journey.dart';
+import '../dao/journey_point.dart';
 
 class JourneyModel extends ChangeNotifier {
   NumberFormat formatter = NumberFormat("00");

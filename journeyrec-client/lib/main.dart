@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_db_provider/model/location_model.dart';
-import 'package:flutter_db_provider/model/timer_model.dart';
-import 'package:flutter_db_provider/model/prefs_model.dart';
 import 'package:provider/provider.dart';
+import 'model/location_model.dart';
 import 'model/network_model.dart';
+import 'model/prefs_model.dart';
+import 'model/timer_model.dart';
 import 'page/main_page.dart';
 import 'model/journey_model.dart';
 

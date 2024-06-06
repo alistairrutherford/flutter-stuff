@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/page/journey_rec_page.dart';
 import 'journey_list_page.dart';
+import 'journey_rec_page.dart';
 
 class MainAppView extends StatelessWidget {
   const MainAppView({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/page/journey_map_page.dart';
-import 'package:flutter_db_provider/model/journey_model.dart';
 import 'package:provider/provider.dart';
 
 import '../dao/journey.dart';
+import '../model/journey_model.dart';
+import 'journey_map_page.dart';
 
 class JourneyListView extends StatelessWidget {
   static const Map<JourneyType, String> journeyTitles = {

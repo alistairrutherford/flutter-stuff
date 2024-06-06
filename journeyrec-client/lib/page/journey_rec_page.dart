@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_db_provider/model/journey_model.dart';
-import 'package:flutter_db_provider/model/location_model.dart';
-import 'package:flutter_db_provider/model/prefs_model.dart';
-import 'package:flutter_db_provider/page/journey_form_page.dart';
-import 'package:flutter_db_provider/page/map_page.dart';
-import 'package:flutter_db_provider/model/timer_model.dart';
 import 'package:provider/provider.dart';
 
 import '../dao/journey.dart';
+import '../model/journey_model.dart';
+import '../model/location_model.dart';
+import '../model/prefs_model.dart';
+import '../model/timer_model.dart';
+import 'journey_form_page.dart';
+import 'map_page.dart';
 
 class JourneyRecordView extends StatefulWidget {
   const JourneyRecordView({super.key});
