@@ -16,6 +16,7 @@ class JourneyModel extends ChangeNotifier {
   Position? _lastPosition;
   double _distance = 0.0;
 
+
   List<Journey> _journeys = [];
 
   JourneyModel() {
